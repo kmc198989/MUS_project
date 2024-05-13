@@ -13,4 +13,5 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
+<%@include file="includes/footer.jsp" %>
 </html>
