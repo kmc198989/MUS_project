@@ -1,5 +1,12 @@
 @charset "UTF-8";
 .header_div{
 	background-color: #000;
-	height: 10%;
+	height: 60px;
+	display: flex;
+	align-items: center;
+}
+
+.searchbar {
+	width: 30vw;
+	height: 20px;
 }

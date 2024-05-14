@@ -5,12 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/footer.css">
 </head>
 <body>
-	<footer class="sc-1prwz6y-0 hrAXat">
+	<footer class="footer">
 		<section class="sc-11o7ydq-0 zGYIG">
-			<div class="sc-11o7ydq-1 VhnvR">
+			<div class="sc-11o7ydq-1">
 				<a href="https://corp.musinsa.com" target="_blank"
 					class="sc-11o7ydq-2 eqSoZi">회사소개</a> <a
 					href="https://www.musinsa.com/app/cs/notice_list" target="_self"

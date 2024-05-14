@@ -37,7 +37,7 @@ public class MemberController {
 
 	
 	/* 회원가입 페이지 이동 */
-	@RequestMapping(value = "join", method = RequestMethod.GET)
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public void loginGET() {
 				
 		logger.info("회원가입 페이지 진입");
@@ -63,7 +63,7 @@ public class MemberController {
 	}
 	
 	/* 로그인 페이지 이동 */
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void joinGET() {
 				
 		logger.info("로그인 페이지 진입");
