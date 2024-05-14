@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.mus.mapper.CartMapper">
+	
+	<!-- 카트 추가 -->
+	<insert id="addCart">
+		insert into mus_cart(cartId, memberId, clothId, clothCount)
+		values(cartId_seq.nextval, #{memberId}, #{clothId}, #{clothCount}) 
+	</insert>
+	
+	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		delete from mus_cart where cartId = #{cartId}
+	</delete>
+	
+	<!-- 카트 수량 수정 -->
+	<update id="modifyCount">
+		update mus_cart set clothCount=#{clothCount} where cartId = #{cartId}
+	</update>
+	
+	
+	<!-- 카트 목록 -->
+	<select id="getCart" resultType="com.mus.model.CartDTO">
+	
+		select a.cartId, a.memberId, a.clothId, a.clothCount, b.clothName, b.clothPrice, b.clothDiscount
+			from mus_cart a left outer join mus_cloth b on a.clothId = b.clothId
+		where memberId = #{memberId}	
+	
+	</select>
+	
+	<!-- 카트 확인 -->
+	<select id="checkCart" resultType="com.mus.model.CartDTO">
+		select * from mus_cart 
+			where memberId = #{memberId} and clothId = #{clothId}
+	</select>
+	
+	
+  </mapper>
