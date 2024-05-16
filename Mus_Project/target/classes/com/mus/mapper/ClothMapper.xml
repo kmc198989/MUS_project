@@ -4,12 +4,69 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mus.mapper.ClothMapper">
 
-<select id="clothAll" resultType="com.mus.model.ClothVO">
+	<!-- criteria(검색조건) -->
+	<sql id="criteria">
+		((clothName like '%' || #{keyword} || '%' or brandName like '%' || #{keyword} || '%')
+	</sql>
 
-	select * from mus_cloth
+	<!-- 상품 검색 -->
+	<select id="getGoodsList" resultType="com.mus.model.ClothVO">
 
-</select>
+		<![CDATA[
+    select * from(
+        select /*+INDEX_DESC(vam_book SYS_C008550)*/ rownum as rn, clothId, clothName,
+            (select authorName from vam_author where vam_book.authorId = vam_author.authorId) authorName, authorId,
+            (select cateName from vam_bcate where vam_book.cateCode = vam_bcate.cateCode) cateName,cateCode, publisher, publeYear, bookPrice, bookDiscount  
+        from vam_book
+        where 
+    ]]>
+		<include refid="criteria"></include>
+    <![CDATA[
+	   and rownum <= #{pageNum} * #{amount} 
+     	)
+     where rn > (#{pageNum} -1) * #{amount}
+		]]>
 
+	</select>
 
+	<!-- 상품 총 개수 -->
+	<select id="goodsGetTotal" resultType="int">
+
+		select count(*) from mus_cloth
+		where
+		<include refid="criteria"></include>
+		clothId >0
+	</select>
+	
+	<!-- 1차 카테고리 조회 -->
+	<select id="getCateCode1" resultType="com.mus.model.CateVO">
+		select * from mus_cate
+		where mod(catecode, 1000) = 0
+	</select>
+
+	<!-- 2차 카테고리 조회 -->
+	<select id="getCateCode2" resultType="com.mus.model.CateVO">
+		select * from mus_cate
+		where cateParent = #{cateCode}
+	</select>
+	
+	<!-- 카테고리 정보(+검색대상 갯수) -->	
+	
+	<select id="getCateInfo" resultType="com.mus.model.CateFilterDTO">
+	
+		select DISTINCT count(*) cateCount, a.cateCode, b.cateName from mus_cloth a left join mus_cate b on a.cateCode = b.cateCode 
+		
+		where 
+  		<include refid="criteria"></include>  						
+  	and a.cateCode = #{cateCode}						
+  					
+  					
+  						bookName like '%' || #{keyword} || '%' and a.cateCode = #{cateCode}
+  						 
+  					  					
+  		
+  		group by a.cateCode, b.cateName
+	
+	</select>
 
 </mapper>

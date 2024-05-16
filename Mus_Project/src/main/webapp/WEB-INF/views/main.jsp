@@ -11,7 +11,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
-
 </head>
 <body>
 	<%@include file="includes/header.jsp"%>
@@ -84,16 +83,9 @@
 					<div id="nav_section">
 						<%@include file="includes/nav.jsp"%>
 					</div>
-					<div id="main_div">
-						<h1>main 영역 입니다</h1>
-						<h1>main 영역 입니다</h1>
-						<h1>main 영역 입니다</h1>
-						<h1>main 영역 입니다</h1>
-						<h1>main 영역 입니다</h1>
-						<h1>main 영역 입니다</h1>
-						<h1>main 영역 입니다</h1>
-						<h1>main 영역 입니다</h1>
-					</div>
+					
+						<%@include file="search.jsp"%>
+				
 				</section>
 			</div>
 			<!-- Footer 영역 -->
@@ -108,19 +100,17 @@
 
 
 	<script>
- 
-    /* gnb_area 로그아웃 버튼 작동 */
-    $("#gnb_logout_button").click(function(){
-        //alert("버튼 작동");
-        $.ajax({
-            type:"POST",
-            url:"/member/logout.do",
-            success:function(data){
-                document.location.reload();     
-            } 
-        }); // ajax
-    });
-    
-</script>
+		/* gnb_area 로그아웃 버튼 작동 */
+		$("#gnb_logout_button").click(function() {
+			//alert("버튼 작동");
+			$.ajax({
+				type : "POST",
+				url : "/member/logout.do",
+				success : function(data) {
+					document.location.reload();
+				}
+			}); // ajax
+		});
+	</script>
 </body>
 </html>

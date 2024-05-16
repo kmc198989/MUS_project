@@ -1,5 +1,5 @@
 package com.mus.mapper;
 
-public class MainMapper {
+public interface MainMapper {
 
 }

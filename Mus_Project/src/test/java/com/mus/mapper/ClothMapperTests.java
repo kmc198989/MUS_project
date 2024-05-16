@@ -14,11 +14,18 @@ public class ClothMapperTests {
 	private ClothMapper mapper;
 	
 	@Test
-	public void clothAll() {
-		
-		mapper.clothAll();
+	public void getCateCode2() {
+		String cateCode = "100000";
+		mapper.getCateCode2(cateCode);
 	}
 	
+	/*
+	@Test
+	public void getCateCode1() {
+		
+		mapper.getCateCode1();
+	}
+	*/
 	
 	
 }
