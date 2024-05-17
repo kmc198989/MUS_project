@@ -1,0 +1,76 @@
+@charset "UTF-8";
+*{
+	margin: 0 auto;
+	padding: 0 auto;
+}
+#nav_section{
+	width: 15%;
+	float: left;
+	height: 100%;
+}
+#main_div{
+	float: right;
+	width: 85%;
+	background-color: #aedf9e;
+}
+#footer_section{
+	float: right;
+	width: 85%;
+}
+
+/* 제품 목록 스타일링 */
+.content_area ul {
+    list-style: none; /* 기본 목록 표시 스타일 제거 */
+    padding: 0; /* 목록의 패딩 제거 */
+    margin: 0; /* 목록의 마진 제거 */
+    display: flex; /* 목록을 수평으로 나열 */
+    flex-wrap: wrap; /* 내용이 넘칠 때 줄 바꿈 */
+}
+
+/* 각 제품 카드 스타일링 */
+.li_box {
+    font-size: 12px;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 14px;
+    outline: none;
+    list-style: none;
+    border: 0;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-width: 154px;
+    float: left;
+    background: #fff;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+		width: calc(10%); /* 제품 카드의 너비를 반으로 줄임 /
+}
+
+
+/* 제품 이미지 스타일링 */
+.li_box .list_img {
+    width: 100%; /* 이미지 영역의 너비 */
+    text-align: center; /* 이미지 중앙 정렬 */
+}
+
+.li_box .list_img img {
+    max-width: 100%; /* 이미지의 최대 너비는 부모 요소의 너비와 같음 */
+    height: auto; /* 비율에 맞게 높이 조정 */
+}
+
+/* 제품 정보 스타일링 */
+.li_box .article_info {
+    margin-top: 10px; /* 이미지와의 간격 */
+}
+
+.li_box .article_info p {
+    margin: 5px 0; /* 각 요소들의 상하 여백 */
+}
+
+/* 가격의 스타일 */
+.li_box .article_info .price {
+    color: #FF0000; /* 빨간색 텍스트 */
+    font-weight: bold; /* 굵은 글씨 */
+}

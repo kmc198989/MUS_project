@@ -14,9 +14,6 @@ public class Criteria {
 	// 검색 키워드
 	private String keyword = "";
 	
-	// 브랜드네임
-	private String brandName;
-	
 	// 카테고리 코드
 	private String cateCode;
 
@@ -63,14 +60,6 @@ public class Criteria {
 		this.keyword = keyword;
 	}
 
-	public String getBrandName() {
-		return brandName;
-	}
-
-	public void setBrandName(String brandName) {
-		this.brandName = brandName;
-	}
-
 	public String getCateCode() {
 		return cateCode;
 	}
@@ -82,7 +71,7 @@ public class Criteria {
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", keyword=" + keyword
-				+ ", brandName=" + brandName + ", cateCode=" + cateCode + "]";
+				+ ", cateCode=" + cateCode + "]";
 	}
 	
 	

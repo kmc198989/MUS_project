@@ -22,7 +22,7 @@
 		(select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName, 
 		clothStock, regDate from mus_cloth where ]]>
 		
-				<if test="keyword != null"> clothName like '%' || #{keyword} || '%' and </if>
+				<if test="keyword != null"> (clothName like '%' || #{keyword} || '%' or brandName like '%' || #{keyword} || '%') and </if>
 				
 		<![CDATA[ rownum <= #{pageNum} * #{amount} ) 
 				where rn > (#{pageNum} -1) * #{amount} 
@@ -32,7 +32,7 @@
 	<!-- 상품 총 개수 -->
 	<select id="goodsGetTotal" resultType="int">
 		select count(*) from mus_cloth
-		<if test="keyword != null"> where clothName like '%' || #{keyword} || '%' </if>
+		<if test="keyword != null"> where clothName like '%' || #{keyword} || '%' or brandName like '%' || #{keyword} || '%' </if>
 	</select>
 	<!-- 상품 조회 페이지 -->
 	<select id="goodsGetDetail" resultType="com.mus.model.ClothVO"> select clothId,

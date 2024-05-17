@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- criteria(검색조건) -->
 	<sql id="criteria">
-		((clothName like '%' || #{keyword} || '%' or brandName like
-		'%' || #{keyword} || '%')
+		(clothName like '%' || #{keyword} || '%' or brandName like
+		'%' || #{keyword} || '%' or cateCode like '%' || #{keyword} || '%')
 	</sql>
 
 	<!-- 상품 검색 -->
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from mus_cloth
 		where
 		<include refid="criteria"></include>
-		clothId >0
+		and clothId >0
 	</select>
 
 	<!-- 1차 카테고리 조회 -->
@@ -49,27 +49,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cateParent = #{cateCode}
 	</select>
 
-	<!-- 카테고리 정보(+검색대상 갯수) -->
+	<!-- 검색 대상 카테고리 리스트 -->
+	<select id="getCateList" resultType="String">
+	
+		select DISTINCT cateCode from mus_cloth where 
 
+		<include refid="criteria"></include>
+	
+	</select>
+
+	<!-- 카테고리 정보(+검색대상 갯수) -->
 	<select id="getCateInfo"
 		resultType="com.mus.model.CateFilterDTO">
 
 		select DISTINCT count(*) as cateCount, a.cateCode, b.cateName from
-		mus_cloth a left join mus_cate b on a.cateCode = b.cateCode where
-		<foreach item="type" collection="typeArr" separator=" ">
-			<choose>
-				<when test="type == 'A'.toString()">
-					<trim prefix="AND (" suffix=")" prefixOverrides="OR">
-						<foreach collection="sellerArr" item="sellerId"
-							separator=" OR "> sellerId = #{sellerId} </foreach>
-					</trim>
-					AND a.cateCode = #{cateCode}
-				</when>
-				<when test="type == 'T'.toString()"> clothName like concat('%', #{keyword}, '%') and
-					a.cateCode = #{cateCode}
-				</when>
-			</choose>
-		</foreach>
+		mus_cloth a left join mus_cate b on a.cateCode = b.cateCode 
+			where
+			(clothName like '%' || #{keyword} || '%' or brandName like
+			'%' || #{keyword} || '%') and a.cateCode = #{cateCode}
+
 		group by a.cateCode, b.cateName
 
 	</select>

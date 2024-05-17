@@ -1,0 +1,287 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+body {
+  background-color: #f1f1f1;
+}
+
+#wrap {
+  width: 500px;
+  min-width: 400px;
+  height: 1120px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+#login_area {
+  width: 330px;
+  height: 1000px;
+  background-color: #ffffff;
+  margin: 0 auto;
+  position: relative;
+}
+
+#login_header {
+  width: 100%;
+  height: 20px;
+  padding: 76px 0 60px;
+  text-align: center;
+}
+
+#login_box {
+  width: 100%;
+  margin: 0 auto;
+}
+
+#login_box .input {
+  width: 100%;
+  height: 50px;
+  padding: 15px 10px 14px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+  margin-bottom: 10px;
+}
+
+#autologin{
+  display: none;
+}
+
+form>.checkbox {
+  height: 22px;
+  display: inline-block;
+  background: url("../images/check_small_off.png") left no-repeat;
+  background-size: 20px 20px;
+  cursor: pointer;
+  padding-left: 30px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #aaa;
+}
+
+form>.checkbox_on{
+  background: url("../images/check_small_on.png") left no-repeat;
+  background-size: 20px 20px;
+  color: #000;
+}
+
+
+.submit {
+  display: block;
+  margin: 10px 0 20px;
+}
+
+.submit > button {
+  width: 100%;
+  height: 60px;
+  color: #ffffff;
+  background: #000000;
+  text-align: center;
+  border: none;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+#login_box > #sub_menu {
+  margin: 36px 0;
+  display: block;
+  height: 22px;
+}
+
+#sub_menu > li {
+  float: left;
+  margin-left: 20px;
+}
+
+#sub_menu > li:first-child {
+  margin-left: 10px;
+}
+
+#sub_menu > li::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #aaa;
+  margin-left: 20px;
+  position: relative;
+  top: 2px;
+}
+
+#sub_menu > li:nth-child(3)::after {
+  display: none;
+}
+
+#sub_menu > li > a {
+  color: #aaa;
+  font-size: 14px;
+}
+
+#non_member {
+  width: 100%;
+  height: auto;
+}
+
+.tap_head {
+  width: 100%;
+  height: 49px;
+  margin: 0 auto;
+}
+
+.tap_head .active{
+  background-color: #ffffff;
+  border: 1px solid #f1f1f1;
+  border-bottom: none;
+  color: #000;
+}
+
+.tap_head>a {
+  display: block;
+  float: left;
+  width: 49%;
+  height: 49px;
+  text-align: center;
+  border: 1px solid #f1f1f1;
+  background-color: #f1f1f1;
+  color: #aaa;
+  border-bottom: none;
+  font-size: 14px;
+}
+
+.tap_head>a>span {
+  position: relative;
+  top: 15px;
+}
+
+
+
+#tap_contents1 {
+  width: 100%;
+  height: auto;
+}
+
+#tap_contents1 > .title {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 16px 0 10px;
+}
+
+#tap_contents1 > #text {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #aaa;
+  overflow-y: scroll;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  font-size: 12px;
+  color: #777;
+  line-height: 18px;
+}
+
+#tap_contents1 .checkbox {
+  margin-top: 10px;
+  height: 22px;
+  display: inline-block;
+  background: url("../images/check_small_off.png") left no-repeat;
+  background-size: 20px 20px;
+  cursor: pointer;
+  padding-left: 30px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #aaa;
+}
+.phone_wrap{
+	width: 100%;
+    margin-top: 14px;
+}
+.phone_check_input_box{
+	border: 1px solid black;
+    height: 21px;
+    padding: 10px 14px;
+    width: 61%;
+    float: left;
+}
+.phone_check_input{
+	width:100%;
+	height:100%;
+	border:none;
+	font-size:14px;
+}
+.phone_check_wrap{
+	margin-top: 20px;	
+}
+.phone_check_button{
+    border: 1px solid black;
+    height: 41px;
+    width: 30%;
+    float: right;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    background-color: #ececf7;
+    cursor: pointer;
+}
+#phone_check_input_box_false{
+    background-color:#ebebe4;
+}
+ 
+#phone_check_input_box_true{
+    background-color:white;
+}
+.correct{
+    color : green;
+}
+.incorrect{
+    color : red;
+}
+
+#agree{
+  display: none;
+}
+
+
+/* footer 부분 */
+#footer > #footer_menu {
+  margin: 36px 0;
+  display: block;
+  height: 22px;
+}
+
+#footer_menu > li {
+  float: left;
+  margin-left: 15px;
+}
+
+#footer_menu > li::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: #aaa;
+  margin-left: 20px;
+  position: relative;
+  top: 2px;
+}
+
+#footer_menu > li:nth-child(3)::after {
+  display: none;
+}
+
+#footer_menu > li > a {
+  color: #aaa;
+  font-size: 14px;
+}

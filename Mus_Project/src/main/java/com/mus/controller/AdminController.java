@@ -32,6 +32,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.mus.model.AttachImageVO;
 import com.mus.model.SellerVO;
 import com.mus.model.ClothVO;
@@ -78,7 +80,10 @@ public class AdminController {
         	model.addAttribute("listCheck", "empty");
         	return;
         }
-        model.addAttribute("pageMaker", new PageDTO(cri, adminService.goodsGetTotal(cri)));
+        PageDTO pageMaker = new PageDTO(cri, adminService.goodsGetTotal(cri));
+        System.out.println(pageMaker);
+        model.addAttribute("pageMaker", pageMaker);
+  
     }
 	
 	/* 첨부 파일 업로드 */

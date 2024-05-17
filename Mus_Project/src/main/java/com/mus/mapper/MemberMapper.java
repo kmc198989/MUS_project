@@ -1,5 +1,7 @@
 package com.mus.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mus.model.MemberVO;
 
 public interface MemberMapper {
@@ -13,4 +15,9 @@ public interface MemberMapper {
 	//로그인
 	public MemberVO memberLogin(MemberVO member) throws Exception;
 	
+	//카카오로그인
+	public String getAccessToken(String authorize_code) throws Exception;
+	
+	//아이디 찾기
+	public String findId(@Param("memberName")String memberName, @Param("memberMail")String memberMail);
 }
