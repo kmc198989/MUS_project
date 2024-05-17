@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mus.model.ClothVO;
 import com.mus.model.Criteria;
@@ -43,5 +44,14 @@ public class ClothController {
 		model.addAttribute("filter_info", clothservice.getCateInfoList(cri));
 		
 		return "search";
+	}
+	
+	/* 상품 상세 */
+	@GetMapping("/goodsDetail/{clothId}")
+	public String goodsDetailGET(@PathVariable("clothId")int clothId, Model model) {
+		logger.info("goodsDetailGET()..........");
+		model.addAttribute("goodsInfo", clothservice.getGoodsInfo(clothId));
+		
+		return "/goodsDetail";
 	}
 }

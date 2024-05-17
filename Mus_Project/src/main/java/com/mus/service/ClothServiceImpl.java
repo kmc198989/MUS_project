@@ -1,11 +1,15 @@
 package com.mus.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mus.mapper.AdminMapper;
+import com.mus.mapper.AttachMapper;
 import com.mus.mapper.ClothMapper;
+import com.mus.model.CateFilterDTO;
 import com.mus.model.CateVO;
 import com.mus.model.ClothVO;
 import com.mus.model.Criteria;
@@ -18,6 +22,12 @@ public class ClothServiceImpl implements ClothService {
 
 	@Autowired
 	private ClothMapper clothmapper;
+	
+	@Autowired
+	private AttachMapper attachmapper;
+	
+	@Autowired
+	AdminMapper adminmapper;
 
 	// 전체 상품 조회
 	@Override
@@ -60,5 +70,33 @@ public class ClothServiceImpl implements ClothService {
 		log.info("goodsGetTotal()...........");
 		return clothmapper.goodsGetTotal(cri);
 	}
+	
+	// 검색결과 카테고리 필터 정보
+		@Override
+		public List<CateFilterDTO> getCateInfoList(Criteria cri) {
+			List<CateFilterDTO> filterInfoList = new ArrayList<CateFilterDTO>();
+			
+			
+			String[] cateList = clothmapper.getCateList(cri);
+			String tempCateCode = cri.getCateCode();
+			
+			for(String cateCode : cateList) {
+				cri.setCateCode(cateCode);
+				CateFilterDTO filterInfo = clothmapper.getCateInfo(cri);
+				filterInfoList.add(filterInfo);
+			}
+			cri.setCateCode(tempCateCode);
+			
+			return filterInfoList;
+		}
+
+		/* 상품 정보 */
+		@Override
+		public ClothVO getGoodsInfo(int bookId) {
+			ClothVO goodsInfo = clothmapper.getGoodsInfo(bookId);
+			goodsInfo.setImageList(adminmapper.getAttachInfo(bookId));
+			
+			return goodsInfo;
+		}
 	
 }

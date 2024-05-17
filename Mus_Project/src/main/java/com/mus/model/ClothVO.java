@@ -1,22 +1,14 @@
 package com.mus.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class ClothVO {
-
-	private int clothId;
-	private String clothName;
-	private int sellerId;
-	private Date publeYear;
-	private String brandName;
-	private String cateCode;
-	private int clothPrice;
-	private int clothDiscount;
-	private String clothIntro;
-	private String clothContents;
-	private Date regDate;
-	private Date updateDate;
-	
+	private int clothId, sellerId, clothPrice, clothStock;
+	private String clothName, brandName, publeYear, cateCode, cateName, clothIntro, clothContents;
+	private double clothDiscount;
+	private Date regDate, updateDate;
+	private List<AttachImageVO> imageList;
 	
 	public int getClothId() {
 		return clothId;
@@ -24,35 +16,11 @@ public class ClothVO {
 	public void setClothId(int clothId) {
 		this.clothId = clothId;
 	}
-	public String getClothName() {
-		return clothName;
-	}
-	public void setClothName(String clothName) {
-		this.clothName = clothName;
-	}
 	public int getSellerId() {
 		return sellerId;
 	}
 	public void setSellerId(int sellerId) {
 		this.sellerId = sellerId;
-	}
-	public Date getPubleYear() {
-		return publeYear;
-	}
-	public void setPubleYear(Date publeYear) {
-		this.publeYear = publeYear;
-	}
-	public String getBrandName() {
-		return brandName;
-	}
-	public void setBrandName(String brandName) {
-		this.brandName = brandName;
-	}
-	public String getCateCode() {
-		return cateCode;
-	}
-	public void setCateCode(String cateCode) {
-		this.cateCode = cateCode;
 	}
 	public int getClothPrice() {
 		return clothPrice;
@@ -60,11 +28,41 @@ public class ClothVO {
 	public void setClothPrice(int clothPrice) {
 		this.clothPrice = clothPrice;
 	}
-	public int getClothDiscount() {
-		return clothDiscount;
+	public int getClothStock() {
+		return clothStock;
 	}
-	public void setClothDiscount(int clothDiscount) {
-		this.clothDiscount = clothDiscount;
+	public void setClothStock(int clothStock) {
+		this.clothStock = clothStock;
+	}
+	public String getClothName() {
+		return clothName;
+	}
+	public void setClothName(String clothName) {
+		this.clothName = clothName;
+	}
+	public String getBrandName() {
+		return brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+	public String getPubleYear() {
+		return publeYear;
+	}
+	public void setPubleYear(String publeYear) {
+		this.publeYear = publeYear;
+	}
+	public String getCateCode() {
+		return cateCode;
+	}
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
+	public String getCateName() {
+		return cateName;
+	}
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
 	}
 	public String getClothIntro() {
 		return clothIntro;
@@ -78,6 +76,12 @@ public class ClothVO {
 	public void setClothContents(String clothContents) {
 		this.clothContents = clothContents;
 	}
+	public double getClothDiscount() {
+		return clothDiscount;
+	}
+	public void setClothDiscount(double clothDiscount) {
+		this.clothDiscount = clothDiscount;
+	}
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -90,16 +94,19 @@ public class ClothVO {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	
+	public List<AttachImageVO> getImageList() {
+		return imageList;
+	}
+	public void setImageList(List<AttachImageVO> imageList) {
+		this.imageList = imageList;
+	}
 	
 	@Override
 	public String toString() {
-		return "ClothVO [clothId=" + clothId + ", clothName=" + clothName + ", sellerId=" + sellerId + ", publeYear="
-				+ publeYear + ", brandName=" + brandName + ", cateCode=" + cateCode + ", clothPrice=" + clothPrice
-				+ ", clothDiscount=" + clothDiscount + ", clothIntro=" + clothIntro + ", clothContents=" + clothContents
-				+ ", regDate=" + regDate + ", updateDate=" + updateDate + "]";
+		return "ClothVO [clothId=" + clothId + ", sellerId=" + sellerId + ", clothPrice=" + clothPrice + ", clothStock="
+				+ clothStock + ", clothName=" + clothName + ", brandName=" + brandName + ", publeYear=" + publeYear
+				+ ", cateCode=" + cateCode + ", cateName=" + cateName + ", clothIntro=" + clothIntro
+				+ ", clothContents=" + clothContents + ", clothDiscount=" + clothDiscount + ", regDate=" + regDate
+				+ ", updateDate=" + updateDate + ", imageList=" + imageList + "]";
 	}
-	
-	
-	
 }

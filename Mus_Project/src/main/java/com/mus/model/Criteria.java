@@ -20,6 +20,17 @@ public class Criteria {
 	// 카테고리 코드
 	private String cateCode;
 
+	// Criteria 생성자
+	public Criteria(int pageNum, int amount) {
+		this.pageNum = pageNum;
+		this.amount = amount;
+	}
+	
+	// Criteria 기본 생성자
+	public Criteria() {
+		this(1,10);
+	}
+	
 	public int getPageNum() {
 		return pageNum;
 	}

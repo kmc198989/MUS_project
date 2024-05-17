@@ -1,18 +1,12 @@
 package com.mus.model;
 
+import java.util.Date;
+
 public class MemberVO {
-	
-	private String memberId;
-	private String memberPw;
-	private String memberName;
-	private String memberMail;
-	private String memberAddr1;
-	private String memberAddr2;
-	private String memberAddr3;
-	private int adminCk;
-	private int regDate;
-	private int money;
-	private int point;
+	private String memberId, memberPw, memberName, memberMail, memberPhone, 
+					memberAddr1, memberAddr2, memberAddr3;
+	private int adminCk, money, point;
+	private Date regDate;
 	
 	public String getMemberId() {
 		return memberId;
@@ -31,6 +25,12 @@ public class MemberVO {
 	}
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+	public String getMemberPhone() {
+		return memberPhone;
+	}
+	public void setMemberPhone(String memberPhone) {
+		this.memberPhone = memberPhone;
 	}
 	public String getMemberMail() {
 		return memberMail;
@@ -62,12 +62,6 @@ public class MemberVO {
 	public void setAdminCk(int adminCk) {
 		this.adminCk = adminCk;
 	}
-	public int getRegDate() {
-		return regDate;
-	}
-	public void setRegDate(int regDate) {
-		this.regDate = regDate;
-	}
 	public int getMoney() {
 		return money;
 	}
@@ -80,12 +74,18 @@ public class MemberVO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberVO [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
-				+ ", memberMail=" + memberMail + ", memberAddr1=" + memberAddr1 + ", memberAddr2=" + memberAddr2
-				+ ", memberAddr3=" + memberAddr3 + ", adminCk=" + adminCk + ", regDate=" + regDate + ", money=" + money
-				+ ", point=" + point + "]";
+				+ ", memberMail=" + memberMail + ", memberPhone=" + memberPhone + ", memberAddr1=" + memberAddr1
+				+ ", memberAddr2=" + memberAddr2 + ", memberAddr3=" + memberAddr3 + ", adminCk=" + adminCk + ", money="
+				+ money + ", point=" + point + ", regDate=" + regDate + "]";
 	}
-	
 }

@@ -6,21 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- criteria(검색조건) -->
 	<sql id="criteria">
-		((clothName like '%' || #{keyword} || '%' or brandName like '%' || #{keyword} || '%')
+		((clothName like '%' || #{keyword} || '%' or brandName like
+		'%' || #{keyword} || '%')
 	</sql>
 
 	<!-- 상품 검색 -->
 	<select id="getGoodsList" resultType="com.mus.model.ClothVO">
 
-		<![CDATA[
-    select * from(
-        select /*+INDEX_DESC(vam_book SYS_C008550)*/ rownum as rn, clothId, clothName,
-            (select authorName from vam_author where vam_book.authorId = vam_author.authorId) authorName, authorId,
-            (select cateName from vam_bcate where vam_book.cateCode = vam_bcate.cateCode) cateName,cateCode, publisher, publeYear, bookPrice, bookDiscount  
-        from vam_book
-        where 
-    ]]>
+		<![CDATA[ select * from( select /*+INDEX_DESC(mus_cloth 인덱스ID)*/ rownum as rn, clothId, clothName, 
+		(select brandName from mus_seller where mus_cloth.sellerId = mus_seller.sellerId) brandName, sellerId, 
+		(select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName,cateCode, publeYear, 
+		clothPrice, clothDiscount from mus_cloth where ]]>
+
 		<include refid="criteria"></include>
+		
     <![CDATA[
 	   and rownum <= #{pageNum} * #{amount} 
      	)
@@ -37,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="criteria"></include>
 		clothId >0
 	</select>
-	
+
 	<!-- 1차 카테고리 조회 -->
 	<select id="getCateCode1" resultType="com.mus.model.CateVO">
 		select * from mus_cate
@@ -49,24 +48,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from mus_cate
 		where cateParent = #{cateCode}
 	</select>
-	
-	<!-- 카테고리 정보(+검색대상 갯수) -->	
-	
-	<select id="getCateInfo" resultType="com.mus.model.CateFilterDTO">
-	
-		select DISTINCT count(*) cateCount, a.cateCode, b.cateName from mus_cloth a left join mus_cate b on a.cateCode = b.cateCode 
-		
-		where 
-  		<include refid="criteria"></include>  						
-  	and a.cateCode = #{cateCode}						
-  					
-  					
-  						bookName like '%' || #{keyword} || '%' and a.cateCode = #{cateCode}
-  						 
-  					  					
-  		
-  		group by a.cateCode, b.cateName
-	
-	</select>
 
+	<!-- 카테고리 정보(+검색대상 갯수) -->
+
+	<select id="getCateInfo"
+		resultType="com.mus.model.CateFilterDTO">
+
+		select DISTINCT count(*) as cateCount, a.cateCode, b.cateName from
+		mus_cloth a left join mus_cate b on a.cateCode = b.cateCode where
+		<foreach item="type" collection="typeArr" separator=" ">
+			<choose>
+				<when test="type == 'A'.toString()">
+					<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+						<foreach collection="sellerArr" item="sellerId"
+							separator=" OR "> sellerId = #{sellerId} </foreach>
+					</trim>
+					AND a.cateCode = #{cateCode}
+				</when>
+				<when test="type == 'T'.toString()"> clothName like concat('%', #{keyword}, '%') and
+					a.cateCode = #{cateCode}
+				</when>
+			</choose>
+		</foreach>
+		group by a.cateCode, b.cateName
+
+	</select>
+	<!-- 상품 정보 -->
+	<select id="getGoodsInfo" resultType="com.mus.model.ClothVO"> select a.clothId,
+		a.clothName, a.sellerId, b.brandName, a.PUBLEYEAR, a.CATECODE,
+		c.CATENAME, a.clothPrice, a.clothStock, a.clothDiscount, a.clothIntro,
+		a.clothContents from mus_cloth a left outer join mus_seller b on
+		a.sellerId = b.sellerId left outer join mus_cate c on a.catecode =
+		c.catecode where clothId = ${clothId} 
+	</select>
 </mapper>
