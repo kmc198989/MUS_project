@@ -38,7 +38,7 @@ buttons.forEach(function(button) {
         var subcategories = this.nextElementSibling;
         var display = subcategories.style.display;
         if (display === 'none' || display === '') {
-            subcategories.style.display = 'block';
+            subcategories.style.display = 'flex';
         } else {
             subcategories.style.display = 'none';
         }

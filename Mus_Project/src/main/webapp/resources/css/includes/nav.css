@@ -1,5 +1,31 @@
 @charset "UTF-8";
-.nav_body{
-	border: 1px solid #000;
-
+.dropdown {
+   border-right: 1px solid #ada9a95e;
+}
+.dropdown-content{
+   display: flex;
+   flex-direction: column;
+   padding: 10px 12px 5px;
+   
+}
+.dropbtn{
+   width: 100%;
+   height: 40px;
+   background: none;
+   cursor: pointer;
+   border: none;
+   border-bottom: 1px solid rgb(210,210,210);
+}
+.dropbtn:hover{
+   background-color: #e3e2e285;
+}
+.subcategories {
+   flex-direction: column;
+}
+.subcategories a{
+   padding: 5px 0;
+   font-size: 12px;
+}
+.subcategories a:hover {
+   font-weight: bold;
 }
