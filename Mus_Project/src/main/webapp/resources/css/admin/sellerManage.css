@@ -127,16 +127,28 @@ ul{
 	font-weight: 600;
 }
 .th_column_1{
-	width:120px;
+	width:8%;
+}
+.th_column_2{
+	width:14%;
 }
 .th_column_3{
-	width:110px;
+	width:10%;
 }
 .th_column_4{
-	width:140px;
+	width:8%;
 }
 .th_column_5{
-	width:140px;
+	width:10%;
+}
+.th_column_6{
+	width:16%;
+}
+.th_column_7{
+	width:20%;
+}
+.th_column_8{
+	width:20%;
 }
 /* 작가 상세 페이지 이동 태그 */
 .seller_table a{

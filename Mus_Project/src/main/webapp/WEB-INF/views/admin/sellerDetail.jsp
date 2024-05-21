@@ -19,18 +19,26 @@
                 <div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>판매자 상세</span></div>
                     <div class="admin_content_main">
-                   		<div class="form_section">
+                    	<div class="form_section">
                    			<div class="form_section_title">
                    				<label>판매자 번호</label>
                    			</div>
                    			<div class="form_section_content">
-                   				<input class="input_block" name="sellerId" readonly="readonly" value="<c:out value='${sellerInfo.sellerId }'></c:out>">
-                   				
+                   				<input class="input_block" name="sellerId" readonly="readonly" value="<c:out value='${sellerInfo.sellerId }'></c:out>" >
                    			</div>
-                   		</div>                    
+                   		</div>
                    		<div class="form_section">
                    			<div class="form_section_title">
-                   				<label>판매자 이름</label>
+                   				<label>상호</label>
+                   			</div>
+                   			<div class="form_section_content">
+                   				<input class="input_block" name="sellerCompany" readonly="readonly" value="<c:out value='${sellerInfo.sellerCompany }'></c:out>">
+                   				
+                   			</div>
+                   		</div>                   
+                   		<div class="form_section">
+                   			<div class="form_section_title">
+                   				<label>브랜드 이름</label>
                    			</div>
                    			<div class="form_section_content">
                    				<input class="input_block" name="brandName" readonly="readonly" value="<c:out value='${sellerInfo.brandName }'></c:out>" >
@@ -38,40 +46,59 @@
                    		</div>
                    		<div class="form_section">
                    			<div class="form_section_title">
-                   				<label>소속 국가</label>
+                   				<label>대표 이름</label>
                    			</div>
                    			<div class="form_section_content">
-                   				<select class="input_block" name="nationId" >
-                   					<option value="none" selected disabled="disabled">=== 선택 ===</option>
-                   					<option value="01" disabled="disabled" <c:out value=" ${sellerInfo.nationId eq '01' ?'selected':''}"/>>국내</option>
-                   					<option value="02" disabled="disabled" <c:out value=" ${sellerInfo.nationId eq '02' ?'selected':''}"/>>국외</option>
-                   				</select>
+                   				<input class="input_block" name="brandCEO" readonly="readonly" value="<c:out value='${sellerInfo.brandCEO }'></c:out>">
+                   				
                    			</div>
-                   		</div>
+                   		</div>  
                    		<div class="form_section">
                    			<div class="form_section_title">
-                   				<label>판매자소개</label>
+                   				<label>사업자 번호</label>
                    			</div>
                    			<div class="form_section_content">
-                   				<textarea class="input_block" name="sellerIntro" readonly="readonly"><c:out value='${sellerInfo.sellerIntro }'/></textarea>
+                   				<input class="input_block" name="busineseNum" readonly="readonly" value="<c:out value='${sellerInfo.busineseNum }'></c:out>">
+                   				
                    			</div>
-                   		</div>
+                   		</div>  
                    		<div class="form_section">
                    			<div class="form_section_title">
-                   				<label>등록 날짜</label>
+                   				<label>통신판매업신고</label>
                    			</div>
                    			<div class="form_section_content">
-                   				<input class="input_block" type="text" readonly="readonly" value="<fmt:formatDate value="${sellerInfo.regDate}" pattern="yyyy-MM-dd"/>">
+                   				<input class="input_block" name="report" readonly="readonly" value="<c:out value='${sellerInfo.report }'></c:out>">
+                   				
                    			</div>
-                   		</div>
-                   		    <div class="form_section">
+                   		</div>  
+                   		<div class="form_section">
                    			<div class="form_section_title">
-                   				<label>수정 날짜</label>
+                   				<label>회사 번호</label>
                    			</div>
                    			<div class="form_section_content">
-                   				<input class="input_block" type="text" readonly="readonly" value="<fmt:formatDate value="${sellerInfo.updateDate}" pattern="yyyy-MM-dd"/>">
+                   				<input class="input_block" name="tel" readonly="readonly" value="<c:out value='${sellerInfo.tel }'></c:out>">
+                   				
                    			</div>
-                   		</div>
+                   		</div>  
+                   		<div class="form_section">
+                   			<div class="form_section_title">
+                   				<label>E-mail</label>
+                   			</div>
+                   			<div class="form_section_content">
+                   				<input class="input_block" name="email" readonly="readonly" value="<c:out value='${sellerInfo.email }'></c:out>">
+                   				
+                   			</div>
+                   		</div>  
+                   		<div class="form_section">
+                   			<div class="form_section_title">
+                   				<label>영업소재지</label>
+                   			</div>
+                   			<div class="form_section_content">
+                   				<input class="input_block" name="address" readonly="readonly" value="<c:out value='${sellerInfo.address }'></c:out>">
+                   				
+                   			</div>
+                   		</div> 
+                   		
                    			<div class="btn_section">
                    				<button id="cancelBtn" class="btn">판매자 목록</button>
 	                    		<button id="modifyBtn" class="btn modify_btn">수 정</button>

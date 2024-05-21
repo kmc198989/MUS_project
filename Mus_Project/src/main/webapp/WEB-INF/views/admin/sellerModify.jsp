@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/admin/authorModify.css">
+<link rel="stylesheet" href="../resources/css/admin/sellerModify.css">
 
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -17,74 +17,100 @@
 <body>
 <%@include file="../includes/admin/header.jsp" %>
    <div class="admin_content_wrap">
-       <div class="admin_content_subject"><span>작가 상세</span></div>
+       <div class="admin_content_subject"><span>판매자 상세</span></div>
        <div class="admin_content_main">
-       	<form id="modifyForm" action="/admin/authorModify" method="post">
+       	<form id="modifyForm" action="/admin/sellerModify" method="post">
        		<div class="form_section">
        			<div class="form_section_title">
-       				<label>작가 번호</label>
+       				<label>판매자 번호</label>
        			</div>
        			<div class="form_section_content">
-       				<input class="input_block" name="authorId" readonly="readonly" value="<c:out value='${authorInfo.authorId }'></c:out>">
+       				<input class="input_block" name="sellerId" readonly="readonly" value="<c:out value='${sellerInfo.sellerId }'></c:out>">
        			</div>
-       		</div>                    
+       		</div>     
        		<div class="form_section">
        			<div class="form_section_title">
-       				<label>작가 이름</label>
+       				<label>상호</label>
        			</div>
        			<div class="form_section_content">
-       				<input name="authorName" value="<c:out value='${authorInfo.authorName }'></c:out>" >
-       				<span id="warn_authorName">작가 이름을 입력 해주세요.</span>
+       				<input name="sellerCompany" value="<c:out value='${sellerInfo.sellerCompany }'></c:out>" >
+       				<span id="warn_sellerCompany">상호를 입력 해주세요.</span>
+       			</div>
+       		</div>               
+       		<div class="form_section">
+       			<div class="form_section_title">
+       				<label>브랜드 이름</label>
+       			</div>
+       			<div class="form_section_content">
+       				<input name="brandName" value="<c:out value='${sellerInfo.brandName }'></c:out>" >
+       				<span id="warn_brandName">브랜드 이름을 입력 해주세요.</span>
        			</div>
        		</div>
        		<div class="form_section">
        			<div class="form_section_title">
-       				<label>소속 국가</label>
+       				<label>대표 이름</label>
        			</div>
        			<div class="form_section_content">
-       				<select name="nationId" >
-       					<option value="none" disabled="disabled">=== 선택 ===</option>
-       					<option value="01" <c:out value=" ${authorInfo.nationId eq '01' ?'selected':''}"/>>국내</option>
-       					<option value="02" <c:out value=" ${authorInfo.nationId eq '02' ?'selected':''}"/>>국외</option>
-       				</select>
+       				<input name="brandCEO" value="<c:out value='${sellerInfo.brandCEO }'></c:out>" >
+       				<span id="warn_brandCEO">대표 이름을 입력 해주세요.</span>
        			</div>
        		</div>
        		<div class="form_section">
        			<div class="form_section_title">
-       				<label>작가소개</label>
+       				<label>사업자 번호</label>
        			</div>
        			<div class="form_section_content">
-       				<textarea name="authorIntro" ><c:out value='${authorInfo.authorIntro }'/></textarea>
-       				<span id="warn_authorIntro">작가 소개를 입력 해주세요.</span>
+       				<input name="busineseNum" value="<c:out value='${sellerInfo.busineseNum }'></c:out>" >
+       				<span id="warn_busineseNum">사업자 번호를 입력 해주세요.</span>
        			</div>
        		</div>
        		<div class="form_section">
        			<div class="form_section_title">
-       				<label>등록 날짜</label>
+       				<label>통신판매업신고</label>
        			</div>
        			<div class="form_section_content">
-       				<input class="input_block" type="text" readonly="readonly" value="<fmt:formatDate value="${authorInfo.regDate}" pattern="yyyy-MM-dd"/>">
+       				<input name="report" value="<c:out value='${sellerInfo.report }'></c:out>" >
+       				<span id="warn_report">통신판매업신고를 입력 해주세요.</span>
        			</div>
        		</div>
        		<div class="form_section">
        			<div class="form_section_title">
-       				<label>수정 날짜</label>
+       				<label>회사 번호</label>
        			</div>
        			<div class="form_section_content">
-       				<input class="input_block" type="text" readonly="readonly" value="<fmt:formatDate value="${authorInfo.updateDate}" pattern="yyyy-MM-dd"/>">
+       				<input name="tel" value="<c:out value='${sellerInfo.tel }'></c:out>" >
+       				<span id="warn_tel">번호를 입력 해주세요.</span>
+       			</div>
+       		</div>
+       		<div class="form_section">
+       			<div class="form_section_title">
+       				<label>E-mail</label>
+       			</div>
+       			<div class="form_section_content">
+       				<input name="email" value="<c:out value='${sellerInfo.email }'></c:out>" >
+       				<span id="warn_email">이메일을 입력 해주세요.</span>
+       			</div>
+       		</div>
+       		<div class="form_section">
+       			<div class="form_section_title">
+       				<label>영업소재지</label>
+       			</div>
+       			<div class="form_section_content">
+       				<input name="address" value="<c:out value='${sellerInfo.address }'></c:out>" >
+       				<span id="warn_address">엽엉소재지를 입력 해주세요.</span>
        			</div>
        		</div>
      		<div class="btn_section">
        			<button id="cancelBtn" class="btn">취소</button>
          		<button id="modifyBtn" class="btn modify_btn">수 정</button>
-         		<button id="deleteBtn" class="btn_delete_btn">삭 제</button>
+         		<button id="deleteBtn" class="btn delete_btn">삭 제</button>
 	        </div> 
 	       </form>
 	      </div>                    
 	   </div>
    
    <form id="moveForm" method="get">
-   	<input type="hidden" name="authorId" value='<c:out value="${authorInfo.authorId }"/>'>
+   	<input type="hidden" name="sellerId" value='<c:out value="${sellerInfo.sellerId }"/>'>
    	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
    	<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>' >
    	<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>'>
@@ -98,43 +124,119 @@ let modifyForm = $("#modifyForm");
 $("#cancelBtn").on("click", function(e) {
 	e.preventDefault();
 	
-	moveForm.attr("action", "/admin/authorDetail");
+	moveForm.attr("action", "/admin/sellerDetail");
 	moveForm.submit();
 });
 
 // 삭제 버튼
 $("#deleteBtn").on("click", function(e) {
-	e,preventDefault();
+	e.preventDefault();
 	moveForm.find("input").remove();
-	moveForm.append('<input type="hidden" name="authorId" value="${authorInfo.authorId}">');
-	moveForm.attr("action", "/admin/authorDelete");
+	moveForm.append('<input type="hidden" name="sellerId" value="${sellerInfo.sellerId}">');
+	moveForm.attr("action", "/admin/sellerDelete");
 	moveForm.attr("method", "post");
 	moveForm.submit();
 });
 
 // 작가 수정 버튼 작동 및 유효성 검사
 $("#modifyBtn").on("click", function(e) {
-	let authorName = $(".form_section_content input[name='authorName']").val();
-	let authorIntro = $(".form_section_content textarea").val();
-	let nameCk = false;
-	let introCk = false;
+	/* 검사 통과 유무 변수 */
+    let companyCheck = false; // 상호
+    let nameCheck = false; // 브랜드 이름
+    let ceoCheck = false; // 대표 이름
+    let busineseCheck = false; // 사업자 번호
+    let reportCheck = false; // 통신판매업신고
+    let telCheck = false; // 회사 번호
+    let emailCheck = false; // 회사 이메일
+    let addressCheck = false; // 회사 주소
 	
 	e.preventDefault();
 	
-	if(!authorName) {
-		$("#warn_authorName").css("display", "block");
-	}else {
-		$("#warn_authorName").css("display", "none");
-		nameCk = true;
-	}
-	if(!authorIntro) {
-		$("#warn_authorIntro").css("display", "block");
-	}else {
-		$("#warn_authorIntro").css("display", "none");
-		introCk = true;
-	}
+	/* 입력값 변수 */
+    let sellerCompany = $(".form_section_content input[name='sellerCompany']").val();
+    let brandName = $(".form_section_content input[name='brandName']").val(); 
+    let brandCEO = $(".form_section_content input[name='brandCEO']").val();
+    let busineseNum = $(".form_section_content input[name='busineseNum']").val();
+    let report = $(".form_section_content input[name='report']").val();
+    let tel = $(".form_section_content input[name='tel']").val();
+    let email = $(".form_section_content input[name='email']").val();
+    let address = $(".form_section_content input[name='address']").val();
+    /* 공란 경고 span태그 */
+    let wSellerCompany = $('#warn_sellerCompany');
+    let wBrandName = $('#warn_brandName');
+    let wBrandCEO = $('#warn_brandCEO');
+    let wBusineseNum = $('#warn_busineseNum');
+    let wReport = $('#warn_report');
+    let wTel = $('#warn_tel');
+    let wEmail= $('#warn_email');
+    let wAddress= $('#warn_address');
+
+    /* 작기 이름 공란 체크 */
+    if (sellerCompany === '') {
+       wSellerCompany.css('display', 'block');
+       companyCheck = false;
+    } else{
+       wSellerCompany.css('display', 'block');
+       companyCheck = true;
+    }
+    
+    if (brandName === '') {
+       wBrandName.css('display', 'block');
+       nameCheck = false;
+    } else {
+       wBrandName.css('display', 'none');
+       nameCheck = true;
+    }
+
+    if (brandCEO === '') {
+       wBrandCEO.css('display', 'block');
+       ceoCheck = false;
+    } else {
+       wBrandCEO.css('display', 'none');
+       ceoCheck = true;
+    }
+    
+    if (busineseNum === '') {
+       wBusineseNum.css('display', 'block');
+       busineseCheck = false;
+    } else {
+       wBusineseNum.css('display', 'block');
+       busineseCheck = true;
+    }
+    
+    if (report === '') {
+       wReport.css('display', 'block');
+       reportCheck = false;
+    } else {
+       wReport.css('display', 'none');
+       reportCheck = true;
+    }
+    
+    if (tel === '') {
+       wTel.css('display', 'block');
+       telCheck = false;
+    } else {
+       wTel.css('display', 'none');
+       telCheck = true;
+    }
+    
+    if (email === '') {
+       wEmail.css('display', 'block');
+       emailCheck = false;
+    } else {
+       wEmail.css('display', 'none');
+       emailCheck = true;
+    }
+    if (address === '') {
+       wAddress.css('display', 'block');
+       addressCheck = false;
+    } else {
+       wAddress.css('display', 'none');
+       addressCheck = true;
+    }
+
 	
-	if(nameCk && introCk) {
+	if(companyCheck && nameCheck && ceoCheck && busineseCheck && reportCheck && telCheck && emailCheck && addressCheck) {
 		modifyForm.submit();
 	}else {
 		return false;

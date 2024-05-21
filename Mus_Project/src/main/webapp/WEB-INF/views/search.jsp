@@ -69,36 +69,15 @@
 					<div id="nav_section">
 						<%@include file="includes/nav.jsp"%>
 					</div>
-					<c:if test="${listcheck != 'empty'}">
-						<table class="goods_table">
-							<thead>
-								<tr>
-									<td class="th_column_1">상품 번호</td>
-									<td class="th_column_2">상품 이름</td>
-									<td class="th_column_3">판매자 이름</td>
-									<td class="th_column_4">카테고리</td>
-									<td class="th_column_5">재고</td>
-									<td class="th_column_6">입고날짜</td>
-								</tr>
-							</thead>
-							<c:forEach items="${list}" var="list">
-								<tr>
-									<td><c:out value="${list.clothId}"></c:out></td>
-									<td><a class="move"
-										href='<c:out value="${list.clothId}"/>'> <c:out
-												value="${list.clothName}"></c:out>
-									</a></td>
-									<td><c:out value="${list.brandName}"></c:out></td>
-									<td><c:out value="${list.cateName}"></c:out></td>
-								</tr>
-							</c:forEach>
-						</table>
 
-					</c:if>
+
 					<ul id="main_div">
+					<c:if test="${listcheck != 'empty'}">
+					
+						<c:forEach items="${list}" var="list">					
 						<li class="li_box" data-no="2289283">
 							<!-- 상단 좌측 라벨 -->
-							<div class="icon_new">SALE 50%</div> <!-- 상단 우측 라벨 -->
+							<div class="icon_new">${list.clothDiscount}</div> <!-- 상단 우측 라벨 -->
 							<div class="box-icon-right">
 								<span class="icon-reverse icon-box-limited">한정 판매</span>
 							</div>
@@ -111,7 +90,7 @@
 							<div class="li_inner">
 								<div class="list_img">
 									<a class="img-block" name="goods_link"
-										href="//www.musinsa.com/app/goods/2289283"
+										href="#"
 										title="쿤스트하우스 코튼 볼캡 / 네이비"> <img class="lazyload lazy"
 										alt="두마로(DUMARO) 쿤스트하우스 코튼 볼캡 / 네이비"
 										data-original="https://image.msscdn.net/images/goods_img/20220103/2289283/2289283_4_125.jpg"
@@ -121,18 +100,18 @@
 								</div>
 								<div class="article_info">
 									<p class="item_title">
-										<a href="//www.musinsa.com/brands/dumaro">두마로</a>
+										<a href="#">${list.brandName}</a>
 									</p>
 									<p class="list_info">
 										<a name="goods_link"
 											href="//www.musinsa.com/app/goods/2289283"
-											title="쿤스트하우스 코튼 볼캡 / 네이비"> <strong class="txt_reserve">6/7
-												배송</strong> 쿤스트하우스 코튼 볼캡 / 네이비
+											title="${list.clothName}"> <strong class="txt_reserve">6/7
+												배송</strong> ${list.clothName}
 										</a>
 									</p>
 									<p class="price">
 										<del>39,900원</del>
-										19,950원
+										${list.clothPrice}원
 									</p>
 									<p class="mu-icon mu-icon-coupon">
 										<span class="txt_discount_price">-1,995원</span>
@@ -174,165 +153,11 @@
 									</p>
 								</div>
 							</div>
-						</li>
-						<li class="li_box" data-no="2289283">
-							<!-- 상단 좌측 라벨 -->
-							<div class="icon_new">SALE 50%</div> <!-- 상단 우측 라벨 -->
-							<div class="box-icon-right">
-								<span class="icon-reverse icon-box-limited">한정 판매</span>
-							</div>
-							<div class="icon_group">
-								<ul>
-									<li class="icon_man sight_out" title="남성">남성</li>
-									<li class="icon_woman sight_out" title="여성">여성</li>
-								</ul>
-							</div>
-							<div class="li_inner">
-								<div class="list_img">
-									<a class="img-block" name="goods_link"
-										href="//www.musinsa.com/app/goods/2289283"
-										title="쿤스트하우스 코튼 볼캡 / 네이비"> <img class="lazyload lazy"
-										alt="두마로(DUMARO) 쿤스트하우스 코튼 볼캡 / 네이비"
-										data-original="https://image.msscdn.net/images/goods_img/20220103/2289283/2289283_4_125.jpg"
-										src="https://image.msscdn.net/images/goods_img/20220103/2289283/2289283_4_125.jpg"
-										style="display: block;">
-									</a>
-								</div>
-								<div class="article_info">
-									<p class="item_title">
-										<a href="//www.musinsa.com/brands/dumaro">두마로</a>
-									</p>
-									<p class="list_info">
-										<a name="goods_link"
-											href="//www.musinsa.com/app/goods/2289283"
-											title="쿤스트하우스 코튼 볼캡 / 네이비"> <strong class="txt_reserve">6/7
-												배송</strong> 쿤스트하우스 코튼 볼캡 / 네이비
-										</a>
-									</p>
-									<p class="price">
-										<del>39,900원</del>
-										19,950원
-									</p>
-									<p class="mu-icon mu-icon-coupon">
-										<span class="txt_discount_price">-1,995원</span>
-									</p>
-									<p class="membership"
-										onclick="viewMemberPrice('sPrice_2289283', '2289283', '0');">
-										MEMBERSHIP PRICE<span class="fr">▼</span>
-									</p>
-									<div class="member_price" style="display: none; z-index: 9999;"
-										id="sPrice_2289283">
-										<p>
-											무신사 회원가<span class="fr"><a href="#"
-												onclick="viewMemberPrice('sPrice_2289283', '2289283', '0');return false;">X</a></span>
-										</p>
-										<ul>
-											<li style="border-bottom: 1px solid #ddd;" class="pertinent">
-												<span>&gt; </span> 비회원 <span class="txt_price_member">19,950원</span>
-											</li>
-										</ul>
-									</div>
-									<p class="point">
-										<span class="img-score"><span class="bar"
-											style="width: 95%"></span></span> <span class="count">3,041</span>
-									</p>
+						</li>				
 
-									<p class="txt_cnt_like" data-goodsno="2289283"
-										data-gtm-vis-first-on-screen11584968_1136="1736"
-										data-gtm-vis-total-visible-time11584968_1136="100"
-										data-gtm-vis-has-fired11584968_1136="1"
-										data-gtm-vis-first-on-screen11584968_147="1893"
-										data-gtm-vis-total-visible-time11584968_147="2500"
-										data-gtm-vis-first-on-screen11584968_1453="1893"
-										data-gtm-vis-total-visible-time11584968_1453="2500"
-										data-gtm-vis-has-fired11584968_147="1"
-										data-gtm-vis-has-fired11584968_1453="1">
-										<img
-											src="//image.msscdn.net/skin/musinsa/images/icon_like_small_on.png"
-											alt="좋아요"> 15,778
-									</p>
-								</div>
-							</div>
-						</li>
-						<li class="li_box" data-no="2289283">
-							<!-- 상단 좌측 라벨 -->
-							<div class="icon_new">SALE 50%</div> <!-- 상단 우측 라벨 -->
-							<div class="box-icon-right">
-								<span class="icon-reverse icon-box-limited">한정 판매</span>
-							</div>
-							<div class="icon_group">
-								<ul>
-									<li class="icon_man sight_out" title="남성">남성</li>
-									<li class="icon_woman sight_out" title="여성">여성</li>
-								</ul>
-							</div>
-							<div class="li_inner">
-								<div class="list_img">
-									<a class="img-block" name="goods_link"
-										href="//www.musinsa.com/app/goods/2289283"
-										title="쿤스트하우스 코튼 볼캡 / 네이비"> <img class="lazyload lazy"
-										alt="두마로(DUMARO) 쿤스트하우스 코튼 볼캡 / 네이비"
-										data-original="https://image.msscdn.net/images/goods_img/20220103/2289283/2289283_4_125.jpg"
-										src="https://image.msscdn.net/images/goods_img/20220103/2289283/2289283_4_125.jpg"
-										style="display: block;">
-									</a>
-								</div>
-								<div class="article_info">
-									<p class="item_title">
-										<a href="//www.musinsa.com/brands/dumaro">두마로</a>
-									</p>
-									<p class="list_info">
-										<a name="goods_link"
-											href="//www.musinsa.com/app/goods/2289283"
-											title="쿤스트하우스 코튼 볼캡 / 네이비"> <strong class="txt_reserve">6/7
-												배송</strong> 쿤스트하우스 코튼 볼캡 / 네이비
-										</a>
-									</p>
-									<p class="price">
-										<del>39,900원</del>
-										19,950원
-									</p>
-									<p class="mu-icon mu-icon-coupon">
-										<span class="txt_discount_price">-1,995원</span>
-									</p>
-									<p class="membership"
-										onclick="viewMemberPrice('sPrice_2289283', '2289283', '0');">
-										MEMBERSHIP PRICE<span class="fr">▼</span>
-									</p>
-									<div class="member_price" style="display: none; z-index: 9999;"
-										id="sPrice_2289283">
-										<p>
-											무신사 회원가<span class="fr"><a href="#"
-												onclick="viewMemberPrice('sPrice_2289283', '2289283', '0');return false;">X</a></span>
-										</p>
-										<ul>
-											<li style="border-bottom: 1px solid #ddd;" class="pertinent">
-												<span>&gt; </span> 비회원 <span class="txt_price_member">19,950원</span>
-											</li>
-										</ul>
-									</div>
-									<p class="point">
-										<span class="img-score"><span class="bar"
-											style="width: 95%"></span></span> <span class="count">3,041</span>
-									</p>
-
-									<p class="txt_cnt_like" data-goodsno="2289283"
-										data-gtm-vis-first-on-screen11584968_1136="1736"
-										data-gtm-vis-total-visible-time11584968_1136="100"
-										data-gtm-vis-has-fired11584968_1136="1"
-										data-gtm-vis-first-on-screen11584968_147="1893"
-										data-gtm-vis-total-visible-time11584968_147="2500"
-										data-gtm-vis-first-on-screen11584968_1453="1893"
-										data-gtm-vis-total-visible-time11584968_1453="2500"
-										data-gtm-vis-has-fired11584968_147="1"
-										data-gtm-vis-has-fired11584968_1453="1">
-										<img
-											src="//image.msscdn.net/skin/musinsa/images/icon_like_small_on.png"
-											alt="좋아요"> 15,778
-									</p>
-								</div>
-							</div>
-						</li>
+						</c:forEach>
+					</c:if>
+						
 					</ul>
 
 				</section>

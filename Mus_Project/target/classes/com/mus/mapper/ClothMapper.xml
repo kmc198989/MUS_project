@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[ select * from( select /*+INDEX_DESC(mus_cloth 인덱스ID)*/ rownum as rn, clothId, clothName, 
 		(select brandName from mus_seller where mus_cloth.sellerId = mus_seller.sellerId) brandName, sellerId, 
 		(select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName,cateCode, publeYear, 
-		clothPrice, clothDiscount from mus_cloth where ]]>
+		clothPrice, clothDiscount*100 from mus_cloth where ]]>
 
 		<include refid="criteria"></include>
 		
