@@ -384,6 +384,11 @@ public class AdminController {
     @PostMapping("/goodsEnroll")
     public String goodsEnrollPOST(ClothVO cloth, RedirectAttributes rttr) {
     	logger.info("goodsEnrollPOST......" + cloth);
+    	
+    	if (cloth.getBrandName() == null) {
+            cloth.setBrandName("Default Brand"); // 기본 값 설정
+        }
+    	
     	adminService.clothEnroll(cloth);
     	rttr.addFlashAttribute("enroll_result", cloth.getClothName());
     	return "redirect:/admin/goodsManage";

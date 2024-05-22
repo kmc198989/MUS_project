@@ -38,8 +38,7 @@
 					<label>상품명</label>
 				</div>
 				<div class="form_section_content">
-					<input name="clothName"
-						value="<c:out value="${goodsInfo.clothName}"/>" disabled>
+					<input name="clothName" value="<c:out value="${goodsInfo.clothName}"/>" disabled>
 				</div>
 			</div>
 			<div class="form_section">
@@ -47,9 +46,7 @@
 					<label>입고일</label>
 				</div>
 				<div class="form_section_content">
-					<input
-						value="<fmt:formatDate value='${goodsInfo.regDate}' pattern='yyyy-MM-dd'/>"
-						disabled>
+					<input value="<fmt:formatDate value='${goodsInfo.regDate}' pattern='yyyy-MM-dd'/>" disabled>
 				</div>
 			</div>
 			<div class="form_section">
@@ -57,9 +54,7 @@
 					<label>최근 수정 날짜</label>
 				</div>
 				<div class="form_section_content">
-					<input
-						value="<fmt:formatDate value='${goodsInfo.updateDate}' pattern='yyyy-MM-dd'/>"
-						disabled>
+					<input value="<fmt:formatDate value='${goodsInfo.updateDate}' pattern='yyyy-MM-dd'/>" disabled>
 				</div>
 			</div>
 			<div class="form_section">
@@ -67,9 +62,7 @@
 					<label>판매자</label>
 				</div>
 				<div class="form_section_content">
-					<input id="brandName_input" readonly="readonly"
-						value="${goodsInfo.brandName }" disabled>
-
+					<input id="brandName_input" readonly="readonly" value="${goodsInfo.brandName }" disabled>
 				</div>
 			</div>
 			<div class="form_section">
@@ -77,8 +70,7 @@
 					<label>출판일</label>
 				</div>
 				<div class="form_section_content">
-					<input name="publeYear" autocomplete="off" readonly="readonly"
-						value="<c:out value="${goodsInfo.publeYear}"/>" disabled>
+					<input name="publeYear" autocomplete="off" readonly="readonly" value="<c:out value="${goodsInfo.publeYear}"/>" disabled>
 				</div>
 			</div>
 			<div class="form_section">
@@ -87,13 +79,15 @@
 				</div>
 				<div class="form_section_content">
 					<div class="cate_wrap">
-						<span>대분류</span> <select class="cate1" disabled>
-							<option value="none">----</option>
+						<span>상분류</span>
+						<select class="cate1" disabled>
+							<option value="none">${goodsInfo.cateName }</option>
 						</select>
 					</div>
 					<div class="cate_wrap">
-						<span>중분류</span> <select class="cate2" disabled>
-							<option value="none">----</option>
+						<span>하분류</span>
+						<select class="cate2" name="cateCode" disabled>
+							<option value="none">${goodsInfo.cateName }</option>
 						</select>
 					</div>
 				</div>
@@ -142,14 +136,14 @@
 			</div>
 
 			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 이미지</label>
-				</div>
-				<div class="form_section_content">
-
-					<div id="uploadReslut"></div>
-				</div>
-			</div>
+            	<div class="form_section_title">
+	  				<label>상품 이미지</label>
+	  			</div>
+           		<div class="form_section_content">
+					<div id="uploadReslut">
+					</div>
+           		</div>
+            </div>
 
 			<div class="btn_section">
 				<button id="cancelBtn" class="btn">상품 목록</button>
@@ -175,7 +169,7 @@
 			$("#discount_interface").attr("value", clothDiscount);
 			
 			
-			/* 책 소개 */
+			/* 상품 소개 */
 			ClassicEditor
 				.create(document.querySelector('#clothIntro_textarea'))
 				.then(editor => {
@@ -186,7 +180,7 @@
 					console.error(error);
 				});
 				
-			/* 책 목차 */	
+			/* 상품 목차 */	
 			ClassicEditor
 			.create(document.querySelector('#clothContents_textarea'))
 			.then(editor => {
@@ -201,61 +195,32 @@
 			/* 카테고리 */
 			let cateList = JSON.parse('${cateList}');
 
-			let cate1Array = new Array();
-			let cate2Array = new Array();
-			let cate3Array = new Array();
-			let cate1Obj = new Object();
-			let cate2Obj = new Object();
-			let cate3Obj = new Object();
-			
-			let cateSelect1 = $(".cate1");		
-			let cateSelect2 = $(".cate2");
-			let cateSelect3 = $(".cate3");
-			
+			let cate1Array = [];
+			let cate2Array = [];
+
 			/* 카테고리 배열 초기화 메서드 */
-			function makeCateArray(obj,array,cateList, tier){
-				for(let i = 0; i < cateList.length; i++){
-					if(cateList[i].tier === tier){
+			function makeCateArray(cateCode, array, cateList) {
+			    for (let i = 0; i < cateList.length; i++) {
+			        if (cateList[i].cateParent === cateCode) {
 						obj = new Object();
 						
 						obj.cateName = cateList[i].cateName;
 						obj.cateCode = cateList[i].cateCode;
 						obj.cateParent = cateList[i].cateParent;
 						
-						array.push(obj);				
-						
-					}
-				}
-			}	
-			
+						array.push(obj);
+			        }
+			    }
+			}
+
 			/* 배열 초기화 */
 			makeCateArray(cate1Obj,cate1Array,cateList,1);
 			makeCateArray(cate2Obj,cate2Array,cateList,2);
-			makeCateArray(cate3Obj,cate3Array,cateList,3);
 			
+			let targetCate1 = '';
+			let targetCate2 = '${goodsInfo.cateCode}';
 			
-			let targetCate2 = '';
-			let targetCate3 = '${goodsInfo.cateCode}';
-			
-			for(let i = 0; i < cate3Array.length; i++){
-				if(targetCate3 === cate3Array[i].cateCode){
-					targetCate3 = cate3Array[i];
-				}
-			}// for			
-			
-			for(let i = 0; i < cate3Array.length; i++){
-				if(targetCate3.cateParent === cate3Array[i].cateParent){
-					cateSelect3.append("<option value='"+cate3Array[i].cateCode+"'>" + cate3Array[i].cateName + "</option>");
-				}
-			}				
-			
-			$(".cate3 option").each(function(i,obj){
-				if(targetCate3.cateCode === obj.value){
-					$(obj).attr("selected", "selected");
-				}
-			});			
-			
-
+			/* 하분류 */
 			for(let i = 0; i < cate2Array.length; i++){
 				if(targetCate3.cateParent === cate2Array[i].cateCode){
 					targetCate2 = cate2Array[i];	
@@ -275,7 +240,7 @@
 			});				
 			
 			
-			
+			/* 상분류 */
 			for(let i = 0; i < cate1Array.length; i++){
 				cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
 			}	
@@ -287,7 +252,7 @@
 			});				
 			
 			/* 이미지 정보 호출 */
-			let clothId = '<c:out value="${goodsInfo.clothId}"/>';
+			let bookId = '<c:out value="${goodsInfo.clothId}"/>';
 			let uploadReslut = $("#uploadReslut");			
 			
 			$.getJSON("/getAttachList", {clothId : clothId}, function(arr){	
@@ -316,7 +281,7 @@
 				
 				uploadReslut.html(str);						
 				
-			});					
+			});			
 			
 			
 		}); // $(document).ready

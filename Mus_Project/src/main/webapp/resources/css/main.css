@@ -9,9 +9,9 @@
 	height: 100%;
 }
 #main_div{
-	float: right;
-	width: 85%;
-	background-color: #aedf9e;
+	/* float: right;
+	width: 100%;
+	background-color: #aedf9e;*/
 }
 #footer_section{
 	float: right;

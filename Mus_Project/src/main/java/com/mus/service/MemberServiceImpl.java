@@ -8,16 +8,23 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mus.mapper.MemberMapper;
+import com.mus.model.MemberKakaoVO;
 import com.mus.model.MemberVO;
 
 import net.nurigo.java_sdk.api.Message;
@@ -30,6 +37,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberMapper mapper;
+	
+	private SqlSession sqlsession;
 	
 	/* 회원가입 */
 	@Override
@@ -89,4 +98,144 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println(e.getCode());
 		}
 	}
+	
+	/* 비밀번호 찾기 */
+	@Override
+	public MemberVO searchPwd(MemberVO vo) throws Exception {
+		logger.info("searchPwd");
+		return mapper.searchPwd(vo);
+	}
+	
+	@Override
+	public void updatePwd(MemberVO vo) throws Exception {
+		logger.info("updatePwd");
+		mapper.updatePwd(vo);
+		
+	}
+	
+	@Override
+	public String getAccessToken(String authorize_code) {
+		String access_Token = "";
+		String refresh_Token = "";
+		String reqURL = "https://kauth.kakao.com/oauth/token";
+		
+		try {
+			URL url = new URL(reqURL);
+			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+			
+			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+			
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+	        StringBuilder sb = new StringBuilder();
+	        sb.append("grant_type=authorization_code");
+	        sb.append("&client_id=1c708f7af76b7f87a9198d58ea20109c");  //발급받은 key
+	        sb.append("&redirect_uri=http://localhost:8080/member/login/auth_kakao");     // 본인이 설정해 놓은 redirect_uri 주소
+	        sb.append("&code=" + authorize_code);
+	        bw.write(sb.toString());
+	        bw.flush();
+	        
+//	      결과 코드가 200이라면 성공
+	      // 여기서 안되는경우가 많이 있어서 필수 확인 !! **
+	      int responseCode = conn.getResponseCode();
+	      System.out.println("responseCode : " + responseCode + "확인");
+	      
+	      //요청을 통해 얻은 JSON타입의 response 메세지 읽어오기
+	      BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	      String line = "";
+	      String result = "";
+	      
+	      while((line = br.readLine()) !=null) {
+	    	  result += line;
+	      }
+	      System.out.println("responbody : " + result + "결과");
+	      
+	      //GSON 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+	      JsonParser parser = new JsonParser();
+	      JsonElement element = parser.parse(result);
+	      
+	      access_Token = element.getAsJsonObject().get("access_token").getAsString();
+	      refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+	      
+	      System.out.println("access_token : " + access_Token);
+	      System.out.println("refresh_token : " + refresh_Token);
+	      
+	      br.close();
+	      bw.close();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		return access_Token;
+	}
+	
+	@Override
+	public String getuserinfo(String access_Token, HttpSession session, RedirectAttributes rttr) {
+		
+		HashMap<String, Object> userInfo = new HashMap<>();
+		logger.info("getuserinfo()");
+		
+		String requestURL = "https://kapi.kakao.com/v2/user/me";
+		String view = null;
+		String msg = null;
+		
+		try {
+			URL url = new URL(requestURL);
+			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+			
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode : " + responseCode + "there");
+			BufferedReader buffer = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			
+			String line = "";
+			String result = "";
+			while((line = buffer.readLine()) !=null) {
+				result += line;
+			}
+			System.out.println("response body : " + result);
+			
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(result);
+			
+			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+	        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+	        System.out.println("properties : " + properties );
+	        System.out.println("kakao_account : " + kakao_account);
+	        String memberNickName = properties.getAsJsonObject().get("nickname").getAsString();
+	       //String memberKMail = kakao_account.getAsJsonObject().get("memberKMail").getAsString();
+	        System.out.println("NickName : " + memberNickName);
+	       // System.out.println("Kmail : " + memberKMail);
+	        //userInfo에 정보 저장
+	        //userInfo.put("memberKId", memberKMail);
+	        userInfo.put("memberNickName", memberNickName);
+	        //userInfo.put("memberKMail", memberKMail);
+	        
+	        logger.info(String.valueOf(userInfo));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		MemberKakaoVO member = mapper.findkakao(userInfo);
+		//저장되어있는지 체크
+		logger.info("S : " + member);
+		
+		if(member == null) {
+			mapper.kakaoinsert(userInfo);
+			member = mapper.selectKMember((String)userInfo.get("memberKId"));
+			session.setAttribute("member", member);
+			
+			//로그인 처리후 메인 페이지로 이동
+			view = "redirect:/";
+			msg = "로그인 성공";
+		}else {
+			session.setAttribute("member", member);
+			view = "redirect:/";
+			msg = "로그인 성공";
+		}
+		rttr.addFlashAttribute("msg", msg);
+		return view;
+		
+	}
+	
 }

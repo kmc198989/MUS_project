@@ -68,38 +68,14 @@
             text-shadow: 1px 1px 2px gray;
             color: white;
         }
-        .phone_check_button{
-		    border: 1px solid black;
-		    height: 39px;
-		    width: 31%;
-		    float: right;
-		    line-height: 50px;
-		    text-align: center;
-		    font-size: 14px;
-		    font-weight: 900;
-		    background-color: #ececf7;
-		    cursor: pointer;
-		    
-		}
-		.phone_check_input_box{
-			border: 1px solid black;
-		    height: 41px;
-		    padding: 10px 14px;
-		    width: 65%;
-		    float: left;
-		    box-sizing: border-box;
-		    border: 1px solid #cccccc;
-			
-		}
-
 </style>
 </head>
 <body>
 <!-- 파일 불러오기 -->
-<%@ include file="../modal/modal.jsp" %>
+<%@ include file="../modal/modal2.jsp" %>
 
 <div id="wrap">
-	<form id="login_form" method="post">
+	<form id="login_form" method="post" action="/member/findPw">
 		<div id="login_area">
 			<div id="login_header">
 	          <img src="/resources/img/musinsaLogo.png" />
@@ -108,27 +84,29 @@
 	        <div id="login_box">
 			    <input class="input" type="text" id="memberId" name="memberId" placeholder="아이디를 입력해 주세요" required/>
 			    <br/>
-			   <input class="input" type="text" id="memberPhone" name="memberPhone" placeholder="휴대폰번호를 입력해 주세요" required/>
+			   <input class="input" type="email" id="memberMail" name="memberMail" placeholder="이메일을 입력해 주세요" required/>
             	<br/>
             	
-            	
-            	<div class="phone_check_wrap">
-					<div class="phone_check_input_box">
-						<input id="phone2" type="text" name="phone2" title="인증번호 입력" disabled required/></br>
+            	<!-- 
+            	<div class="mail_wrap">
+					<div class="mail_check_wrap">
+						<div class="mail_check_input_box" id="mail_check_input_box_false">
+							<input class="mail_check_input" disabled="disabled">
+						</div>
+						
+						<div class="mail_check_button">
+							<span>인증번호 전송</span>
+						</div>
+						
+						<div class="clearfix"></div>
+						<span id="mail_check_input_box_warn"></span>
 					</div>
-					
-					<div class="phone_check_button">
-						<span id="phoneChk">인증번호 전송</span>
-					</div><br/><br/><br/><br/>
-					
-					<span id="phoneChk2" class="doubleChk"></span>
-					<span class="point successPhoneChk"></span>
-					<input type="hidden" id="phoneDoubleChk"/>
 				</div>
-				
+				 -->
+					
 	    		
 	    		<span class="submit">	
-    				<button type="button" id="findPw" value="비밀번호찾기" class="login_button" onclick="findId_click()">비밀번호 찾기</button>
+    				<button type="button" id="findPw" value="임시비밀번호 발급" class="login_button" onclick="findPw_click()">임시비밀번호 발급</button>
     			</span>
     			
     			<ul id="sub_menu">
@@ -142,27 +120,23 @@
 </div>
 
 <script>
-/* 아이디 찾기 */ 
+/* 비밀번호 찾기, 임시메일 발송정보 */ 
 //아이디 & 스토어 값 저장하기 위한 변수
 	// 아이디 값 받고 출력하는 ajax
 	
-	function findPw_click(){
+		function findPw_click(){
 		var memberId=$('#memberId').val();
-		var memberPhone=$('#memberPhone').val();
+		var memberMail=$('#memberMail').val();
 		
 		$.ajax({
 			url:"/member/findPw",
 			type:"POST",
-			data:{"memberId":memberId, "memberPhone":memberPhone},
+			data:{"memberId":memberId, "memberMail":memberMail},
 			success:function(data){
-				if(data == 0){
-					$('#id_value').text("회원 정보를 확인해주세요!");
-					$('#memberId').val('');
-					$('#memberPhone').val('');
+				if(data == true){
+					$('#id_value').text("임시비밀번호 발급에 성공하였습니다!");
 				} else {
-					$('#id_value').text(data);
-					$('#memberId').val('');
-					$('#memberPhone').val('');
+					$('#id_value').text("아이디 또는 이메일을 정확하게 입력해 주세요");
 					
 				}
 			 },
@@ -171,6 +145,8 @@
 	         }
 		});
 	};
+	
+
 	
 const modal = document.getElementById("modal");
 const btnModal = document.getElementById("findPw");

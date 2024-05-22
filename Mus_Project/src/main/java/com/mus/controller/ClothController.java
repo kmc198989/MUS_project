@@ -26,10 +26,13 @@ public class ClothController {
 	@Autowired
 	private ClothService clothservice;
 	
+	
 	// 상품 검색	
 	@GetMapping("/search")
-	public String searchGoodsGET(Criteria cri, Model model) {
-		
+	public void searchGoodsGET(Criteria cri, Model model) {
+		logger.info("search 페이지 진입");
+		cri.setAmount(100);
+
 		// 1차 카테고리 조회
 		List<CateVO> cate1 = clothservice.getCateCode1();
 		
@@ -39,9 +42,19 @@ public class ClothController {
 			List<CateVO> cate2list = clothservice.getCateCode2(firstcate.getCateCode());
 			cate.put(firstcate, cate2list);
 		}
-		
 		model.addAttribute("cate", cate);
-		
+		PageDTO pageMaker = new PageDTO(cri, clothservice.goodsGetTotal(cri));
+		System.out.println("search pageMaker + " + pageMaker);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("filter_info", clothservice.getCateInfoList(cri));
+	}
+	
+	
+	@GetMapping("/searchtool")
+	public String searchtoolGET(Criteria cri, Model model) {
+		System.out.println("searchtool 동작");
+		cri.setAmount(100);
+		System.out.println("searchtool + " + cri.getCateCode());
 		// 검색 기능
 		logger.info("cri : " + cri);
 		
@@ -52,12 +65,10 @@ public class ClothController {
 			logger.info("list : " + list);			
 		} else {
 			model.addAttribute("listcheck", "empty");
-			return "search";
+			return "searchtool";
 		}
-		model.addAttribute("pageMaker", new PageDTO(cri, clothservice.goodsGetTotal(cri)));
-		model.addAttribute("filter_info", clothservice.getCateInfoList(cri));
 		
-		return "search";
+		return "includes/searchtool";
 	}
 	
 	/* 상품 상세 */

@@ -111,5 +111,11 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.membersGetTotal(cri);
 	}
 	
+	// 이미지 등록
+	@Override
+	public void imageEnroll(AttachImageVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

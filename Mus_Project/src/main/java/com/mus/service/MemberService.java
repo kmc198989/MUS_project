@@ -23,6 +23,16 @@ public interface MemberService {
 	//휴대폰번호 인증
 	public void certifiedPhoneNumber(String memberPhone, int randomNumber);
 	
+	//비밀번호 찾기
+	public MemberVO searchPwd(MemberVO vo) throws Exception;
+		
+	public void updatePwd(MemberVO vo) throws Exception;
+	
+	//카카오 로그인
+	public String getAccessToken(String authorize_code);
+	
+	public String getuserinfo(String access_Token, HttpSession session, RedirectAttributes rttr);
+	
 	
 	
 }

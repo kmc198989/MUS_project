@@ -6,9 +6,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- criteria(검색조건) -->
 	<sql id="criteria">
-		(clothName like '%' || #{keyword} || '%' or brandName like
-		'%' || #{keyword} || '%' or cateCode like '%' || #{keyword} || '%')
+		((clothName like '%' || #{keyword} || '%' or brandName like
+		'%' || #{keyword} || '%')		
+		 and cateCode like '%' || #{cateCode, jdbcType=VARCHAR} || '%')
 	</sql>
+		<!-- criteria(검색조건)
+	<sql id="criteria">
+		((clothName like '%' || #{keyword} || '%' OR brandName like
+		'%' || #{keyword} || '%')		
+		<choose>
+		  <when test="cateCode % 1000 == 0">
+		  <![CDATA[
+		    AND (cateCode - #{cateCode, jdbcType=VARCHAR}) <= 1000)
+		    ]]>
+		  </when>
+		  <otherwise>
+		    AND cateCode like '%' || #{cateCode, jdbcType=VARCHAR} || '%')
+		  </otherwise>
+		</choose>
+	</sql> -->
+	
 
 	<!-- 상품 검색 -->
 	<select id="getGoodsList" resultType="com.mus.model.ClothVO">
@@ -16,7 +33,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[ select * from( select /*+INDEX_DESC(mus_cloth 인덱스ID)*/ rownum as rn, clothId, clothName, 
 		(select brandName from mus_seller where mus_cloth.sellerId = mus_seller.sellerId) brandName, sellerId, 
 		(select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName,cateCode, publeYear, 
-		clothPrice, clothDiscount*100 from mus_cloth where ]]>
+		clothPrice, TRUNC(clothDiscount * 100) as clothDiscount,
+		clothPrice * clothDiscount as discountedPrice,
+		clothPrice - (clothPrice * clothDiscount) as finalPrice
+		 from mus_cloth where ]]>
 
 		<include refid="criteria"></include>
 		

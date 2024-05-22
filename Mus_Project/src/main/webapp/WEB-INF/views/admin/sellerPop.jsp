@@ -27,19 +27,19 @@
 						<thead>
 							<tr>
 								<td class="th_column_1">판매자 번호</td>
-								<td class="th_column_2">판매자 회사</td>
-								<td class="th_column_3">브랜드 이름</td>
+								<td class="th_column_2">브랜드 이름</td>
+								<td class="th_column_3">판매자 회사</td>
 							</tr>
 						</thead>
 						<c:forEach items="${list}" var="list">
 							<tr>
 								<td><c:out value="${list.sellerId}"></c:out></td>
 								<td>
-									<a class="move" href='<c:out value="${list.sellerId }" />' data-name='<c:out value="${list.sellerCompany }"/>'>
-										<c:out value="${list.sellerCompany}"></c:out>
+									<a class="move" href='<c:out value="${list.sellerId }" />' data-name='<c:out value="${list.brandName }"/>'>
+										<c:out value="${list.brandName}"></c:out>
 									</a>
 								</td>
-								<td><c:out value="${list.brandName}"></c:out></td>
+								<td><c:out value="${list.sellerCompany}"></c:out></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -129,7 +129,7 @@ $(".pageMaker_btn a").on("click", function(e) {
 // 판매자 선택 및 팝업창 닫기
 $(".move").on("click", function(e) {
 	e.preventDefault();
-	
+		
 	let sellerId = $(this).attr("href");
 	let brandName = $(this).data("name");
 	

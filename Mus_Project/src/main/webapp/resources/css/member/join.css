@@ -207,7 +207,6 @@
 	border: 1px solid black;
 	height:21px;
 	padding: 10px 14px;	
-	
 }
 .phone_input{
 	width:100%;
@@ -241,6 +240,20 @@
 }
 .phone_check_button{
     border: 1px solid black;
+    height: 41px;
+    width: 30%;
+    float: right;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    background-color: #ececf7;
+    cursor: pointer;
+    margin-top: 20px;
+    
+}
+.doubleChk{
+	border: 1px solid black;
     height: 41px;
     width: 30%;
     float: right;

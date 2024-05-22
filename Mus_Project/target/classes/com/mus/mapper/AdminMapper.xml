@@ -4,35 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mus.mapper.AdminMapper">
 	<!-- 상품 등록 -->
-	<insert id="clothEnroll">
+	<insert id="clothEnroll" parameterType="map">
 		<selectKey resultType="int" keyProperty="clothId"
-			order="AFTER"> SELECT ISEQ$$_80121.currval from dual </selectKey>
-		insert into mus_cloth(clothName, sellerId, publeYear, cateCode,
-		clothPrice, clothStock, clothDiscount, clothIntro, clothContents)
-		values(#{clothName},#{sellerId},
-		#{publeYear},#{cateCode},#{clothPrice},#{clothStock},#{clothDiscount},#{clothIntro},#{clothContents})
+			order="AFTER"> SELECT ISEQ$$_80212.currval from dual </selectKey>
+		<!-- 데이터 삽입 -->
+		insert into mus_cloth(clothName, sellerId, publeYear, brandName,
+		cateCode, clothPrice, clothStock, clothDiscount, clothIntro,
+		clothContents) values(#{clothName}, #{sellerId}, #{publeYear},
+		#{brandName,jdbcType=VARCHAR}, #{cateCode}, #{clothPrice},
+		#{clothStock}, #{clothDiscount}, #{clothIntro}, #{clothContents})
 	</insert>
 	<!-- 카테고리 리스트 -->
 	<select id="cateList" resultType="com.mus.model.CateVO"> select * from mus_cate order
 		by catecode </select>
 	<!-- 상품 리스트 -->
 	<select id="goodsGetList" resultType="com.mus.model.ClothVO">
-		<![CDATA[ select * from( select /*+INDEX_DESC(mus_cloth SYS_C007551)*/ rownum as rn, clothId, clothName, 
-		(select brandName from mus_seller where mus_cloth.sellerId = mus_seller.sellerId) brandName, 
-		(select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName, 
-		clothStock, regDate from mus_cloth where ]]>
-		
-				<if test="keyword != null"> (clothName like '%' || #{keyword} || '%' or brandName like '%' || #{keyword} || '%') and </if>
-				
-		<![CDATA[ rownum <= #{pageNum} * #{amount} ) 
-				where rn > (#{pageNum} -1) * #{amount} 
-		]]>
-
+<![CDATA[ select * from( select /*+INDEX_DESC(mus_cloth SYS_C007551)*/ rownum as rn, clothId, clothName, (select brandName from mus_seller where mus_cloth.sellerId = mus_seller.sellerId) brandName, (select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName, clothStock, regDate from mus_cloth where ]]>
+		<if test="keyword != null"> clothName like '%' || #{keyword, jdbcType=VARCHAR} || '%'
+			and </if>
+<![CDATA[ rownum <= #{pageNum} * #{amount} ) where rn > (#{pageNum} - 1) * #{amount} ]]>
 	</select>
 	<!-- 상품 총 개수 -->
 	<select id="goodsGetTotal" resultType="int">
 		select count(*) from mus_cloth
-		<if test="keyword != null"> where clothName like '%' || #{keyword} || '%' or brandName like '%' || #{keyword} || '%' </if>
+		<if test="keyword != null"> where clothName like '%' || #{keyword, jdbcType=VARCHAR}
+			|| '%' </if>
 	</select>
 	<!-- 상품 조회 페이지 -->
 	<select id="goodsGetDetail" resultType="com.mus.model.ClothVO"> select clothId,
@@ -51,31 +47,32 @@
 	<delete id="goodsDelete"> delete from mus_cloth where clothId = #{clothId}
 	</delete>
 	<!-- 이미지 등록 -->
-	<insert id="imageEnroll"> insert into vam_image(clothId, fileName, uploadPath,
+	<insert id="imageEnroll"> insert into mus_image(clothId, fileName, uploadPath,
 		uuid) values (#{clothId}, #{fileName}, #{uploadPath}, #{uuid})
 	</insert>
 	<!-- 지정 상품 이미지 전체 삭제 -->
-	<delete id="deleteImageAll"> delete from vam_image where clothId = #{clothId}
+	<delete id="deleteImageAll"> delete from mus_image where clothId = #{clothId}
 	</delete>
 	<!-- 어제자 날자 이미지 리스트 -->
 	<select id="checkFileList"
-		resultType="com.mus.model.AttachImageVO"> select * from vam_image where uploadpath = to_char(sysdate
-		-1, 'yyyy\mm\dd') </select>
+		resultType="com.mus.model.AttachImageVO"> select * from mus_image where uploadpath = to_char(sysdate
+		- 1, 'yyyy\\mm\\dd') </select>
 	<!-- 지정 상품 이미지 정보 얻기 -->
 	<select id="getAttachInfo"
-		resultType="com.mus.model.AttachImageVO"> select * from vam_image where clothId = #{clothId}
+		resultType="com.mus.model.AttachImageVO"> select * from mus_image where clothId = #{clothId}
 	</select>
 	<!-- 회원 리스트 -->
 	<select id="membersGetList" resultType="com.mus.model.MemberVO">
 <![CDATA[ select * from( select /*+INDEX_DESC(MUS_MEMBER SYS_C007551)*/ rownum as rn, memberId, memberPw, memberName, memberMail, memberPhone, memberAddr1, memberAddr2, memberAddr3, adminCk, regDate, money, point from MUS_MEMBER where ]]>
 		<if test="keyword != null"> memberName like '%' || #{keyword, jdbcType=VARCHAR} ||
 			'%' and </if>
-<![CDATA[ rownum <= #{pageNum} * #{amount} ) where rn > (#{pageNum} -1) * #{amount} ]]>
+<![CDATA[ rownum <= #{pageNum} * #{amount} ) where rn > (#{pageNum} - 1) * #{amount} ]]>
 	</select>
 	<!-- 회원 총 수 -->
 	<select id="membersGetTotal" resultType="int">
 		select count(*) from MUS_MEMBER
-		<if test="keyword != null"> where memberName like '%' || #{keyword} || '%' </if>
+		<if test="keyword != null"> where memberName like '%' || #{keyword, jdbcType=VARCHAR}
+			|| '%' </if>
 	</select>
 	<!-- 회원 조회 페이지 -->
 	<select id="membersGetDetail"

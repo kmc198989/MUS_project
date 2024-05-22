@@ -118,7 +118,7 @@ $(document).ready(function(){
 			return;
 		}
 		
-		alert("상품'"+ eResult +"'을 등록하였습니다.");
+		alert("상품'"+ eResult +"'을(를) 등록하였습니다.");
 		
 	}
 	
@@ -127,7 +127,7 @@ $(document).ready(function(){
 	
 	if(modify_result == 1){
 		alert("수정 완료");
-	}	
+	}
 	
 	/* 삭제 결과 경고창 */
 	let delete_result = '${delete_result}';
@@ -141,7 +141,7 @@ $(document).ready(function(){
 let searchForm = $('#searchForm');
 let moveForm = $('#moveForm');
 
-/* 상품 검색 버튼 동작 */
+/* 작거 검색 버튼 동작 */
 $("#searchForm button").on("click", function(e){
 	
 	e.preventDefault();

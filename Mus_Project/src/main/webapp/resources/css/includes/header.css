@@ -1,12 +1,26 @@
 @charset "UTF-8";
 .header_div{
-	background-color: #000;
-	height: 60px;
-	display: flex;
-	align-items: center;
+   background-color: #000;
+   height: 60px;
+   display: flex;
+   align-items: center;
+}
+.logo_area {
+   height: 60px;
+}
+.logo_area img{
+   padding-top:10px;
+   height: 40px;
 }
 
 .searchbar {
-	width: 30vw;
-	height: 20px;
+   width: 30vw;
+   height: 20px;
 }
+.list{
+   display: flex;
+   list-style-type: none;
+}
+.list li{
+   margin: 0 5px;
+   color: white;

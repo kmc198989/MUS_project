@@ -39,4 +39,7 @@ public interface AdminService {
 	// 회원 총 개수
 	public int membersGetTotal(Criteria cri);
 	
+	// 이미지 등록
+	public void imageEnroll(AttachImageVO vo);
+	
 }

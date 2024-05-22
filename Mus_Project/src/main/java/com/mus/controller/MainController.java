@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mus.model.CateVO;
+import com.mus.model.Criteria;
+import com.mus.model.PageDTO;
 import com.mus.service.ClothService;
 
 @Controller
@@ -25,10 +27,10 @@ public class MainController {
 	
 	//메인 페이지 이동
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public void mainPageGET(Model model) {
-			
-		logger.info("메인 페이지 진입");
-		
+	public void mainPageGET(Model model, Criteria cri) {
+		logger.info("main 페이지 진입");
+		cri.setAmount(100);
+
 		// 1차 카테고리 조회
 		List<CateVO> cate1 = clothservice.getCateCode1();
 		
@@ -39,7 +41,10 @@ public class MainController {
 			cate.put(firstcate, cate2list);
 		}
 		model.addAttribute("cate", cate);
-
+		PageDTO pageMaker = new PageDTO(cri, clothservice.goodsGetTotal(cri));
+		System.out.println("search pageMaker + " + pageMaker);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("filter_info", clothservice.getCateInfoList(cri));
 	}
 
 }

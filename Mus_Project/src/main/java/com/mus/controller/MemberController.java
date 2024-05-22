@@ -1,13 +1,7 @@
 package com.mus.controller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
 import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mus.model.MemberVO;
 import com.mus.service.MemberService;
-
+import com.mus.util.MailUtil;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -191,6 +184,40 @@ public class MemberController {
   	public void findPwPageGET() {
   		logger.info("비밀번호찾기 진입(GET)");
   	}
+	
+	@PostMapping(value = "findPw", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@ResponseBody
+	public String findPwPOST(MemberVO vo) throws Exception{
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String result = null;
+	
+		
+		//회원정보 불러오기
+		MemberVO vo1 = memberservice.searchPwd(vo);
+		System.out.println(vo1);
+		
+		//가입된 이메일이 존재한다면 이메일 전송
+		if(vo1!=null) {
+			//임시 비밀번호 생성(UUID이용)
+			String tempPw = UUID.randomUUID().toString().replace("-", ""); //-를 제거
+			tempPw = tempPw.substring(0,10);  //tempPw를 앞에서부터 10자리 제거
+			
+			vo1.setMemberPw(tempPw); //임시 비밀번호 담기
+			MailUtil mail = new MailUtil(); //메일전송
+			mail.sendEmail(vo1);
+			
+			String securePw = encoder.encode(vo1.getMemberPw()); //비밀번호 암호화후 vo객체에 담기
+			vo1.setMemberPw(securePw);
+			
+			memberservice.updatePwd(vo1);
+			
+			
+			result = "true";
+		}else{
+			result="false";
+		}
+		return result;
+	}
     
     
     /* 메인페이지 로그아웃 */
@@ -215,51 +242,29 @@ public class MemberController {
 		session.invalidate();
 	}
 	
-	@GetMapping(value = "/login/kakao", produces = MediaType.APPLICATION_JSON_VALUE)
-	@Description("Front로 부터 KAKAO OAUTH를 받는다")
-	public void geKakaoUserInfo(String code) {
-		System.out.println("OAuth Code : "+code);
-		/* 정보 요청 */
+	/* 카카오 로그인 기능 */
+	@RequestMapping(value = "/login/getKakaoAuthUrl")
+	@ResponseBody
+	public String getKakaoAuthUrl(HttpServletRequest request) throws Exception{
+		logger.info("카카오페이지 진입");
 		
-		 try {
-		        URL url = new URL("https://kauth.kakao.com/oauth/token");
-		        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		        conn.setRequestMethod("POST");
-		        conn.setDoOutput(true);
-
-		        StringBuilder sb = new StringBuilder();
-		        sb.append("grant_type=authorization_code");
-		        sb.append("&client_id=" + "9ae60badd8feddaff2167169e12ee080");
-		        sb.append("&code=" + code);
-		        BufferedWriter bw = null;
-		        try{
-		            bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-		            bw.write(sb.toString());
-		        }catch(IOException e){
-		            throw e;
-		        }finally{
-		            if(bw != null) bw.flush();
-		        }
-		        BufferedReader br = null;
-		        String line = "", result = "";
-		        try {
-		            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		            while ((line = br.readLine()) != null) {
-		                result += line;
-		            }
-		        } catch (IOException e) {
-		            throw e;
-		        } finally {
-		            if (br != null)
-		                br.close();
-		        }
-		        System.out.println("result : " + result);
-		    } catch (IOException e) {
-		        e.printStackTrace();
-		    }
-			 
+		String reqUrl = 
+				"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=1c708f7af76b7f87a9198d58ea20109c&redirect_uri=http://localhost:8080/member/login/auth_kakao";
 		
+		return reqUrl;
+	}
+	
+	/* 카카오 로그인 기능uri */
+	@RequestMapping(value = "/login/auth_kakao")
+	public String oauthKaKao(
+			@RequestParam(value = "code", required = false) String code
+			, HttpSession session, RedirectAttributes rttr) throws Exception{
 		
+		logger.info("#######" + code);
+		String access_Token = memberservice.getAccessToken(code);
+		String view = memberservice.getuserinfo(access_Token, session, rttr);
+		
+		return view;
 	}
 	
 }

@@ -7,9 +7,23 @@ public class ClothVO {
 	private int clothId, sellerId, clothPrice, clothStock;
 	private String clothName, brandName, publeYear, cateCode, cateName, clothIntro, clothContents;
 	private double clothDiscount;
+	private int discountedPrice;	// 계산 및 출력용(DB에 없음)
+	private int finalPrice;			// 계산 및 출력용(DB에 없음)
 	private Date regDate, updateDate;
 	private List<AttachImageVO> imageList;
 	
+	public int getDiscountedPrice() {
+		return discountedPrice;
+	}
+	public void setDiscountedPrice(int discountedPrice) {
+		this.discountedPrice = discountedPrice;
+	}
+	public int getFinalPrice() {
+		return finalPrice;
+	}
+	public void setFinalPrice(int finalPrice) {
+		this.finalPrice = finalPrice;
+	}
 	public int getClothId() {
 		return clothId;
 	}
@@ -106,7 +120,8 @@ public class ClothVO {
 		return "ClothVO [clothId=" + clothId + ", sellerId=" + sellerId + ", clothPrice=" + clothPrice + ", clothStock="
 				+ clothStock + ", clothName=" + clothName + ", brandName=" + brandName + ", publeYear=" + publeYear
 				+ ", cateCode=" + cateCode + ", cateName=" + cateName + ", clothIntro=" + clothIntro
-				+ ", clothContents=" + clothContents + ", clothDiscount=" + clothDiscount + ", regDate=" + regDate
-				+ ", updateDate=" + updateDate + ", imageList=" + imageList + "]";
+				+ ", clothContents=" + clothContents + ", clothDiscount=" + clothDiscount + ", discountedPrice="
+				+ discountedPrice + ", finalPrice=" + finalPrice + ", regDate=" + regDate + ", updateDate=" + updateDate
+				+ ", imageList=" + imageList + "]";
 	}
 }
