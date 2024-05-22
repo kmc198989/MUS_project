@@ -81,13 +81,13 @@
 					<div class="cate_wrap">
 						<span>상분류</span>
 						<select class="cate1" disabled>
-							<option value="none">${goodsInfo.cateName }</option>
+							<option value="none">----</option>
 						</select>
 					</div>
 					<div class="cate_wrap">
 						<span>하분류</span>
 						<select class="cate2" name="cateCode" disabled>
-							<option value="none">${goodsInfo.cateName }</option>
+							<option value="none">----</option>
 						</select>
 					</div>
 				</div>
@@ -136,14 +136,14 @@
 			</div>
 
 			<div class="form_section">
-            	<div class="form_section_title">
-	  				<label>상품 이미지</label>
-	  			</div>
-           		<div class="form_section_content">
-					<div id="uploadReslut">
-					</div>
-           		</div>
-            </div>
+				<div class="form_section_title">
+					<label>상품 이미지</label>
+				</div>
+				<div class="form_section_content">
+					
+					<div id="uploadReslut"></div>
+				</div>
+			</div>
 
 			<div class="btn_section">
 				<button id="cancelBtn" class="btn">상품 목록</button>
@@ -179,7 +179,7 @@
 				.catch(error=>{
 					console.error(error);
 				});
-				
+
 			/* 상품 목차 */	
 			ClassicEditor
 			.create(document.querySelector('#clothContents_textarea'))
@@ -191,27 +191,33 @@
 				console.error(error);
 			});		
 			
-			
+
 			/* 카테고리 */
 			let cateList = JSON.parse('${cateList}');
 
-			let cate1Array = [];
-			let cate2Array = [];
+			let cate1Array = new Array();
+			let cate2Array = new Array();
+			let cate1Obj = new Object();
+			let cate2Obj = new Object();
+			
+			let cateSelect1 = $(".cate1");		
+			let cateSelect2 = $(".cate2");
 
 			/* 카테고리 배열 초기화 메서드 */
-			function makeCateArray(cateCode, array, cateList) {
-			    for (let i = 0; i < cateList.length; i++) {
-			        if (cateList[i].cateParent === cateCode) {
+			function makeCateArray(obj,array,cateList, tier){
+				for(let i = 0; i < cateList.length; i++){
+					if(cateList[i].tier === tier){
 						obj = new Object();
 						
 						obj.cateName = cateList[i].cateName;
 						obj.cateCode = cateList[i].cateCode;
 						obj.cateParent = cateList[i].cateParent;
 						
-						array.push(obj);
-			        }
-			    }
-			}
+						array.push(obj);				
+						
+					}
+				}
+			}	
 
 			/* 배열 초기화 */
 			makeCateArray(cate1Obj,cate1Array,cateList,1);
@@ -219,18 +225,23 @@
 			
 			let targetCate1 = '';
 			let targetCate2 = '${goodsInfo.cateCode}';
-			
+
 			/* 하분류 */
 			for(let i = 0; i < cate2Array.length; i++){
-				if(targetCate3.cateParent === cate2Array[i].cateCode){
+				if(targetCate2 === cate2Array[i].cateCode){
 					targetCate2 = cate2Array[i];	
 				}
+				console.log('targetCate2.cateName : ' + targetCate2.cateName);
+
 			}// for		
+			
+
 			
 			for(let i = 0; i < cate2Array.length; i++){
 				if(targetCate2.cateParent === cate2Array[i].cateParent){
 					cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
 				}
+				// console.log('cate2Array[i].cateParent' + cate2Array[i].cateParent);
 			}		
 			
 			$(".cate2 option").each(function(i,obj){
@@ -250,9 +261,9 @@
 					$(obj).attr("selected", "selected");
 				}
 			});				
-			
+
 			/* 이미지 정보 호출 */
-			let bookId = '<c:out value="${goodsInfo.clothId}"/>';
+			let clothId = '<c:out value="${goodsInfo.clothId}"/>';
 			let uploadReslut = $("#uploadReslut");			
 			
 			$.getJSON("/getAttachList", {clothId : clothId}, function(arr){	
@@ -281,7 +292,7 @@
 				
 				uploadReslut.html(str);						
 				
-			});			
+			});					
 			
 			
 		}); // $(document).ready

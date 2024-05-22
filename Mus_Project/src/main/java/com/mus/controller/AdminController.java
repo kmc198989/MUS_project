@@ -301,6 +301,7 @@ public class AdminController {
 		model.addAttribute("cri", cri);
 		
 		model.addAttribute("goodsInfo", adminService.goodsGetDetail(clothId));
+		System.out.println("상품조회(goodsGetDetail) : " + adminService.goodsGetDetail(clothId));
 	}
 	
     /* 판매자 등록 페이지 접속 */

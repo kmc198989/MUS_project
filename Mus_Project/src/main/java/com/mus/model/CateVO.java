@@ -13,6 +13,15 @@ public class CateVO {
 	private String cateName;
 	private String cateCode;
 	private String cateParent;
+	private int tier;
+	
+	
+	public int getTier() {
+		return tier;
+	}
+	public void setTier(int tier) {
+		this.tier = tier;
+	}
 	public String getCateName() {
 		return cateName;
 	}
@@ -35,7 +44,8 @@ public class CateVO {
 	
 	@Override
 	public String toString() {
-		return "CateVO [cateName=" + cateName + ", cateCode=" + cateCode + ", cateParent=" + cateParent + "]";
+		return "CateVO [cateName=" + cateName + ", cateCode=" + cateCode + ", cateParent=" + cateParent + ", tier="
+				+ tier + "]";
 	}
 	
 	

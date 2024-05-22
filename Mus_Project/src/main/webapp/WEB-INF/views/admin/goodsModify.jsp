@@ -65,13 +65,13 @@
                         <div class="cate_wrap">
                             <span>상분류</span> 
                             <select class="cate1">
-                                <option value="none">${goodsInfo.cateName }</option>
+                                <option value="none">----</option>
                             </select>
                         </div>
                         <div class="cate_wrap">
                             <span>하분류</span> 
                             <select name="cateCode" class="cate2">
-                                <option value="none">${goodsInfo.cateName }</option>
+                                <option value="none">----</option>
                             </select>
                         </div>
                         <span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span>
@@ -194,17 +194,20 @@
 			let cateSelect2 = $(".cate2");
 
 			/* 카테고리 배열 초기화 메서드 */
-			function makeCateArray(cateCode, array, cateList) {
-			    for (let i = 0; i < cateList.length; i++) {
-			        if (cateList[i].cateParent === cateCode) {
-			            array.push({
-			                cateName: cateList[i].cateName,
-			                cateCode: cateList[i].cateCode,
-			                cateParent: cateList[i].cateParent
-			            });
-			        }
-			    }
-			}
+			function makeCateArray(obj,array,cateList, tier){
+				for(let i = 0; i < cateList.length; i++){
+					if(cateList[i].tier === tier){
+						obj = new Object();
+						
+						obj.cateName = cateList[i].cateName;
+						obj.cateCode = cateList[i].cateCode;
+						obj.cateParent = cateList[i].cateParent;
+						
+						array.push(obj);				
+						
+					}
+				}
+			}	
 
 			/* 배열 초기화 */
 			makeCateArray(cate1Obj,cate1Array,cateList,1);
@@ -212,18 +215,23 @@
 			
 			let targetCate1 = '';
 			let targetCate2 = '${goodsInfo.cateCode}';
-			
+
 			/* 하분류 */
 			for(let i = 0; i < cate2Array.length; i++){
-				if(targetCate3.cateParent === cate2Array[i].cateCode){
+				if(targetCate2 === cate2Array[i].cateCode){
 					targetCate2 = cate2Array[i];	
 				}
+				console.log('targetCate2.cateName : ' + targetCate2.cateName);
+
 			}// for		
+			
+
 			
 			for(let i = 0; i < cate2Array.length; i++){
 				if(targetCate2.cateParent === cate2Array[i].cateParent){
 					cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
 				}
+				// console.log('cate2Array[i].cateParent' + cate2Array[i].cateParent);
 			}		
 			
 			$(".cate2 option").each(function(i,obj){

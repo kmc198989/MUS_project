@@ -14,6 +14,7 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="wrapper">
 	<div class="subject_name_warp">
 		<span>판매자 선택</span>
 	</div>
@@ -52,14 +53,12 @@
 
 			<!-- 검색 영역 -->
 			<div class="search_wrap">
-				<form id="searchForm" action="/admin/Pop" method="get">
+				<form id="searchForm" action="/admin/sellerPop" method="get">
 					<div class="search_input">
-						<input type="text" name="keyword"
-							value='<c:out value="${pageMaker.cri.keyword}"></c:out>'>
-						<input type="hidden" name="pageNum"
-							value='<c:out value="${pageMaker.cri.pageNum }"></c:out>'>
+						<input type="text" name="keyword" value='<c:out value="${pageMaker.cri.keyword}"></c:out>'>
+						<input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum }"></c:out>'>
 						<input type="hidden" name="amount" value='${pageMaker.cri.amount}'>
-						<button class='btn search_btn'>검 색</button>
+						<button class='btn search_btn' style="color: white;">검 색</button>
 					</div>
 				</form>
 			</div>
@@ -71,8 +70,9 @@
 
 					<!-- 이전 버튼 -->
 					<c:if test="${pageMaker.prev}">
-						<li class="pageMaker_btn prev"><a
-							href="${pageMaker.pageStart - 1}">이전</a></li>
+						<li class="pageMaker_btn prev">
+							<a href="${pageMaker.pageStart - 1}">이전</a>
+						</li>
 					</c:if>
 
 					<!-- 페이지 번호 -->
@@ -85,8 +85,9 @@
 
 					<!-- 다음 버튼 -->
 					<c:if test="${pageMaker.next}">
-						<li class="pageMaker_btn next"><a
-							href="${pageMaker.pageEnd + 1 }">다음</a></li>
+						<li class="pageMaker_btn next">
+							<a href="${pageMaker.pageEnd + 1 }">다음</a>
+						</li>
 					</c:if>
 
 				</ul>
@@ -100,6 +101,7 @@
 			</form>
 		</div>
 	</div>
+</div>
 	
 <script>
 let searchForm = $('#searchForm');

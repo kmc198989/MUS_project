@@ -1,165 +1,193 @@
 @charset "UTF-8";
 *{
-	margin: 0;
-	padding:0;
+   margin: 0;
+   padding:0;
 }
 
 /* 화면 전체 렙 */
 .wrapper{
-	width: 100%;	
+   /*width: 100%;*/
+   position: absolute;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 670px;
+    height: 960px;
+    background: #FFFFFF;
+    border: 1px solid #383434;
+    box-shadow: 7px 7px 39px rgba(0, 104, 255, 0.25);
+    border-radius: 20px;
+    
+    margin: 0px;
+    padding: 100px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
+/* div.wrap {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+} */
 
-
-/* content 랩 */
+/* content 랩
 .wrap{
-	width : 400px;
-	margin: auto;
+   width : 400px;
+   margin: auto;
 }
+ */
 /* 페이지 제목 */
 .subjecet{
-	width: 100%;
+   /*width: 100%;
     height: 60;
     background-color: white;
     text-align: center; 
     margin-top: 20px;
+    */
+    width: 466px;
+    height: 94px;
+    left: 740px;
+    top: 132px;
+
+    font-family: 'Noto Sans CJK KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 47px;
+
+    color: #383434;
+    justify-content: space-evenly;
 }
+/*
 .subjecet span{
-	
     font-size: 50px;
     font-weight: 900;
     color: black;
 }
+*/
 
 /* 아이디 영역 */
-.id_wrap{
-	width: 100%;
-    margin-top: 20px;
-}
+
 .id_name{
-	font-size: 14px;
-    font-weight: bold;
+   
+    color: #4d4d4d;
 }
 .id_input_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .id_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
 }
 /* 중복아이디 존재하지 않는 경우*/
 .id_input_re_1{
-	color : green;
-	display: none;
+   color : green;
+   display: none;
 }
 /* 중복아이디 존재하는 경우 */
 .id_input_re_2{
-	color: red;
-	display: none;
+   color: red;
+   display: none;
 }
 
 /* 비밀번호 영역 */
-.pw_wrap{
-	width: 100%;
-    margin-top: 20px;
 
-}
 .pw_name{
-	font-size: 14px;
-    font-weight: bold;
+   color: #4d4d4d;
     
 }
 .pw_input_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .pw_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
 }
 
 /* 비밀번호 확인 영역 */
-.pwck_wrap{
-	width: 100%;
-    margin-top: 20px;
-}
+
 .pwck_name{
-	font-size: 14px;
-    font-weight: bold;
+   color: #4d4d4d;
 }
 .pwck_input_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .pwck_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
 }
 
 /* 이름 영역 */
-.user_wrap{
-	width: 100%;
-    margin-top: 20px;
-}
+
 .user_name{
-	font-size: 14px;
-    font-weight: bold;
+   color: #4d4d4d;
 }
 .user_input_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .user_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
 }
 
 /* 메일 영역 */
-.mail_wrap{
-	width: 100%;
-    margin-top: 14px;
-}
+
 .mail_name{
-	font-size: 14px;
-    font-weight: bold;
+   color: #4d4d4d;
 }
 .mail_input_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .mail_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 300px;
+    height: 30px;
 }
-.mail_check_wrap{
-	margin-top: 20px;	
-}
+
 .mail_check_input_box{
-	border: 1px solid black;
+   /*
+   border: 1px solid black;
     height: 21px;
     padding: 10px 14px;
     width: 61%;
     float: left;
+    */
 }
 
 #mail_check_input_box_false{
@@ -170,22 +198,25 @@
     background-color:white;
 }
 .mail_check_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
 }
 .mail_check_button{
-    border: 1px solid black;
-    height: 41px;
+     border: 1px solid black;
+    height: 30px;
     width: 30%;
     float: right;
-    line-height: 50px;
+    line-height: 25px;
     text-align: center;
     font-size: 18px;
     font-weight: 900;
     background-color: #ececf7;
     cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px;
 }
 .correct{
     color : green;
@@ -195,34 +226,33 @@
 }
 
 /* 핸드폰번호 영역 */
-.phone_wrap{
-	width: 100%;
-    margin-top: 14px;
-}
+
 .phone_name{
-	font-size: 14px;
-    font-weight: bold;
+   color: #4d4d4d;
 }
 .phone_input_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .phone_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 300px;
+    height: 30px;
 }
-.phone_check_wrap{
-	margin-top: 20px;	
-}
+
 .phone_check_input_box{
-	border: 1px solid black;
+   /*
+   border: 1px solid black;
     height: 21px;
     padding: 10px 14px;
     width: 61%;
     float: left;
+    */
 }
 
 #phone_check_input_box_false{
@@ -233,27 +263,28 @@
     background-color:white;
 }
 .phone_check_input{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
 }
 .phone_check_button{
     border: 1px solid black;
-    height: 41px;
+    height: 30px;
     width: 30%;
     float: right;
-    line-height: 50px;
+    line-height: 25px;
     text-align: center;
     font-size: 18px;
     font-weight: 900;
     background-color: #ececf7;
     cursor: pointer;
-    margin-top: 20px;
-    
+    margin-right: 10px;
+    border-radius: 5px;
 }
 .doubleChk{
-	border: 1px solid black;
+   border: 1px solid black;
     height: 41px;
     width: 30%;
     float: right;
@@ -272,84 +303,85 @@
 }
 
 /* 주소 영역 */
-.address_wrap{
-	width: 100%;
-    margin-top: 20px;
-}
+
 .address_name{
-	font-size: 14px;
-	font-weight: bold;
+   color: #4d4d4d;
 }
 .address_input_1_box{
-	border: 1px solid black;
+   /*
+   border: 1px solid black;
     height: 21px;
     padding: 10px 14px;
     width: 61%;
-    float: left;	
+    float: left;   
+    */
 }
 .address_input_1{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;	
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 300px;
+    height: 30px;   
 }
 .address_button{
     border: 1px solid black;
-    height: 41px;
+    height: 30px;
     width: 30%;
     float: right;
-    line-height: 50px;
+    line-height: 25px;
     text-align: center;
     font-size: 18px;
     font-weight: 900;
     background-color: #ececf7;
-    cursor: pointer;	
-}
-.address_input_2_wrap{
-	margin-top: 14px;
-}
-.address_input_2_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	
-}
-.address_input_2{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px;
 }
 
-.address_input_3_wrap{
-	margin-top: 20px;
+.address_input_2_box{
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
+.address_input_2{
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
+}
+
 .address_input_3_box{
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .address_input_3{
-	width:100%;
-	height:100%;
-	border:none;
-	font-size:14px;
+   padding: 0px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    width: 466px;
+    height: 30px;
 }
 
 
 /* 가입하기 버튼 */
-.join_button_wrap{
-	margin-top: 40px;
-	text-align: center;
-}
+
 .join_button{
-	width: 100%;
-    height: 80px;
-    background-color: #f1f1f1;
-    font-size: 40px;
-    font-weight: 900;
-    color: black;
+   width: 400px;
+    height: 50px;
+    left: 725px;
+    top: 875px;
+    background-color: #FFFFFF;
+    color: royalblue;
+    border-radius: 8px;
+    border: #0068FF solid 1px;
+    margin-left: 30px;
+    margin-top: 20px;
     cursor: pointer;
 }
 /* 유효성 검사 문구 */
@@ -387,5 +419,5 @@
 }    
 /* float 속성 해제 */
 .clearfix{
-	clear: both;
+   clear: both;
 }

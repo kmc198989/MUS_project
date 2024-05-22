@@ -21,9 +21,10 @@
 					<button class="dropbtn">${cate1.key.cateName}</button>
 					<div class="subcategories">
 						<a href="search?cateCode=${cate1.key.cateCode}">전체</a>
+						<ul class="ul_1">
 						<c:forEach items="${cate1.value}" var="cate2">
 							<a href="search?cateCode=${cate2.cateCode}">${cate2.cateName}</a>
-						</c:forEach>
+						</c:forEach></ul>
 					</div>
 				</c:forEach>
 
