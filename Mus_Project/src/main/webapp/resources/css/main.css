@@ -50,6 +50,7 @@
 
 
 /* 제품 이미지 스타일링 */
+
 .li_box .list_img {
     width: 100%; /* 이미지 영역의 너비 */
     text-align: center; /* 이미지 중앙 정렬 */

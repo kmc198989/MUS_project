@@ -16,9 +16,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		((clothName like '%' || #{keyword} || '%' OR brandName like
 		'%' || #{keyword} || '%')		
 		<choose>
-		  <when test="type == 1">
+		  <when test="type == '1'.toString()">
 		  <![CDATA[
-		    AND (cateCode - #{cateCode, jdbcType=VARCHAR}) <= 1000)
+		    AND (cateCode - #{cateCode, jdbcType=VARCHAR}) <= 1000
+		    AND (cateCode - #{cateCode, jdbcType=VARCHAR}) > 0
+		    )
 		    ]]>
 		  </when>
 		  <otherwise>
@@ -67,6 +69,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCateCode2" resultType="com.mus.model.CateVO">
 		select * from mus_cate
 		where cateParent = #{cateCode}
+	</select>
+	
+	<!-- 2차 카테고리 상품수 조회 -->
+	<select id="getCateCount2" resultType="com.mus.model.CateVO">
+		SELECT 
+		    COUNT(a.cateCode) AS count, 
+		    b.cateCode, 
+		    b.cateName,
+		    b.cateParent, 
+		    b.tier
+		FROM
+		    mus_cate b
+		LEFT JOIN 
+		    mus_cloth a ON a.cateCode = b.cateCode 
+		               AND b.cateParent = #{cateCode}
+		WHERE 
+		    b.cateParent = #{cateCode}
+		GROUP BY 
+		    b.cateCode, 
+		    b.cateName, 
+		    b.cateParent, 
+		    b.tier
+		ORDER BY 
+		    TO_NUMBER(b.cateCode) ASC
 	</select>
 
 	<!-- 검색 대상 카테고리 리스트 -->

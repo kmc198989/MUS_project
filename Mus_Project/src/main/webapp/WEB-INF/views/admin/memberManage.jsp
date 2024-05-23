@@ -41,7 +41,11 @@
 					</thead>
 					<c:forEach items="${memberList}" var="list">
 						<tr>
-							<td><c:out value="${list.memberId}"></c:out></td>
+							<td>
+                   				<a class="move" href='<c:out value="${list.memberId}"/>'>
+                   					<c:out value="${list.memberId}"></c:out>
+                   				</a>
+							</td>
 							<td><c:out value="${list.memberPw}"></c:out></td>
 							<td><c:out value="${list.memberName}"></c:out></td>
 							<td><c:out value="${list.memberPhone}"></c:out></td>
@@ -179,18 +183,13 @@
 		});
 
 		/* 회원 조회 페이지 */
-		$(".move")
-			.on(
-				"click",
-				function(e) {
+		$(".move").on("click",function(e) {
+			e.preventDefault();
 	
-					e.preventDefault();
-	
-					moveForm.append("<input type='hidden' name='memberId' value='"
-								+ $(this).attr("href") + "'>");
-					moveForm.attr("action", "/admin/membersDetail");
-					moveForm.submit();
-				});
+			moveForm.append("<input type='hidden' name='memberId' value='" + $(this).attr("href") + "'>");
+			moveForm.attr("action", "/admin/memberDetail");
+			moveForm.submit();
+		});
 	</script>
 
 </body>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mus.mapper.AdminMapper;
+import com.mus.mapper.MemberMapper;
 import com.mus.model.AttachImageVO;
 import com.mus.model.CateVO;
 import com.mus.model.ClothVO;
@@ -70,7 +71,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int goodsModify(ClothVO vo) {
 		int result = adminMapper.goodsModify(vo);
-		
+		log.info("goodsModify........");
 		if(result == 1 && vo.getImageList() != null && vo.getImageList().size() > 0) {
 			adminMapper.deleteImageAll(vo.getClothId());
 			vo.getImageList().forEach(attach -> {
@@ -92,9 +93,9 @@ public class AdminServiceImpl implements AdminService {
 
 	// 지정 상품 이미지 정보 얻기
 	@Override
-	public List<AttachImageVO> getAttachInfo(int boodId) {
+	public List<AttachImageVO> getAttachInfo(int clothId) {
 		log.info("getAttachInfo........");
-		return adminMapper.getAttachInfo(boodId);
+		return adminMapper.getAttachInfo(clothId);
 	}
 
 	// 회원 리스트
@@ -110,12 +111,33 @@ public class AdminServiceImpl implements AdminService {
 		log.info("membersGetTotal........");
 		return adminMapper.membersGetTotal(cri);
 	}
-	
+
 	// 이미지 등록
 	@Override
 	public void imageEnroll(AttachImageVO vo) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	// 회원 수정
+	@Override
+	public int memberModify(MemberVO vo) {
+		log.info("goodsModify........");
+		return adminMapper.memberModify(vo);
+	}
+
+	// 회원 정보 삭제
+	@Override
+	public int memberDelete(String memberId) {
+		log.info("memberDelete..........");
+		return adminMapper.memberDelete(memberId);
+	}
+
+	// 회원 조회 페이지
+	@Override
+	public MemberVO memberGetDetail(String memberId) {
+		log.info("(service)memberGetDetail......." + memberId);
+		return adminMapper.memberGetDetail(memberId);
 	}
 	
 }

@@ -21,7 +21,7 @@
 			<div class="content_area">
 				<section class="main">
 					<div id="nav_section">
-						<%@include file="includes/nav.jsp"%>
+						<c:import url="/nav" />
 					</div>
 					<div id="main_div">
 						<c:import url="/searchtool" />

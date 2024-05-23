@@ -2,7 +2,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mus.mapper.AttachMapper">
-	<!-- <select id="getAttachList" resultType="com.mus.model.AttachImageVO">
-		select * from vam_image where clothId = #{clothId}
-	</select> -->
+	<select id="getAttachList" resultType="com.mus.model.AttachImageVO">
+		select * from mus_image where clothId = #{clothId}
+	</select>
 </mapper>

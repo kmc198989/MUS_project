@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
-<link rel="stylesheet" href="/resources/css/main.css">
+<link rel="stylesheet" href="/resources/css/search.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
@@ -21,7 +21,7 @@
 			<div class="content_area">
 				<section class="main">
 					<div id="nav_section">
-						<%@include file="includes/nav.jsp"%>
+						<c:import url="/nav" />
 					</div>
 					<div id="main_div">
 						<c:import url="/searchtool" />

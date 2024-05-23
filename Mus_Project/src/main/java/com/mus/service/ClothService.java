@@ -1,6 +1,7 @@
 package com.mus.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mus.model.CateFilterDTO;
 import com.mus.model.CateVO;
@@ -16,7 +17,13 @@ public interface ClothService {
 	public List<CateVO> getCateCode1();
 	
 	// 2차 카테고리 조회
-	public List<CateVO> getCateCode2(String cateCode);
+	public List<CateVO> getCateCode2(String cateCode);	
+	
+	// 2차 카테고리 상품 수 조회
+	public List<CateVO> getCateCount2(String cateCode);
+	
+	// 1,2차 카테고리 상품 수 조회(nav용)
+	public Map<CateVO, List<CateVO>> getCateCount();	
 	
 	// 상품 검색
 	public List<ClothVO> getGoodsList(Criteria cri);

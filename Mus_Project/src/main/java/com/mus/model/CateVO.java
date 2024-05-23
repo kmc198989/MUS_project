@@ -13,6 +13,17 @@ public class CateVO {
 	private String cateName;
 	private String cateCode;
 	private String cateParent;
+	private int count;	// 추가 되었음
+	
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+
 	private int tier;
 	
 	
@@ -44,8 +55,8 @@ public class CateVO {
 	
 	@Override
 	public String toString() {
-		return "CateVO [cateName=" + cateName + ", cateCode=" + cateCode + ", cateParent=" + cateParent + ", tier="
-				+ tier + "]";
+		return "CateVO [cateName=" + cateName + ", cateCode=" + cateCode + ", cateParent=" + cateParent + ", count="
+				+ count + ", tier=" + tier + "]";
 	}
 	
 	

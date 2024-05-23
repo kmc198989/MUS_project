@@ -42,4 +42,13 @@ public interface AdminService {
 	// 이미지 등록
 	public void imageEnroll(AttachImageVO vo);
 	
+	// 회원 수정
+	public int memberModify(MemberVO vo);
+	
+	// 회원 정보 삭제
+	public int memberDelete(String memberId);
+
+	// 회원 조회 페이지
+	public MemberVO memberGetDetail(String memberId);
+	
 }

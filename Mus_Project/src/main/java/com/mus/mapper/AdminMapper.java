@@ -47,4 +47,13 @@ public interface AdminMapper {
 	
 	// 회원 리스트
 	public List<MemberVO> membersGetList(Criteria cri);
+	
+	// 회원 수정
+	public int memberModify(MemberVO vo);
+	
+	// 회원 정보 삭제
+	public int memberDelete(String memberId);
+
+	// 회원 조회 페이지
+	public MemberVO memberGetDetail(String memberId);
 }

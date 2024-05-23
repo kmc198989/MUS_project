@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -21,19 +22,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.mus.mapper.AttachMapper;
 import com.mus.model.AttachImageVO;
 import com.mus.model.SellerVO;
 import com.mus.model.ClothVO;
@@ -58,7 +60,7 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@Autowired
-	private MemberService memberService;
+	private JavaMailSender mailSender;
 	
 	// 관리자 메인 페이지 이동
 	@RequestMapping(value = "main", method = RequestMethod.GET)
@@ -80,10 +82,7 @@ public class AdminController {
         	model.addAttribute("listCheck", "empty");
         	return;
         }
-        PageDTO pageMaker = new PageDTO(cri, adminService.goodsGetTotal(cri));
-        System.out.println(pageMaker);
-        model.addAttribute("pageMaker", pageMaker);
-  
+        model.addAttribute("pageMaker", new PageDTO(cri, adminService.goodsGetTotal(cri)));
     }
 	
 	/* 첨부 파일 업로드 */
@@ -113,7 +112,7 @@ public class AdminController {
 			}
 			
 		}// for		
-		
+
 		String uploadFolder = "C:\\upload";
 		
 		/* 날짜 폴더 경로 */
@@ -131,7 +130,7 @@ public class AdminController {
 		if(uploadPath.exists() == false) {
 			uploadPath.mkdirs();
 		}
-		
+
 		/* 이미저 정보 담는 객체 */
 		List<AttachImageVO> list = new ArrayList();
 		
@@ -280,6 +279,7 @@ public class AdminController {
         logger.info("상품 등록 페이지 접속");
         
         ObjectMapper objm = new ObjectMapper();
+        ClothVO vo = new ClothVO();
         
         List list = adminService.cateList();
         String cateList = objm.writeValueAsString(list);
@@ -301,7 +301,6 @@ public class AdminController {
 		model.addAttribute("cri", cri);
 		
 		model.addAttribute("goodsInfo", adminService.goodsGetDetail(clothId));
-		System.out.println("상품조회(goodsGetDetail) : " + adminService.goodsGetDetail(clothId));
 	}
 	
     /* 판매자 등록 페이지 접속 */
@@ -402,13 +401,16 @@ public class AdminController {
     	
     	cri.setAmount(5);
     	
+    	/* 게시물 출력 데이터 */
     	List list = sellerService.sellerGetList(cri);
     	
     	if(!list.isEmpty()) {
-    		model.addAttribute("list", list);
+    		model.addAttribute("list", list); // 판매자 존재 경우
     	}else {
-    		model.addAttribute("listCheck", "empty");
+    		model.addAttribute("listCheck", "empty"); // 판매자 존재하지 않을 경우
     	}
+    	
+    	/* 페이지 이동 인터페이스 데이터 */
     	model.addAttribute("pageMaker", new PageDTO(cri, sellerService.sellerGetTotal(cri)));
     }
     
@@ -426,5 +428,66 @@ public class AdminController {
         }
         
         model.addAttribute("pageMaker", new PageDTO(cri, adminService.membersGetTotal(cri)));
+    }
+    
+    // 회원 정보 수정
+    @PostMapping("/memberModify")
+	public String memberModifyPOST(MemberVO vo, RedirectAttributes rttr) {
+		logger.info("memberModifyPOST.........." + vo);
+		int result = adminService.memberModify(vo);
+		rttr.addFlashAttribute("modify_result", result);
+		return "redirect:/admin/memberManage";
+	}
+    
+    /* 상품 조회 페이지 */
+	@GetMapping({"/memberDetail", "/memberModify"})
+	public void memberGetInfoGET(String memberId, Criteria cri, Model model) throws JsonProcessingException {
+		logger.info("goodsGetInfo()........." + memberId);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		model.addAttribute("cateList", mapper.writeValueAsString(adminService.cateList()));
+		
+		model.addAttribute("cri", cri);
+		
+		model.addAttribute("memberInfo", adminService.memberGetDetail(memberId));
+	}
+    
+    // 회원 삭제
+    @PostMapping("/memberDelete")
+	public String memberDeletePOST(String memberId, RedirectAttributes rttr) {
+		logger.info("memberDeletePOST..........");
+		
+		int result = adminService.memberDelete(memberId);
+		rttr.addFlashAttribute("delete_result", result);
+		return "redirect:/admin/memberManage";
+	}
+    
+    /* 이메일 인증 */
+    @GetMapping("/mailCheck")
+    @ResponseBody
+    public String mailCheckGET(String email) throws Exception {
+    	/* 뷰(View)로부너 넘어온 데이터 확인 */
+	    logger.info("이메일 데이터 전송 확인");
+	    logger.info("인증번호 : " + email);
+	      
+	    /* 인증번호(난수) 생성*/
+	    Random random = new Random();
+	    int checkNum = random.nextInt(888888) + 111111;
+	    logger.info("인증번호 " + checkNum);
+	      
+	    /* 이메일 보내기 */
+	    String setFrom = "kmcsandaetg@gmail.com";
+	    String toMail = email;
+	    String title = "회원가입 인증 이메일입니다.";
+	    String content = 
+	          "홈페이지를 방문해 주셔서 감사합니다." +
+	          "<br><br>" +
+	          "인증 번호는" + checkNum + "입니다." +
+	          "<br>" + 
+	          "해당 인증 번호를 인증번호 확인란에 기입하여 주세요.";
+
+	      String num = Integer.toString(checkNum);
+	      return num;
     }
 }

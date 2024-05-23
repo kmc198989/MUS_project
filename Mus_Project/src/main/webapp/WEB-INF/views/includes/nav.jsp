@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +22,10 @@
 				<c:forEach items="${cate}" var="cate1">
 					<button class="dropbtn">${cate1.key.cateName}</button>
 					<div class="subcategories">
-						<a href="search?cateCode=${cate1.key.cateCode}">전체</a>
+						<a href="search?cateCode=${cate1.key.cateCode}">전체(${cate1.key.count})</a>
 						<ul class="ul_1">
 						<c:forEach items="${cate1.value}" var="cate2">
-							<a href="search?cateCode=${cate2.cateCode}">${cate2.cateName}</a>
+							<a href="search?cateCode=${cate2.cateCode}">${cate2.cateName}(${cate2.count})</a>
 						</c:forEach></ul>
 					</div>
 				</c:forEach>

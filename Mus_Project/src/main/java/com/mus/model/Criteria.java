@@ -15,7 +15,7 @@ public class Criteria {
 	private String keyword = "";
 	
 	// 카테고리 코드
-	private String cateCode;
+	private String cateCode = "";
 
 	// Criteria 생성자
 	public Criteria(int pageNum, int amount) {

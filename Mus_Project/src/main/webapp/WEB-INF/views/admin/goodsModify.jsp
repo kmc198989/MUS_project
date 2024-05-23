@@ -183,74 +183,77 @@
 			
 			
 			/* 카테고리 */
-			let cateList = JSON.parse('${cateList}');
+	         let cateList = JSON.parse('${cateList}');
 
-			let cate1Array = new Array();
-			let cate2Array = new Array();
-			let cate1Obj = new Object();
-			let cate2Obj = new Object();
-			
-			let cateSelect1 = $(".cate1");		
-			let cateSelect2 = $(".cate2");
+	         let cate1Array = new Array();
+	         let cate2Array = new Array();
+	         let cate1Obj = new Object();
+	         let cate2Obj = new Object();
+	         
+	         let cateSelect1 = $(".cate1");      
+	         let cateSelect2 = $(".cate2");
 
-			/* 카테고리 배열 초기화 메서드 */
-			function makeCateArray(obj,array,cateList, tier){
-				for(let i = 0; i < cateList.length; i++){
-					if(cateList[i].tier === tier){
-						obj = new Object();
-						
-						obj.cateName = cateList[i].cateName;
-						obj.cateCode = cateList[i].cateCode;
-						obj.cateParent = cateList[i].cateParent;
-						
-						array.push(obj);				
-						
-					}
-				}
-			}	
+	         /* 카테고리 배열 초기화 메서드 */
+	         function makeCateArray(obj,array,cateList, tier){
+	            for(let i = 0; i < cateList.length; i++){
+	               if(cateList[i].tier === tier){
+	                  obj = new Object();
+	                  
+	                  obj.cateName = cateList[i].cateName;
+	                  obj.cateCode = cateList[i].cateCode;
+	                  obj.cateParent = cateList[i].cateParent;
+	                  
+	                  array.push(obj);            
+	                  
+	               }
+	            }
+	         }   
 
-			/* 배열 초기화 */
-			makeCateArray(cate1Obj,cate1Array,cateList,1);
-			makeCateArray(cate2Obj,cate2Array,cateList,2);
-			
-			let targetCate1 = '';
-			let targetCate2 = '${goodsInfo.cateCode}';
+	         /* 배열 초기화 */
+	         makeCateArray(cate1Obj,cate1Array,cateList,1);
+	         makeCateArray(cate2Obj,cate2Array,cateList,2);
+	         
+	         let targetCate1 = '';
+	         let targetCate2 = '${goodsInfo.cateCode}';
 
-			/* 하분류 */
-			for(let i = 0; i < cate2Array.length; i++){
-				if(targetCate2 === cate2Array[i].cateCode){
-					targetCate2 = cate2Array[i];	
-				}
-				console.log('targetCate2.cateName : ' + targetCate2.cateName);
+	         /* 하분류 */
+	         for(let i = 0; i < cate2Array.length; i++){
+	            if(targetCate2 === cate2Array[i].cateCode){
+	               targetCate2 = cate2Array[i];   
+	            }
+	            console.log('targetCate2.cateName : ' + targetCate2.cateName);
 
-			}// for		
-			
-
-			
-			for(let i = 0; i < cate2Array.length; i++){
-				if(targetCate2.cateParent === cate2Array[i].cateParent){
-					cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
-				}
-				// console.log('cate2Array[i].cateParent' + cate2Array[i].cateParent);
-			}		
-			
-			$(".cate2 option").each(function(i,obj){
-				if(targetCate2.cateCode === obj.value){
-					$(obj).attr("selected", "selected");
-				}
-			});				
-			
-			
-			/* 상분류 */
-			for(let i = 0; i < cate1Array.length; i++){
-				cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
-			}	
-			
-			$(".cate1 option").each(function(i,obj){
-				if(targetCate2.cateParent === obj.value){
-					$(obj).attr("selected", "selected");
-				}
-			});
+	         }// for      
+	         
+	         console.log('targetCate2 : ' + targetCate2);
+	         console.log('targetCate2.cateName : ' + targetCate2.cateName);
+	         console.log('targetCate2.cateCode : ' + targetCate2.cateCode);
+	         console.log('targetCate2.cateParent : ' + targetCate2.cateParent);
+	         
+	         for(let i = 0; i < cate2Array.length; i++){
+	            if(targetCate2.cateParent === cate2Array[i].cateParent){
+	               cateSelect2.append("<option value='"+cate2Array[i].cateCode+"'>" + cate2Array[i].cateName + "</option>");
+	            }
+	            // console.log('cate2Array[i].cateParent' + cate2Array[i].cateParent);
+	         }      
+	         
+	         $(".cate2 option").each(function(i,obj){
+	            if(targetCate2.cateCode === obj.value){
+	               $(obj).attr("selected", "selected");
+	            }
+	         });            
+	         
+	         
+	         /* 상분류 */
+	         for(let i = 0; i < cate1Array.length; i++){
+	            cateSelect1.append("<option value='"+cate1Array[i].cateCode+"'>" + cate1Array[i].cateName + "</option>");
+	         }   
+	         
+	         $(".cate1 option").each(function(i,obj){
+	            if(targetCate2.cateParent === obj.value){
+	               $(obj).attr("selected", "selected");
+	            }
+	         });
 			
 			/* 위지윅 적용 */
 			 
