@@ -439,14 +439,10 @@ public class AdminController {
 		return "redirect:/admin/memberManage";
 	}
     
-    /* 상품 조회 페이지 */
+    /* 회원 조회 페이지 */
 	@GetMapping({"/memberDetail", "/memberModify"})
 	public void memberGetInfoGET(String memberId, Criteria cri, Model model) throws JsonProcessingException {
-		logger.info("goodsGetInfo()........." + memberId);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		
-		model.addAttribute("cateList", mapper.writeValueAsString(adminService.cateList()));
+		logger.info("goodsGetInfo()........." + memberId);		
 		
 		model.addAttribute("cri", cri);
 		

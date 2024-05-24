@@ -138,7 +138,7 @@ public class MemberController {
     	HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
-		
+		System.out.println("login.do member객체" + member);
 		MemberVO lvo = memberservice.memberLogin(member);
 		
 		if(lvo !=null) {

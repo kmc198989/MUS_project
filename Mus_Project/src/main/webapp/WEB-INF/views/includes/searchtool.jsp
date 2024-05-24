@@ -20,7 +20,7 @@
 		<c:if test="${listcheck != 'empty'}">
 
 			<c:forEach items="${list}" var="list">
-				<li class="li_box" data-no="2289283">
+				<li class="li_box" data-no="${list.clothId}">
 					<!-- 상단 좌측 라벨 -->
 					<div class="icon_new">
 						<fmt:formatNumber value="${list.clothDiscount}" type="number"
@@ -37,14 +37,9 @@
 						</ul>
 					</div>
 					<div class="li_inner">
-						<div class="list_img">
-							<a class="img-block" name="goods_link" href="#"
-								title="쿤스트하우스 코튼 볼캡 / 네이비"> <img class="lazyload lazy"
-								alt="두마로(DUMARO) 쿤스트하우스 코튼 볼캡 / 네이비"
-								data-original="https://image.msscdn.net/images/goods_img/20220103/2289283/2289283_4_125.jpg"
-								src="https://image.msscdn.net/images/goods_img/20220103/2289283/2289283_4_125.jpg"
-								style="display: block;">
-							</a>
+						<div class="list_img" id="product_image_${list.clothId}">
+							<div id="uploadResult_${list.clothId}"></div>							
+						</div>
 						</div>
 						<div class="article_info">
 							<p class="item_title">
@@ -158,6 +153,30 @@ $(".pageMaker_btn a").on("click", function(e) {
 
 	moveForm.submit();
 
+});
+
+$(document).ready(function() {
+	$("li[data-no]").each(function() {
+		const productId = $(this).attr("data-no");
+		const imageContainer = $('#uploadResult_'+productId);
+
+		// console.log('Loading image for product ID:' + productId);
+		
+		$.getJSON(`/getAttachList`, { clothId: productId }, function(arr) {
+			let str = "";
+			if (arr.length === 0) {
+				str += "<div id='result_card'><img src='/resources/img/goodsNoImage.png'></div>";
+			} else {
+				let obj = arr[0];
+				let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+				str += "<div id='result_card'";
+				str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'>";
+				str += "<img src='/display?fileName=" + fileCallPath + "'>";
+				str += "</div>";
+			}
+			imageContainer.html(str);
+		});
+	});
 });
 </script>
 </body>

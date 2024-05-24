@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    ]]>
 		  </when>
 		  <otherwise>
-		    AND cateCode like '%' || #{cateCode, jdbcType=VARCHAR} || '%')
+		    AND cateCode = #{cateCode, jdbcType=VARCHAR})
 		  </otherwise>
 		</choose>
 	</sql> 
@@ -121,8 +121,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getGoodsInfo" resultType="com.mus.model.ClothVO"> select a.clothId,
 		a.clothName, a.sellerId, b.brandName, a.PUBLEYEAR, a.CATECODE,
 		c.CATENAME, a.clothPrice, a.clothStock, a.clothDiscount, a.clothIntro,
-		a.clothContents from mus_cloth a left outer join mus_seller b on
-		a.sellerId = b.sellerId left outer join mus_cate c on a.catecode =
-		c.catecode where clothId = ${clothId} 
+		a.clothContents 
+		from mus_cloth a left outer join mus_seller b 
+		on a.sellerId = b.sellerId left outer join mus_cate c 
+		on a.catecode =	c.catecode 
+		where clothId = ${clothId} 
 	</select>
 </mapper>
