@@ -23,8 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    )
 		    ]]>
 		  </when>
+ 		  <when test="type == '2'.toString()">
+ 		    AND cateCode = #{cateCode, jdbcType=VARCHAR}) 		  
+		  </when>
 		  <otherwise>
-		    AND cateCode = #{cateCode, jdbcType=VARCHAR})
+		    AND cateCode like '%' || '' || '%')
 		  </otherwise>
 		</choose>
 	</sql> 

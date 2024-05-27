@@ -130,9 +130,9 @@ public class ClothServiceImpl implements ClothService {
 
 	/* 상품 정보 */
 	@Override
-	public ClothVO getGoodsInfo(int bookId) {
-		ClothVO goodsInfo = clothmapper.getGoodsInfo(bookId);
-		goodsInfo.setImageList(adminmapper.getAttachInfo(bookId));
+	public ClothVO getGoodsInfo(int clothId) {
+		ClothVO goodsInfo = clothmapper.getGoodsInfo(clothId);
+		goodsInfo.setImageList(adminmapper.getAttachInfo(clothId));
 		
 		return goodsInfo;
 	}

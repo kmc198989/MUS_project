@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.mus.model.ClothVO;
 import com.mus.model.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,12 +17,22 @@ public class ClothMapperTests {
 	private ClothMapper mapper;
 	
 	@Test
+	public void getGoodsInfo() {
+		int clothId = 315;
+		ClothVO goodsInfo = mapper.getGoodsInfo(clothId);
+		System.out.println("===================");
+		System.out.println(goodsInfo);
+		System.out.println("===================");
+	}
+	
+	/*
+	@Test
 	public void getGoodsList() {
 		Criteria cri = new Criteria();
 		cri.setKeyword("200110");
 		mapper.getGoodsList(cri);
 	}
-	
+	*/
 	
 	/*
 	@Test
