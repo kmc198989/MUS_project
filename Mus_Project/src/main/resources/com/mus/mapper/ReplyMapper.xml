@@ -1,0 +1,13 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mus.mapper.ReplyMapper">
+
+  	<!-- 댓글등록 -->
+  	<insert id="enrollReply">
+  	
+  		insert into mus_reply(clothId, memberId, content, rating) values(#{clothId}, #{memberId}, #{content}, #{rating})  	
+  	</insert>
+
+
+</mapper>

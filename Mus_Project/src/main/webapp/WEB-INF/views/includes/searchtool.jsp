@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Welcome BookMall</title>
 <link rel="stylesheet" href="/resources/css/search.css">
+<link rel="stylesheet" href="/resources/css/main.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
@@ -99,7 +100,6 @@
 									alt="좋아요"> 15,778
 							</p>
 						</div>
-					</div>
 				</li>
 
 			</c:forEach>

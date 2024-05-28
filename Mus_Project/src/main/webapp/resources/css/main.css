@@ -3,15 +3,28 @@
 	margin: 0 auto;
 	padding: 0 auto;
 }
+.main {
+	width: 100%;
+	display: -webkit-inline-box;
+}
 #nav_section{
 	width: 15%;
 	float: left;
 	height: 100%;
 }
 #main_div{
-	/* float: right;
+	float: right;
+	display: grid;
+	border-left: 1px solid #ddd;
+	width: 85%;
+}
+.pageMaker_wrap{
+	margin-top: 20px;
 	width: 100%;
-	background-color: #aedf9e;*/
+}
+#main_div .pageMaker{
+	width: 85%;
+	float: left;
 }
 #footer_section{
 	float: right;
@@ -50,9 +63,11 @@
 
 
 /* 제품 이미지 스타일링 */
+.li_box .list_img{
+}
 
 .li_box .list_img {
-    width: 100%; /* 이미지 영역의 너비 */
+    width: 100px; /* 이미지 영역의 너비 */
     text-align: center; /* 이미지 중앙 정렬 */
 }
 

@@ -8,15 +8,32 @@
 	float: left;
 	height: 100%;
 }
-.main_div{
-	/* float: right;
-	width: 100%;
-	background-color: #aedf9e;*/
+
+.pageMaker_wrap{
+	margin-top: 20px;
+	margin-left: 0;
+	margin-bottom: 20px;
 }
-#footer_section{
-	float: right;
+.pageMaker{
 	width: 85%;
+	float: right;
 }
+.pageMaker_wrap a{
+	background-color: #fff;
+	transition-property: background-color;
+	transition-duration: .5s;
+}
+.pageMaker_wrap a:hover{
+	background-color: black;
+	text-decoration: underline;
+	color:white;
+}
+.pageMaker_wrap a{
+	display:block;
+	width: 40px;
+	text-align: center;
+}
+
 
 /* 제품 목록 스타일링 */
 .content_area ul {
@@ -43,6 +60,7 @@
     float: left;
     background: #fff;
     border-right: 1px solid #ddd;
+    border-left: 1px soiid #ddd;
     border-bottom: 1px solid #ddd;
     box-sizing: border-box;
 		width: calc(10%); /* 제품 카드의 너비를 반으로 줄임 */

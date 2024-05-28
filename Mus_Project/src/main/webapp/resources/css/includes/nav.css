@@ -1,7 +1,5 @@
 @charset "UTF-8";
-.dropdown {
-	border-right: 1px solid #ada9a95e;
-}
+
 .dropdown-content{
 	display: flex;
 	flex-direction: column;
@@ -37,7 +35,6 @@
 	font-size: 12px;
 }
 .subcategories a:hover {
-	color: white;
-	background-color :black;
 	font-weight: bold;
+	background-color: #e3e2e285;
 }
