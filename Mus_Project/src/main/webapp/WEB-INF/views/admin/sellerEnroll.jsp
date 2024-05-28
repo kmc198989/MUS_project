@@ -18,92 +18,93 @@
 </head>
 <body>
 
-   <%@include file="../includes/admin/header.jsp"%>
-   <div class="admin_content_wrap">
-      <div class="admin_content_subject">
-         <span>판매자 등록</span>
-      </div>
-      <div>
-         <form action="/admin/sellerEnroll.do" method="post" id="enrollForm">
+<%@include file="../includes/admin/header.jsp"%>
+<div class="admin_content_wrap">
+    <div class="admin_content_main">
+        <form action="/admin/sellerEnroll.do" method="post" id="enrollForm">
             <div class="form_section">
-               <div class="form_section_title">
-                  <label>상호</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="sellerCompany"> 
-                  <span id="warn_sellerCompany">상호를 입력 해주세요</span>
-               </div>
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="sellerCompany">상호</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="sellerCompany"> 
+                  		<span id="warn_sellerCompany">상호를 입력 해주세요</span>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="brandName">브랜드 이름</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="brandName"> 
+                  		<span id="warn_brandName">브랜드 이름을 입력 해주세요</span>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="brandCEO">대표자 이름</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="brandCEO"> 
+                  		<span id="warn_brandCEO">대표자 이름을 입력 해주세요</span>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="busineseNum">사업자 번호</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="busineseNum"> 
+                  		<span id="warn_busineseNum">사업자 번호를 입력 해주세요</span>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="report">통신판매업신고</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="report"> 
+                  		<span id="warn_report">통신판매업신고를 입력 해주세요</span>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="tel">회사 번호</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="tel"> 
+                  		<span id="warn_tel">회사 번호를 입력 해주세요</span>
+                    </div>
+                </div>
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="email">E-mail</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="email"> 
+                  		<span id="warn_email">E-mail을 입력 해주세요</span>
+                    </div>
+                </div>
+                
+                <div class="form_row">
+                    <div class="form_section_title">
+                        <label for="address">영업소재지</label>
+                    </div>
+                    <div class="form_section_content">
+                        <input name="address" type="text"> 
+                        <span id="warn_address">엽엉소재지를 입력 해주세요.</span>
+                    </div>
+                </div>
+               
             </div>
-            <div class="form_section">
-               <div class="form_section_title">
-                  <label>브랜드 이름</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="brandName"> 
-                  <span id="warn_brandName">브랜드 이름을 입력 해주세요</span>
-               </div>
-            </div>
-            <div class="form_section">
-               <div class="form_section_title">
-                  <label>대표자 이름</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="brandCEO"> 
-                  <span id="warn_brandCEO">대표자 이름을 입력 해주세요</span>
-               </div>
-            </div>
-            <div class="form_section">
-               <div class="form_section_title">
-                  <label>사업자 번호</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="busineseNum"> 
-                  <span id="warn_busineseNum">사업자 번호를 입력 해주세요</span>
-               </div>
-            </div>
-            <div class="form_section">
-               <div class="form_section_title">
-                  <label>통신판매업신고</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="report"> 
-                  <span id="warn_report">통신판매업신고를 입력 해주세요</span>
-               </div>
-            </div>
-            <div class="form_section">
-               <div class="form_section_title">
-                  <label>회사 번호</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="tel"> 
-                  <span id="warn_tel">회사 번호를 입력 해주세요</span>
-               </div>
-            </div>
-            <div class="form_section">
-               <div class="form_section_title">
-                  <label>E-mail</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="email"> 
-                  <span id="warn_email">E-mail을 입력 해주세요</span>
-               </div>
-            </div>
-            <div class="form_section">
-               <div class="form_section_title">
-                  <label>영업소재지</label>
-               </div>
-               <div class="form_section_content">
-                  <input name="address" type="text"> <span
-                     id="warn_address">엽엉소재지를 입력 해주세요.</span>
-               </div>
-            </div>
-         </form>
-			<div class="btn_section">
+            <div class="btn_section">
 				<button id="cancelBtn" class="btn">취 소</button>
 				<button id="enrollBtn" class="btn enroll_btn">등 록</button>
 			</div>
-		</div>
-	</div>
+        </form>
+    </div>
+</div>
 
    <script>
       /* 등록 버튼 */
@@ -127,6 +128,7 @@
          let tel = $('input[name=tel]').val();
          let email = $('input[name=email]').val();
          let address = $('input[name=address]').val();
+         
          /* 공란 경고 span태그 */
          let wSellerCompany = $('#warn_sellerCompany');
          let wBrandName = $('#warn_brandName');
@@ -211,8 +213,8 @@
       });
 
       /* 취소 버튼 */
-      $("#cancelBtn").click(function() {
-         location.href = "/admin/sellerManage"
+      $("#cancelBtn").click(function(){
+      	location.href="/admin/sellerManage"
       });
       
    </script>

@@ -1,11 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+    
+<style type="text/css">
+    .top_gnb_area {
+        color: white;
+        background-color: black;
+    }
+
+    .top_gnb_area .list a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .top_gnb_area .list a:visited {
+        color: white;
+    }
+
+    .top_gnb_area .list a:hover {
+        color: white;
+    }
+
+    .top_gnb_area .list a:active {
+        color: white;
+    }
+    .admin_list_01, 
+    .admin_list_02, .admin_list_03, 
+    .admin_list_04, .admin_list_05{
+    	font-family: "Dongle", sans-serif;
+	    font-weight: 400;
+	    font-style: normal;
+    }
+</style>
+
 
     <div class="wrapper">
         <div class="wrap">
             <!-- gnv_area -->	
-            <div class="top_gnb_area">
-                <ul class="list">	
+            <div class="top_gnb_area" >
+                <ul class="list">
                     <li><a href="/main">메인 페이지</a></li>
                     <li><a href="/member/logout.do">로그아웃</a></li>
                     <li>고객센터</li>			
@@ -13,7 +49,7 @@
             </div>
             <!-- top_subject_area -->
             <div class="admin_top_wrap">
-                <span>관리자 페이지</span>
+                <span>Manager Page</span>
                 
             </div>
             <!-- contents-area -->

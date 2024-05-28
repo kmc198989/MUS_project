@@ -16,6 +16,18 @@ public class Criteria {
 	
 	// 카테고리 코드
 	private String cateCode = "";
+	
+	// 상품 번호(댓글 기능에서 사용)
+	private int clothId;
+
+	
+	public int getClothId() {
+		return clothId;
+	}
+
+	public void setClothId(int clothId) {
+		this.clothId = clothId;
+	}
 
 	// Criteria 생성자
 	public Criteria(int pageNum, int amount) {
@@ -71,7 +83,7 @@ public class Criteria {
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", type=" + type + ", keyword=" + keyword
-				+ ", cateCode=" + cateCode + "]";
+				+ ", cateCode=" + cateCode + ", clothId=" + clothId + "]";
 	}
 	
 	

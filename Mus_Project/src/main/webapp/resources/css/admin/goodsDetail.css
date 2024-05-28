@@ -91,7 +91,7 @@ ul {
     color: black;
 }
 
-.admin_list_01 {
+.admin_list_02 {
     background-color: #c8c8c8;
 }
 
@@ -241,11 +241,11 @@ input[name='publeYear'] {
     font-weight: 600;
     line-height: 40px;
 }
-.enroll_btn {
+.modify_btn {
     background-color: #dbdde2;
     margin-left: 15px;
 }
-#enrollBtn:hover {
+#modifyBtn:hover {
     background-color: #c9cbd0;
 }
 

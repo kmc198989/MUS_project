@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>Welcome clothMall</title>
 <link rel="stylesheet" href="/resources/css/goodsDetail.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -128,7 +128,31 @@
 						${goodsInfo.clothContents }
 					</div>
 				</div>
-				<div class="content_bottom">리뷰</div>
+				<div class="content_bottom">
+					<div class="reply_subject">
+						<h2>리뷰</h2>
+					</div>
+					
+					<c:if test="${member != null}">					
+						<div class="reply_button_wrap">
+							<button>리뷰 쓰기</button>
+						</div>
+					</c:if>
+					
+					<div class="reply_not_div">
+						
+					</div>
+					<ul class="reply_content_ul">
+						
+						
+					</ul>
+					<div class="repy_pageInfo_div">
+						<ul class="pageMaker">
+							
+						</ul>
+					</div>
+					
+				</div>
 
 				<section id="footer_section">
 					<%@include file="includes/footer.jsp"%>
@@ -203,6 +227,59 @@
 	let point = salePrice*0.05;
 	point = Math.floor(point);
 	$(".point_span").text(point);
+	
+	/* 리뷰 리스트 출력 */
+	const clothId = '${goodsInfo.clothId}';	
+
+	$.getJSON("/reply/list", {clothId : clothId}, function(obj){
+		
+		if(obj.list.length === 0){
+			$(".reply_not_div").html('<span>리뷰가 없습니다.</span>');
+			$(".reply_content_ul").html('');
+			$(".pageMaker").html('');
+		} else{
+			
+		}
+		
+	});
+	
+	/* 리뷰쓰기 */
+	$(".reply_button_wrap").on("click", function(e){
+		
+		e.preventDefault();			
+
+		const memberId = '${member.memberId}';
+		const clothId = '${goodsInfo.clothId}';
+		
+		$.ajax({
+			data : {
+				clothId : clothId,
+				memberId : memberId
+			},
+			url : '/reply/check',
+			type : 'POST',
+			success : function(result){
+				if(result === '1'){
+					alert("이미 등록된 리뷰가 존재 합니다.")
+				} else if(result === '0'){
+					let popUrl = "/replyEnroll/" + memberId + "?clothId=" + clothId;
+					console.log(popUrl);
+					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+					
+					window.open(popUrl,"리뷰 쓰기",popOption);							
+				}
+			}
+		});
+		
+	/*
+		let popUrl = "/replyEnroll/" + memberId + "?clothId=" + clothId;
+		console.log(popUrl);
+		let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+		
+		window.open(popUrl,"리뷰 쓰기",popOption);
+	*/
+	});
+	
 </script>
 
 

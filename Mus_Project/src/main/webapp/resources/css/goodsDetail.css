@@ -1,186 +1,320 @@
 * {
-    margin: 0 auto;
-    padding: 0 auto;
+	margin: 0 auto;
+	padding: 0 auto;
 }
 
 .wrapper {
-    display: flex;
-    width: 100%;
+	display: flex;
+	width: 100%;
 }
 
 .wrap {
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
 }
 
 .leftmain {
-    width: 270px;
-    position: relative;
-    z-index: 99;
-    border-right: 1px solid rgb(221, 221, 221);
-    box-sizing: border-box;
-    float: left;
+	width: 270px;
+	position: relative;
+	z-index: 99;
+	border-right: 1px solid rgb(221, 221, 221);
+	box-sizing: border-box;
+	float: left;
 }
 
 #nav_section {
-    padding: 15px 0 20px;
-    height: 100%;
+	padding: 15px 0 20px;
+	height: 100%;
 }
 
 .main_div {
-    /* float: right;
+	/* float: right;
     width: 100%;
     background-color: #aedf9e;*/
+	
 }
 
 a:visited {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .imNKjW {
-    direction: block;
-    width: 100%;
+	direction: block;
+	width: 100%;
 }
 
 .cCbuKE {
-    overflow: hidden;
-    border-bottom: 1px solid rgb(221, 221, 221);
-    background-repeat: repeat-x;
-    background-position: 0 0;
-    background-color: rgb(170, 170, 170);
+	overflow: hidden;
+	border-bottom: 1px solid rgb(221, 221, 221);
+	background-repeat: repeat-x;
+	background-position: 0 0;
+	background-color: rgb(170, 170, 170);
 }
 
 #footer_section {
-    float: right;
-    width: 100%;
+	float: right;
+	width: 100%;
 }
 
 .brandBanner {
-    border-bottom: 1px solid #ddd;
-    overflow: hidden;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
 }
 
 .content_area {
-    width: calc(100% - 270px);
-    position: absolute;
-    left: 269px;
-    top: 0;
-    right: 0;
-    min-width: 1291px;
-    border-left: 1px solid rgb(221, 221, 221);
-    box-sizing: border-box;
+	width: calc(100% - 270px);
+	position: absolute;
+	left: 269px;
+	top: 0;
+	right: 0;
+	min-width: 1291px;
+	border-left: 1px solid rgb(221, 221, 221);
+	box-sizing: border-box;
 }
 
 .topcate {
-    width: 100%;
-    padding: 30px 20px 0;
-    box-sizing: border-box;
-    
+	width: 100%;
+	padding: 30px 20px 0;
+	box-sizing: border-box;
 }
 
 .catename {
-		display: flex;
-    height: 25px;
-    font-size: 12px;
-    color: rgb(178, 178, 178);
-    flex-direction: row;
-    align-items: center;
-    /* margin: 0px; */
-    float: left;
+	display: flex;
+	height: 25px;
+	font-size: 12px;
+	color: rgb(178, 178, 178);
+	flex-direction: row;
+	align-items: center;
+	/* margin: 0px; */
+	float: left;
 }
 
 .name1 {
-    text-decoration: underline;
-    margin-right: 10px; /* 오른쪽 여백 추가 */
-    margin: 0;
-    padding: 0;
+	text-decoration: underline;
+	margin-right: 10px; /* 오른쪽 여백 추가 */
+	margin: 0;
+	padding: 0;
 }
 
-
-
 .clothname {
-    margin-right: 10px; /* 왼쪽 여백 추가 */
+	margin-right: 10px; /* 왼쪽 여백 추가 */
 }
 
 .brandnamebar {
-    font-size: 16px;
-    font-weight: 700;
-    padding: 20px;
-    padding-top: 50px;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 20px;
+	padding-top: 50px;
 }
 
 .lrmain {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 20px 10px 30px;
-    border-bottom: 1px solid rgb(221, 221, 221);
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px 10px 30px;
+	border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 .left {
-    width: 520px;
-    padding-right: 40px;
-    margin: 0;
-    margin-left: 10px;
+	width: 520px;
+	padding-right: 40px;
+	margin: 0;
+	margin-left: 10px;
 }
 
 .sumneil {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    height: 622px;
-    padding: 10px 8px;
-    box-sizing: border-box;
-    border: 1px solid rgb(221, 221, 221);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+	height: 622px;
+	padding: 10px 8px;
+	box-sizing: border-box;
+	border: 1px solid rgb(221, 221, 221);
 }
 
 .right {
-    width: 400px;
-    margin: 0;
+	width: 400px;
+	margin: 0;
 }
 
 .liness {
-    width: 100%;
-    height: 15px;
-    border-top: 1px solid rgb(221, 221, 221);
+	width: 100%;
+	height: 15px;
+	border-top: 1px solid rgb(221, 221, 221);
 }
 
 .productheader {
-    align-items: center;
-    width: auto;
-    font-family: Musinsa, "Apple SD Gothic Neo", Roboto, "Noto Sans KR", "sans-serif";
-    font-weight: 500;
+	align-items: center;
+	width: auto;
+	font-family: Musinsa, "Apple SD Gothic Neo", Roboto, "Noto Sans KR",
+		"sans-serif";
+	font-weight: 500;
 }
 
 .stinfo {
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 27px;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 27px;
+}
+
+/* 리뷰쓰기 버튼 */
+.reply_button_wrap {
+	padding: 10px;
+}
+
+.reply_button_wrap button {
+	background-color: #365fdd;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	padding: 5px 12px;
+	cursor: pointer;
+}
+
+.reply_button_wrap button:hover {
+	background-color: #1347e7;
+}
+
+/* 리뷰 영역 */
+.content_bottom {
+	width: 80%;
+	margin: auto;
+}
+
+.reply_content_ul {
+	list-style: none;
+}
+
+.comment_wrap {
+	position: relative;
+	border-bottom: 1px dotted #d4d4d4;
+	padding: 14px 0 10px 0;
+	font-size: 12px;
+}
+/* 리뷰 머리 부분 */
+.reply_top {
+	padding-bottom: 10px;
+}
+
+.id_span {
+	padding: 0 15px 0 3px;
+	font-weight: bold;
+}
+
+.date_span {
+	padding: 0 15px 0;
+}
+/* 리뷰 컨텐트 부분 */
+.reply_bottom {
+	padding-bottom: 10px;
+}
+
+/* 리뷰 선 */
+.reply_line {
+	width: 80%;
+	margin: auto;
+	border-top: 1px solid #c6c6cf;
+}
+
+/* 리뷰 제목 */
+.reply_subject h2 {
+	padding: 15px 0 5px 5px;
+}
+
+/* pageMaker */
+.repy_pageInfo_div {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 40px;
+}
+
+.pageMaker {
+	list-style: none;
+	display: inline-block;
+}
+
+.pageMaker_btn {
+	float: left;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	margin-left: 20px;
+	font-size: 10px;
+	cursor: pointer;
+}
+
+.active {
+	border: 2px solid black;
+	font-weight: 400;
+}
+
+.next, .prev {
+	border: 1px solid #ccc;
+	padding: 0 10px;
+}
+
+/* 리뷰 없는 경우 div */
+.reply_not_div {
+	text-align: center;
+}
+
+.reply_not_div span {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+/* 리뷰 수정 삭제 버튼 */
+.update_reply_btn {
+	font-weight: bold;
+	background-color: #b7b399;
+	display: inline-block;
+	width: 40px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	margin: 0 5px 0 30px;
+	border-radius: 6px;
+	color: white;
+	cursor: pointer;
+}
+
+.delete_reply_btn {
+	font-weight: bold;
+	background-color: #e7578f;
+	display: inline-block;
+	width: 40px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 6px;
+	color: white;
+	cursor: pointer;
 }
 
 /* 제품 이미지 스타일링 */
 .li_box .list_img {
-    width: 100%; /* 이미지 영역의 너비 */
-    text-align: center; /* 이미지 중앙 정렬 */
+	width: 100%; /* 이미지 영역의 너비 */
+	text-align: center; /* 이미지 중앙 정렬 */
 }
 
 .li_box .list_img img {
-    max-width: 100%; /* 이미지의 최대 너비는 부모 요소의 너비와 같음 */
-    height: auto; /* 비율에 맞게 높이 조정 */
+	max-width: 100%; /* 이미지의 최대 너비는 부모 요소의 너비와 같음 */
+	height: auto; /* 비율에 맞게 높이 조정 */
 }
 
 /* 제품 정보 스타일링 */
 .li_box .article_info {
-    margin-top: 10px; /* 이미지와의 간격 */
+	margin-top: 10px; /* 이미지와의 간격 */
 }
 
 .li_box .article_info p {
-    margin: 5px 0; /* 각 요소들의 상하 여백 */
+	margin: 5px 0; /* 각 요소들의 상하 여백 */
 }
 
 /* 가격의 스타일 */
 .li_box .article_info .price {
-    color: #FF0000; /* 빨간색 텍스트 */
-    font-weight: bold; /* 굵은 글씨 */
+	color: #FF0000; /* 빨간색 텍스트 */
+	font-weight: bold; /* 굵은 글씨 */
 }

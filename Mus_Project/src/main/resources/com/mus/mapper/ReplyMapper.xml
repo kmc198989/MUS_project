@@ -6,8 +6,37 @@
   	<!-- 댓글등록 -->
   	<insert id="enrollReply">
   	
-  		insert into mus_reply(clothId, memberId, content, rating) values(#{clothId}, #{memberId}, #{content}, #{rating})  	
+  		insert into mus_reply(clothId, memberId, content, rating) values(#{clothId}, #{memberId}, #{content}, #{rating})
+  		  	
   	</insert>
 
+		<select id="checkReply" resultType="integer">
+	
+			select replyId from mus_reply 
+			where memberId = #{memberId} and clothId = #{clothId}
+	
+		</select>
 
+  	<!-- 댓글 페이징 -->
+  	<select id="getReplyList" resultType="com.mus.model.ReplyDTO">
+  	
+  		<![CDATA[
+		select * from(  		
+			select rownum as rn, replyId, clothId, memberId, content, rating, regDate
+			from mus_reply
+			where rownum <= #{pageNum} * #{amount}  and clothId = #{clothId}	
+			order by regDate desc  	
+  			)
+  		where rn > (#{pageNum} -1) * #{amount}
+  		]]>	
+  		
+  	</select>
+  	
+  	<select id="getReplyTotal" resultType="int">
+  	
+  		select count(*)
+  		from mus_reply
+  		where clothId = #{clothId}
+  	
+  	</select>
 </mapper>

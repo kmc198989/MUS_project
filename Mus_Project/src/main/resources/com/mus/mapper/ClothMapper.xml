@@ -130,4 +130,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on a.catecode =	c.catecode 
 		where clothId = ${clothId} 
 	</select>
+	
+	<select id="getClothIdName" resultType="com.mus.model.ClothVO">
+	
+		select clothId, clothName from mus_cloth 
+		where clothId = #{clothId}	
+	
+	</select>
 </mapper>

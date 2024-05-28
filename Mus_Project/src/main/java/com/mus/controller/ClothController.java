@@ -140,5 +140,14 @@ public class ClothController {
 		return new ResponseEntity<List<AttachImageVO>>(attachservice.getAttachList(clothId), HttpStatus.OK);		
 	}
 	
+	//
+	@GetMapping("/replyEnroll/{memberId}")
+	public String replyEnrollWindowGET(@PathVariable("memberId")String memberId, int clothId, Model model) {
+		ClothVO cloth = clothservice.getClothIdName(clothId);
+		model.addAttribute("clothInfo", cloth);
+		model.addAttribute("memberId", memberId);
+		
+		return "/replyEnroll";
+	}
 	
 }

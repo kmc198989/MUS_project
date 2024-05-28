@@ -16,98 +16,102 @@
 </head>
 <body>
 <%@include file="../includes/admin/header.jsp" %>
-   <div class="admin_content_wrap">
-       <div class="admin_content_subject"><span>판매자 상세</span></div>
-       <div class="admin_content_main">
-       	<form id="modifyForm" action="/admin/sellerModify" method="post">
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>판매자 번호</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input class="input_block" name="sellerId" readonly="readonly" value="<c:out value='${sellerInfo.sellerId }'></c:out>">
-       			</div>
-       		</div>     
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>상호</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="sellerCompany" value="<c:out value='${sellerInfo.sellerCompany }'></c:out>" >
-       				<span id="warn_sellerCompany">상호를 입력 해주세요.</span>
-       			</div>
-       		</div>               
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>브랜드 이름</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="brandName" value="<c:out value='${sellerInfo.brandName }'></c:out>" >
-       				<span id="warn_brandName">브랜드 이름을 입력 해주세요.</span>
-       			</div>
-       		</div>
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>대표 이름</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="brandCEO" value="<c:out value='${sellerInfo.brandCEO }'></c:out>" >
-       				<span id="warn_brandCEO">대표 이름을 입력 해주세요.</span>
-       			</div>
-       		</div>
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>사업자 번호</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="busineseNum" value="<c:out value='${sellerInfo.busineseNum }'></c:out>" >
-       				<span id="warn_busineseNum">사업자 번호를 입력 해주세요.</span>
-       			</div>
-       		</div>
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>통신판매업신고</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="report" value="<c:out value='${sellerInfo.report }'></c:out>" >
-       				<span id="warn_report">통신판매업신고를 입력 해주세요.</span>
-       			</div>
-       		</div>
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>회사 번호</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="tel" value="<c:out value='${sellerInfo.tel }'></c:out>" >
-       				<span id="warn_tel">번호를 입력 해주세요.</span>
-       			</div>
-       		</div>
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>E-mail</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="email" value="<c:out value='${sellerInfo.email }'></c:out>" >
-       				<span id="warn_email">이메일을 입력 해주세요.</span>
-       			</div>
-       		</div>
-       		<div class="form_section">
-       			<div class="form_section_title">
-       				<label>영업소재지</label>
-       			</div>
-       			<div class="form_section_content">
-       				<input name="address" value="<c:out value='${sellerInfo.address }'></c:out>" >
-       				<span id="warn_address">엽엉소재지를 입력 해주세요.</span>
-       			</div>
-       		</div>
-     		<div class="btn_section">
-       			<button id="cancelBtn" class="btn">취소</button>
+<div class="admin_content_wrap">
+		<div class="admin_content_main">
+			<form id="modifyForm" action="/admin/sellerModify" method="post">
+				<div class="form_section">
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="sellerId">판매자 번호</label>
+	                    </div>
+	                    <div class="form_section_content">
+							<input class="input_block" name="sellerId" readonly="readonly" value="<c:out value='${sellerInfo.sellerId }'></c:out>">
+						</div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="sellerCompany"">상호</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="sellerCompany" value="<c:out value='${sellerInfo.sellerCompany }'></c:out>" >
+       						<span id="warn_sellerCompany">상호를 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="brandName">브랜드 이름</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="brandName" value="<c:out value='${sellerInfo.brandName }'></c:out>" >
+       						<span id="warn_brandName">브랜드 이름을 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="brandCEO">대표 이름</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="brandCEO" value="<c:out value='${sellerInfo.brandCEO }'></c:out>" >
+       						<span id="warn_brandCEO">대표 이름을 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="busineseNum">사업자 번호</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="busineseNum" value="<c:out value='${sellerInfo.busineseNum }'></c:out>" >
+       						<span id="warn_busineseNum">사업자 번호를 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="report">통신판매업신고</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="report" value="<c:out value='${sellerInfo.report }'></c:out>" >
+       						<span id="warn_report">통신판매업신고를 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="tel">회사 번호</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="tel" value="<c:out value='${sellerInfo.tel }'></c:out>" >
+       						<span id="warn_tel">번호를 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	                
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="email">E-mail</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="email" value="<c:out value='${sellerInfo.email }'></c:out>" >
+       						<span id="warn_email">이메일을 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="clothContents">영업소재지</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <div class="form_section_content">
+		       				<input name="address" value="<c:out value='${sellerInfo.address }'></c:out>" >
+		       				<span id="warn_address">엽엉소재지를 입력 해주세요.</span>
+	                    </div>
+	                </div>
+	            </div>
+				<input type="hidden" name='clothId' value="${goodsInfo.clothId}">
+				</form>
+			<div class="btn_section">
+				<button id="cancelBtn" class="btn">취소</button>
          		<button id="modifyBtn" class="btn modify_btn">수 정</button>
          		<button id="deleteBtn" class="btn delete_btn">삭 제</button>
-	        </div> 
-	       </form>
-	      </div>                    
-	   </div>
+			</div>
+		</div>
+	</div>
    
    <form id="moveForm" method="get">
    	<input type="hidden" name="sellerId" value='<c:out value="${sellerInfo.sellerId }"/>'>
@@ -124,7 +128,7 @@ let modifyForm = $("#modifyForm");
 $("#cancelBtn").on("click", function(e) {
 	e.preventDefault();
 	
-	moveForm.attr("action", "/admin/sellerDetail");
+	moveForm.attr("action", "/admin/sellerManage");
 	moveForm.submit();
 });
 

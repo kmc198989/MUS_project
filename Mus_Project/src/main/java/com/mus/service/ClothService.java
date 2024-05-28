@@ -36,4 +36,7 @@ public interface ClothService {
 	
 	// 상품 정보
 	public ClothVO getGoodsInfo(int clothId);
+	
+	// 상품 id 이름
+	public ClothVO getClothIdName(int clothId);
 }

@@ -26,8 +26,8 @@ ul{
 .top_gnb_area{
 	width: 100%;
     height: 50px;
-    background-color: #f0f0f1;
-    position:relative;
+    background-color: white;
+    position: relative;
 }
 .top_gnb_area .list{
 	position: absolute;
@@ -58,10 +58,7 @@ ul{
     font-weight: bolder;
 }
 /* 관리자 wrap(네비+컨텐츠) */
-.admin_wrap{
-    
-    
-}
+.admin_wrap{}
 
 /* 관리자페이지 네비 영역 */
 .admin_navi_wrap{
@@ -85,18 +82,30 @@ ul{
     font-size: 30px;
     font-weight: bolder;
 }
- 
+
+.admin_navi_wrap li a:link {
+    color: black;
+}
+.admin_navi_wrap li a:visited {
+    color: black;
+}
+.admin_navi_wrap li a:active {
+    color: black;
+}
+.admin_navi_wrap li a:hover {
+    color: black;
+}
+
 .admin_list_04{
     background-color: #c8c8c8;
 } 
 
-
-
 /* 관리자페이지 컨텐츠 영역 */
 .admin_content_wrap{
     width: 80%;
-    float:left;
-    min-height:700px;
+    margin-top: -20px;
+    float: left;
+    min-height: 700px;
 }
 /* 관리자 컨텐츠 제목 영역 */
 .admin_content_subject{	
@@ -110,43 +119,57 @@ ul{
 }
 /* 관리자 컨텐츠 메인 영역 */
 .form_section{
-	width: 95%;
+	display: flex; /* 플렉스박스 레이아웃 사용 */
+    flex-direction: column;
+    width: 95%;
     margin-left: 2%;
     margin-top: 20px;
     border: 1px solid #dbdde2;
-    background-color: #efefef;	
+    background-color: white;	
+}
+.form_row {
+    display: flex; /* 각 행을 플렉스박스로 설정 */
+    justify-content: space-between;
+    padding: 10px; /* 행 간의 패딩 */
+}
+.form_row:last-child {
+    border-bottom: none; /* 마지막 행의 구분선 제거 */
 }
 .form_section_title{
-	padding: 20px 35px;	
+	flex: 1;
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    padding-right: 10px;
 }
 .form_section_title label{
-	display: block;
-    font-size: 20px;
+	font-size: 16px; /* 조정된 폰트 크기 */
     font-weight: 800;
 }
 .form_section_content{
-	padding: 20px 35px;
-    border-top: 1px solid #dbdde2;	
+	flex: 3;
+    display: flex;
+    align-items: center; /* 수직 정렬 */
 }
-.form_section_content input{
-	width: 98%;
+.form_section_content input,
+.form_section_content textarea {
+    width: 95%; /* 조정된 너비 */
     height: 25px;
-    font-size: 20px;
-    padding: 5px 1%;
+    font-size: 16px; /* 조정된 폰트 크기 */
+    padding: 5px;
+    margin-top: 5px; /* 상단 마진 추가 */
 }
 .form_section_content textarea{
-    width: 98%;
-    height: 170px;
-    font-size: 20px;	
+    height: 60px; /* 조정된 높이 */
+    resize: vertical;	
 }
 .form_section_content select{
 	width: 98%;
     height: 35px;
-    font-size: 20px;
+    font-size: 16px; /* 조정된 폰트 크기 */
     text-align-last: center;
 }
 .input_block{
-	background-color:#f9f9f9;	
+	background-color:#f9f9f9;
 }
 
 /* 입력란 공란 경고 태그 */
@@ -163,24 +186,25 @@ ul{
 /* 버튼 영역 */
 .btn_section{
 	text-align: center;
-	margin: 80px 0;
+    margin: 20px 0; /* 조정된 마진 */
 }
 .btn{
     min-width: 180px;
     padding: 4px 30px;
-    font-size: 25px;
+    font-size: 20px; /* 조정된 폰트 크기 */
     font-weight: 600;
     line-height: 40px;
 }
 .modify_btn{
-	background-color: #b8d3e8;
-	margin-left:15px;
+	background-color: #dbdde2;
+    margin-left: 15px;
 }
 .delete_btn{
-	background-color: #efcdcd;
+	ackground-color: #dbdde2;
+    margin-left: 15px;
 }
 .delete_btn:hover{
-	background-color : #e4a7a7;
+	background-color: #c9cbd0;
 }
 
 

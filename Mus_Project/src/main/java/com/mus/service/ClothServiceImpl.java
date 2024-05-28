@@ -128,7 +128,7 @@ public class ClothServiceImpl implements ClothService {
 		return filterInfoList;
 	}
 
-	/* 상품 정보 */
+	// 상품 정보
 	@Override
 	public ClothVO getGoodsInfo(int clothId) {
 		ClothVO goodsInfo = clothmapper.getGoodsInfo(clothId);
@@ -137,4 +137,9 @@ public class ClothServiceImpl implements ClothService {
 		return goodsInfo;
 	}
 	
+	// 상품 id 이름
+	@Override
+	public ClothVO getClothIdName(int clothId) {
+		return clothmapper.getClothIdName(clothId);
+	}
 }

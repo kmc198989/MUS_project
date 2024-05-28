@@ -112,44 +112,52 @@ ul{
 .seller_table_wrap{
 	padding: 20px 35px
 }
-.seller_table{
-	width: 100%;
-    border: 1px solid #d3d8e1;
-    text-align: center;
+.seller_table {
+    width: 100%;
     border-collapse: collapse;
 }
-.seller_table td{
-	padding: 10px 5px;
-	border : 1px solid #e9ebf0;
+
+.seller_table th,
+.seller_table td {
+    padding: 0.5em;
+    text-align: center;
 }
-.seller_table thead{
-	background-color: #f8f9fd;	
-	font-weight: 600;
+
+.seller_table th {
+    background: white;
+    font-weight: bold;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
 }
-.th_column_1{
-	width:8%;
+
+.seller_table tbody tr:nth-child(even) {
+    background: white;
 }
-.th_column_2{
-	width:14%;
+
+.seller_table a.move {
+    color: #1088ed;
+    text-decoration: none;
 }
-.th_column_3{
-	width:10%;
+
+.seller_table a.move:hover,
+.seller_table a.move:active,
+.seller_table a.move:focus {
+    color: #0a6ebd;
+    border: none;
 }
-.th_column_4{
-	width:8%;
+
+.table a{
+	color:#1088ed;
+	font-weight: 500;
 }
-.th_column_5{
-	width:10%;
+
+.table_empty{
+	height: 50px;
+    text-align: center;
+    margin: 200px 0 215px 0px;
+    font-size: 25px;
 }
-.th_column_6{
-	width:16%;
-}
-.th_column_7{
-	width:20%;
-}
-.th_column_8{
-	width:20%;
-}
+
 /* 작가 상세 페이지 이동 태그 */
 .seller_table a{
 	color:#1088ed;
