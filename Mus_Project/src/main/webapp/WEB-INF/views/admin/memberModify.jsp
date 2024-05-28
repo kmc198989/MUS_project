@@ -15,21 +15,21 @@
 
 <div class="wrapper">
 	<form id="modify_form" method="post">
-	<div class="wrap">
-			<div class="subjecet">
-				<span>회원 수정</span>
-			</div>
-			
-			<div class="id_wrap">
-				<div class="id_name">아이디</div>
-				<div class="id_input_box">
-    			<input class="id_input" name="memberId" value="${memberInfo.memberId}" readonly>
-				</div>
-				<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-				<span class="id_input_re_2">아이디가 이미 존재합니다.</span>
-				<span class="final_id_ck">아이디를 입력해주세요.</span>
-				<span></span>
-			</div>
+	    <div class="wrap">
+	        <div class="subjecet">
+	            <span>회원 수정</span>
+	        </div>
+	        
+	        <div class="id_wrap">
+	            <div class="id_name">아이디</div>
+	            <div class="id_input_box">
+	                <input class="id_input" name="memberId" value="${memberInfo.memberId }">
+	            </div>
+	            <span class="id_input_re_1">사용 가능한 아이디입니다.</span>
+	            <span class="id_input_re_2">아이디가 이미 존재합니다.</span>
+	            <span class="final_id_ck">아이디를 입력해주세요.</span>
+	            <span></span>
+	        </div>
 			
 			<div class="pw_wrap">
 				<div class="pw_name">비밀번호</div>
@@ -124,24 +124,125 @@
 	</form>
 	
 	<form id="moveForm" action="/admin/memberManage" method="get">
-			<input type="hidden" name="pageNum" value="${cri.pageNum}"> 
-			<input type="hidden" name="amount" value="${cri.amount}"> 
-			<input type="hidden" name="keyword" value="${cri.keyword}"> 
-			<input type="hidden" name='memberId' value="${memberInfo.memberId}">
-		</form>
+		<input type="hidden" name="pageNum" value="${cri.pageNum}"> 
+		<input type="hidden" name="amount" value="${cri.amount}"> 
+		<input type="hidden" name="keyword" value="${cri.keyword}"> 
+		<input type="hidden" name='memberId' value="${memberInfo.memberId}">
+	</form>
 </div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+		var code = ""; //이메일전송 인증번호 저장위한 코드
 
 		/* 유효성 검사 통과유무 변수 */
-
+		var idCheck = false; // 아이디
+		var idckCheck = false; // 아이디 중복 검사
+		var pwCheck = false; // 비번
+		var pwckCheck = false; // 비번 확인
+		var pwckcorCheck = false; // 비번 확인 일치 확인
+		var nameCheck = false; // 이름
+		var phoneCheck = false; // 전화번호
+		var mailCheck = false; // 이메일
+		var mailnumCheck = false; // 이메일 인증번호 확인
+		var addressCheck = false // 주소
 
 		$(document).ready(function() {
-			//회원가입 버튼(회원가입 기능 작동)
-			$(".modify_btn").click(function() {
-				if (true) {
+			//수정 버튼
+			$("#modifyBtn").on("click",function(e){
+		
+				e.preventDefault();
+
+				/* 입력값 변수 */
+				var id = $('.id_input').val(); // id 입력란
+				var pw = $('.pw_input').val(); // 비밀번호 입력란
+				var pwck = $('.pwck_input').val(); // 비밀번호 확인 입력란
+				var name = $('.user_input').val(); // 이름 입력란
+				var phone = $('.phone_input').val(); // 전화번호 입력란
+				var mail = $('.mail_input').val(); // 이메일 입력란
+				var addr = $('.address_input_3').val(); // 주소 입력란
+
+				/* 아이디 유효성검사 */
+				if (id == "") {
+					$('.final_id_ck').css(
+							'display', 'block');
+					idCheck = false;
+				} else {
+					$('.final_id_ck').css(
+							'display', 'none');
+					idCheck = true;
+				}
+
+				/* 비밀번호 유효성 검사 */
+				if (pw == "") {
+					$('.final_pw_ck').css(
+							'display', 'block');
+					pwCheck = false;
+				} else {
+					$('.final_pw_ck').css(
+							'display', 'none');
+					pwCheck = true;
+				}
+
+				/* 비밀번호 확인 유효성 검사 */
+				if (pwck == "") {
+					$('.final_pwck_ck').css(
+							'display', 'block');
+					pwckCheck = false;
+				} else {
+					$('.final_pwck_ck').css(
+							'display', 'none');
+					pwckCheck = true;
+				}
+
+				/* 이름 유효성 검사 */
+				if (name == "") {
+					$('.final_name_ck').css(
+							'display', 'block');
+					nameCheck = false;
+				} else {
+					$('.final_name_ck').css(
+							'display', 'none');
+					nameCheck = true;
+				}
+				
+				/* 전화번호 유효성 검사 */
+				if (phone == "") {
+					$('.final_phone_ck').css(
+							'display', 'block');
+					phoneCheck = false;
+				} else {
+					$('.final_phone_ck').css(
+							'display', 'none');
+					phoneCheck = true;
+				}
+
+				/* 이메일 유효성 검사 */
+				if (mail == "") {
+					$('.final_mail_ck').css(
+							'display', 'block');
+					mailCheck = false;
+				} else {
+					$('.final_mail_ck').css(
+							'display', 'none');
+					mailCheck = true;
+				}
+
+				/* 주소 유효성 검사 */
+				if (addr == "") {
+					$('.final_addr_ck').css(
+							'display', 'block');
+					addressCheck = false;
+				} else {
+					$('.final_addr_ck').css(
+							'display', 'none');
+					addressCheck = true;
+				}
+
+				/* 최종 유효성 검사 */
+				if (pwCheck && pwckCheck && pwckcorCheck && nameCheck && phoneCheck && mailCheck && mailnumCheck && addressCheck) {
 					alert("success");
+					$("#modify_form").submit();
 				} else {
 					return false;
 				}

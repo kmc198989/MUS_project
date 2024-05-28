@@ -19,11 +19,11 @@ ul{
     margin: auto;
 }
 /* 홈페이지 기능 네비 */ 
-.top_gnb_area{
+.top_gnb_area {
     width: 100%;
     height: 50px;
-    background-color: #f0f0f1;
-    position:relative;
+    background-color: white;
+    position: relative;
 }
 .top_gnb_area .list{
     position: absolute;

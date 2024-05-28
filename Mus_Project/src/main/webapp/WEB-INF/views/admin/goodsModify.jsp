@@ -23,117 +23,116 @@
 	<%@include file="../includes/admin/header.jsp"%>
 
 	<div class="admin_content_wrap">
-		<div class="admin_content_subject">
-			<span>상품 수정</span>
-		</div>
 		<div class="admin_content_main">
 			<form action="/admin/goodsModify" method="post" id="modifyForm">
 				<div class="form_section">
-					<div class="form_section_title">
-						<label>상품명</label>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="clothName">상품명</label>
+	                    </div>
+	                    <div class="form_section_content">
+						<input name="clothName" value="${goodsInfo.clothName}"> 
+						<span class="ck_warn clothName_warn">상품명을 입력해주세요.</span>
 					</div>
-					<div class="form_section_content">
-						<input name="clothName" value="${goodsInfo.clothName}"> <span
-							class="ck_warn clothName_warn">상품명을 입력해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-                    <div class="form_section_title">
-                        <label>판매자</label>
-                    </div>
-                    <div class="form_section_content">
-                        <input id="brandName_input" readonly="readonly" value="${goodsInfo.brandName}">
-                        <input id="sellerId_input" name="sellerId" type="hidden" value="${goodsInfo.sellerId}">
-                        <button class="sellerId_btn">판매자 선택</button>
-                        <span class="ck_warn sellerId_warn">판매자를 선택해주세요</span>
-                    </div>
-                </div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>입고일</label>
-					</div>
-					<div class="form_section_content">
-						<input name="publeYear" autocomplete="off" readonly="readonly">
-						<span class="ck_warn publeYear_warn">입고일을 선택해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-                    <div class="form_section_title">
-                        <label>상품 카테고리</label>
-                    </div>
-                    <div class="form_section_content">
-                        <div class="cate_wrap">
-                            <span>상분류</span> 
-                            <select class="cate1">
-                                <option value="none">----</option>
-                            </select>
-                        </div>
-                        <div class="cate_wrap">
-                            <span>하분류</span> 
-                            <select name="cateCode" class="cate2">
-                                <option value="none">----</option>
-                            </select>
-                        </div>
-                        <span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span>
-                    </div>
-                </div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>상품 가격</label>
-					</div>
-					<div class="form_section_content">
-						<input name="clothPrice" value="${goodsInfo.clothPrice}"> <span
-							class="ck_warn clothPrice_warn">상품 가격을 입력해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>상품 재고</label>
-					</div>
-					<div class="form_section_content">
-						<input name="clothStock" value="${goodsInfo.clothStock}"> <span
-							class="ck_warn clothStock_warn">상품 재고를 입력해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>상품 할인율</label>
-					</div>
-					<div class="form_section_content">
-						<input id="discount_interface" maxlength="2" value="0"> <input
-							name="clothDiscount" type="hidden"
-							value="${goodsInfo.clothDiscount}"> <span class="step_val">할인
-							가격 : <span class="span_discount"></span>
-						</span> <span class="ck_warn clothDiscount_warn">1~99 숫자를 입력해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>상품 소개</label>
-					</div>
-					<div class="form_section_content bit">
-						<textarea name="clothIntro" id="clothIntro_textarea">${goodsInfo.clothIntro}</textarea>
-						<span class="ck_warn clothIntro_warn">상품 소개를 입력해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>상품 내용</label>
-					</div>
-					<div class="form_section_content bct">
-						<textarea name="clothContents" id="clothContents_textarea">${goodsInfo.clothContents}</textarea>
-						<span class="ck_warn clothContents_warn">상품 내용을 입력해주세요.</span>
-					</div>
-				</div>
-				<div class="form_section">
-					<div class="form_section_title">
-						<label>상품 이미지</label>
-					</div>
-					<div class="form_section_content">
-						<input type="file" id="fileItem" name='uploadFile' style="height: 30px;">
-						<div id="uploadResult"></div>
-					</div>
-				</div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="sellerId">판매자</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input id="brandName_input" readonly="readonly" value="${goodsInfo.brandName}">
+	                        <input id="sellerId_input" name="sellerId" type="hidden" value="${goodsInfo.sellerId}">
+	                        <button class="sellerId_btn">판매자 선택</button>
+	                        <span class="ck_warn sellerId_warn">판매자를 선택해주세요</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="publeYear">입고일</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="publeYear" autocomplete="off" readonly="readonly">
+							<span class="ck_warn publeYear_warn">입고일을 선택해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="category">카테고리</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <div class="cate_wrap">
+	                            <span>상분류</span> 
+	                            <select class="cate1">
+	                                <option value="none">----</option>
+	                            </select>
+	                        </div>
+	                        <div class="cate_wrap">
+	                            <span>하분류</span> 
+	                            <select name="cateCode" class="cate2">
+	                                <option value="none">----</option>
+	                            </select>
+	                        </div>
+	                        <span class="ck_warn cateCode_warn">카테고리를 선택해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="clothPrice">가격</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="clothPrice" value="${goodsInfo.clothPrice}"> 
+	                        <span class="ck_warn clothPrice_warn">상품 가격을 입력해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="clothStock">재고</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input name="clothStock" value="${goodsInfo.clothStock}"> 
+	                        <span class="ck_warn clothStock_warn">상품 재고를 입력해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="clothDiscount">할인율</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input id="discount_interface" maxlength="2" value="0"> 
+	                        <input name="clothDiscount" type="hidden" value="${goodsInfo.clothDiscount}"> 
+	                        <span class="step_val">할인 가격 : <span class="span_discount"></span></span> 
+	                        <span class="ck_warn clothDiscount_warn">1~99 숫자를 입력해주세요.</span>
+	                    </div>
+	                </div>
+	                
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="clothIntro">상품 소개</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <textarea name="clothIntro" id="clothIntro_textarea">${goodsInfo.clothIntro}</textarea>
+							<span class="ck_warn clothIntro_warn">상품 소개를 입력해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="clothContents">상품 내용</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <textarea name="clothContents" id="clothContents_textarea">${goodsInfo.clothContents}</textarea>
+							<span class="ck_warn clothContents_warn">상품 내용을 입력해주세요.</span>
+	                    </div>
+	                </div>
+	                <div class="form_row">
+	                    <div class="form_section_title">
+	                        <label for="image">상품 이미지</label>
+	                    </div>
+	                    <div class="form_section_content">
+	                        <input type="file" id="fileItem" name='uploadFile' style="height: 30px;">
+							<div id="uploadResult"></div>
+	                    </div>
+	                </div>
+	            </div>
 				<input type="hidden" name='clothId' value="${goodsInfo.clothId}">
 			</form>
 			<div class="btn_section">

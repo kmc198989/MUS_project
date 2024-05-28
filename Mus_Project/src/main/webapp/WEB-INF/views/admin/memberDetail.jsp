@@ -28,11 +28,11 @@
                 </div>
 
                 <div class="pw_wrap">
-                    <div class="pw_name">비밀번호</div>
-                    <div class="pw_input_box">
-                        <input class="pw_input" name="memberPw" value="<c:out value="${memberInfo.memberPw }"/>" disabled>
-                    </div>
-                </div>
+				    <div class="pw_name">비밀번호</div>
+				    <div class="pw_input_box">
+				        <input id="memberPw" class="pw_input" name="memberPw" value="<c:out value="${memberInfo.memberPw }"/>" disabled>
+				    </div>
+				</div>
 
                 <div class="user_wrap">
                     <div class="user_name">이름</div>
@@ -78,7 +78,7 @@
 
                 <div class="btn_section">
                     <button id="cancelBtn" class="btn">회원 목록</button>
-                    <button id="modifyBtn" class="btn enroll_btn">수정</button>
+                    <button id="deleteBtn" class="btn delete_btn">삭 제</button>
                 </div>
             </div>
         </form>
@@ -87,6 +87,7 @@
             <input type="hidden" name="pageNum" value="${cri.pageNum}"> 
             <input type="hidden" name="amount" value="${cri.amount}"> 
             <input type="hidden" name="keyword" value="${cri.keyword}">
+			<input type="hidden" name='memberId' value="${memberInfo.memberId}">
         </form>
     </div>
     
@@ -100,15 +101,27 @@
        e.preventDefault();
        $("#moveForm").submit();   
     });   
+	
+    /* 삭제 버튼 */
+	$("#deleteBtn").on("click", function(e){
+		e.preventDefault();
+		let moveForm = $("#moveForm");
+		moveForm.find("input").remove();
+		moveForm.append('<input type="hidden" name="memberId" value="${memberInfo.memberId}">');
+		moveForm.attr("action", "/admin/memberDelete");
+		moveForm.attr("method", "post");
+		moveForm.submit();
+	});
     
     /* 수정 페이지 이동 */
-    $("#modifyBtn").on("click", function(e){
+    /*$("#modifyBtn").on("click", function(e){
        e.preventDefault();
        let addInput = '<input type="hidden" name="memberId" value="${memberInfo.memberId}">';
        $("#moveForm").append(addInput);
        $("#moveForm").attr("action", "/admin/memberModify");
        $("#moveForm").submit();
-    }); 
+    }); */
+    
 	</script>
 
 </body>

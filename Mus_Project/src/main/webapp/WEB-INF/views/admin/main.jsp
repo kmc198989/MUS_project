@@ -15,7 +15,7 @@
 <%@include file="../includes/admin/header.jsp" %>
  
 	<div class="admin_content_wrap">
-		<div>관리자 페이지 입니다.</div>
+		<div>Manager Page</div>
 	</div>
 
 </body>

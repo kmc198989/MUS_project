@@ -18,49 +18,48 @@
 	<%@include file="../includes/admin/header.jsp"%>
 
 	<div class="admin_content_wrap">
-		<div class="admin_content_subject">
-			<span>회원 관리</span>
-		</div>
 		<div class="members_table_wrap">
 			<!-- 회원 리스트 O -->
 			<c:if test="${listcheck != 'empty'}">
 				<table class="members_table">
 					<thead>
 						<tr>
-							<td class="th_column_1">아이디</td>
-							<td class="th_column_2">비밀번호</td>
-							<td class="th_column_3">이름</td>
-							<td class="th_column_4">전화번호</td>
-							<td class="th_column_5">메일</td>
-							<td class="th_column_6">주소</td>
-							<td class="th_column_7">회원 구분</td>
-							<td class="th_column_8">가입일</td>
-							<td class="th_column_9">소지금</td>
-							<td class="th_column_10">포인트</td>
+							<th class="th_column_1">아이디</td>
+							<th class="th_column_2">비밀번호</td>
+							<th class="th_column_3">이름</td>
+							<th class="th_column_4">전화번호</td>
+							<th class="th_column_5">메일</td>
+							<th class="th_column_6">주소</td>
+							<th class="th_column_7">회원 구분</td>
+							<th class="th_column_8">가입일</td>
+							<th class="th_column_9">소지금</td>
+							<th class="th_column_10">포인트</td>
 						</tr>
 					</thead>
-					<c:forEach items="${memberList}" var="list">
-						<tr>
-							<td>
-                   				<a class="move" href='<c:out value="${list.memberId}"/>'>
-                   					<c:out value="${list.memberId}"></c:out>
-                   				</a>
-							</td>
-							<td><c:out value="${list.memberPw}"></c:out></td>
-							<td><c:out value="${list.memberName}"></c:out></td>
-							<td><c:out value="${list.memberPhone}"></c:out></td>
-							<td><c:out value="${list.memberMail}"></c:out></td>
-							<td>
-								(<c:out value="${list.memberAddr1}"></c:out>)
-								<c:out value="${list.memberAddr2}"></c:out>
-								<c:out value="${list.memberAddr3}"></c:out>
-							</td>
-							<td><c:out value="${list.adminCk}"></c:out></td>
-							<td><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd" /></td>
-							<td><c:out value="${list.money}"></c:out></td>
-							<td><c:out value="${list.point}"></c:out></td>
-						</tr>
-					</c:forEach>
+					<tbody>
+						<c:forEach items="${memberList}" var="list">
+							<tr>
+								<td>
+	                   				<a class="move" href='<c:out value="${list.memberId}"/>'>
+	                   					<c:out value="${list.memberId}"></c:out>
+	                   				</a>
+								</td>
+								<td class="memberPw"><c:out value="${list.memberPw}"></c:out></td>
+								<td><c:out value="${list.memberName}"></c:out></td>
+								<td><c:out value="${list.memberPhone}"></c:out></td>
+								<td><c:out value="${list.memberMail}"></c:out></td>
+								<td>
+									(<c:out value="${list.memberAddr1}"></c:out>)
+									<c:out value="${list.memberAddr2}"></c:out>
+									<c:out value="${list.memberAddr3}"></c:out>
+								</td>
+								<td><c:out value="${list.adminCk}"></c:out></td>
+								<td><fmt:formatDate value="${list.regDate}" pattern="yyyy-MM-dd" /></td>
+								<td><c:out value="${list.money}"></c:out></td>
+								<td><c:out value="${list.point}"></c:out></td>
+							</tr>
+						</c:forEach>
+					</tbody>
 				</table>
 			</c:if>
 			<!-- 회원 리스트 X -->
@@ -148,6 +147,13 @@
 			if (delete_result == 1) {
 				alert("삭제 완료");
 			}
+			
+			// 비밀번호 일부 가리기
+	        $(".memberPw").each(function() {
+	            var fullPassword = $(this).text();
+	            var maskedPassword = fullPassword.substring(0, 7) + "...";
+	            $(this).text(maskedPassword);
+	        });
 
 		});
 

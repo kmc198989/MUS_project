@@ -1,78 +1,75 @@
 @charset "UTF-8";
-*{
-	margin: 0;
-	padding:0;
+* {
+    margin: 0;
+    padding: 0;
 }
-a{
-	text-decoration: none;
+a {
+    text-decoration: none;
 }
-ul{
+ul {
     list-style: none;
 }
-/* 화면 전체 렙 */
-.wrapper{
-	width: 100%;
+
+/* 화면 전체 랩 */
+.wrapper {
+    width: 100%;
 }
 /* content 랩 */
-.wrap{
-	width : 1080px;
-	margin: auto;
+.wrap {
+    width: 1080px;
+    margin: auto;
 }
-/* 홈페이지 기능 네비 */ 
-.top_gnb_area{
-	width: 100%;
+/* 홈페이지 기능 네비 */
+.top_gnb_area {
+    width: 100%;
     height: 50px;
-    background-color: #f0f0f1;
-    position:relative;
+    background-color: white;
+    position: relative;
 }
-.top_gnb_area .list{
-	position: absolute;
+.top_gnb_area .list {
+    position: absolute;
     top: 0px;
     right: 0;
-    
 }
-.top_gnb_area .list li{
-	list-style: none;	
-    float : left;
+.top_gnb_area .list li {
+    list-style: none;
+    float: left;
     padding: 13px 15px 0 10px;
     font-weight: 900;
     cursor: pointer;
 }
 
 /* 관리제 페이지 상단 현페이지 정보 */
-.admin_top_wrap{
-    height:110px;
+.admin_top_wrap {
+    height: 110px;
     line-height: 110px;
     background-color: black;
-    margin-bottom:15px;
+    margin-bottom: 15px;
 }
-.admin_top_wrap>span{
+.admin_top_wrap > span {
     margin-left: 30px;
-    display:inline-block;
+    display: inline-block;
     color: white;
     font-size: 50px;
     font-weight: bolder;
 }
 /* 관리자 wrap(네비+컨텐츠) */
-.admin_wrap{
-    
-    
-}
+.admin_wrap {}
 
 /* 관리자페이지 네비 영역 */
-.admin_navi_wrap{
+.admin_navi_wrap {
     width: 20%;
     height: 300px;
-    float:left;
+    float: left;
     height: 100%;
 }
-.admin_navi_wrap li{
+.admin_navi_wrap li {
     display: block;
     height: 80px;
     line-height: 80px;
     text-align: center;
 }
-.admin_navi_wrap li a{
+.admin_navi_wrap li a {
     display: block;
     height: 100%;
     width: 95%;
@@ -81,99 +78,128 @@ ul{
     font-size: 30px;
     font-weight: bolder;
 }
-.admin_navi_wrap li a:link {color: black;}
-.admin_navi_wrap li a:visited {color: black;}
-.admin_navi_wrap li a:active {color: black;}
-.admin_navi_wrap li a:hover {color: black;}
+.admin_navi_wrap li a:link {
+    color: black;
+}
+.admin_navi_wrap li a:visited {
+    color: black;
+}
+.admin_navi_wrap li a:active {
+    color: black;
+}
+.admin_navi_wrap li a:hover {
+    color: black;
+}
 
-.admin_list_01{
+.admin_list_01 {
     background-color: #c8c8c8;
-} 
-
+}
 
 /* 관리자페이지 컨텐츠 영역 */
-.admin_content_wrap{
+.admin_content_wrap {
     width: 80%;
-    float:left;
-    min-height:700px;  
+    margin-top: -20px;
+    float: left;
+    min-height: 700px;
 }
 /* 관리자 컨텐츠 제목 영역 */
-.admin_content_subject{	
+.admin_content_subject {
     font-size: 40px;
     font-weight: bolder;
     padding-left: 15px;
     background-color: black;
     height: 80px;
     line-height: 80px;
-    color: white;	
+    color: white;
 }
 /* 관리자 컨텐츠 메인 영역 */
-.form_section{
-	width: 95%;
+.form_section {
+    display: flex; /* 플렉스박스 레이아웃 사용 */
+    flex-direction: column;
+    width: 95%;
     margin-left: 2%;
     margin-top: 20px;
     border: 1px solid #dbdde2;
-    background-color: #efefef;	
+    background-color: white;
 }
-.form_section_title{
-	padding: 20px 35px;	
+.form_row {
+    display: flex; /* 각 행을 플렉스박스로 설정 */
+    justify-content: space-between;
+    padding: 10px; /* 행 간의 패딩 */
 }
-.form_section_title label{
-	display: block;
-    font-size: 20px;
+.form_row:last-child {
+    border-bottom: none; /* 마지막 행의 구분선 제거 */
+}
+.form_section_title {
+    flex: 1;
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    padding-right: 10px;
+}
+.form_section_title label {
+    font-size: 16px; /* 조정된 폰트 크기 */
     font-weight: 800;
 }
-.form_section_content{
-	padding: 20px 35px;
-    border-top: 1px solid #dbdde2;	
+.form_section_content {
+    flex: 3;
+    display: flex;
+    align-items: center; /* 수직 정렬 */
 }
-.form_section_content input {
-    width: 80%;
+.form_section_content input,
+.form_section_content textarea {
+    width: 95%; /* 조정된 너비 */
     height: 25px;
-    font-size: 20px;
-    padding: 5px 0%;
+    font-size: 16px; /* 조정된 폰트 크기 */
+    padding: 5px;
+    margin-top: 5px; /* 상단 마진 추가 */
 }
-.form_section_content select{
-	width: 98%;
+.form_section_content textarea {
+    height: 60px; /* 조정된 높이 */
+    resize: vertical;
+}
+.form_section_content select {
+    width: 98%;
     height: 35px;
-    font-size: 20px;
+    font-size: 16px; /* 조정된 폰트 크기 */
     text-align-last: center;
 }
 
-.ck-content {						/* ckeditor 높이 */
+.ck-content { /* ckeditor 높이 */
     height: 170px;
 }
 
-
-.ui-datepicker-trigger {			/* 캘린더 css 설정 */
+.ui-datepicker-trigger { /* 캘린더 css 설정 */
     margin-left: 25px;
-    width: 14%;
-    height: 38px;
+    width: 15%;
+    height: 40px;
     font-weight: 600;
     background-color: #dfe8f5;
     font-size: 15px;
-    cursor:pointer;
+    cursor: pointer;
+    margin-top: 1%;
 }
+
 input[name='publeYear'] {
     width: 80%;
     text-align: center;
 }
 
-.sellerId_btn {						/* 판매자 선택 css 설정 */
+.sellerId_btn {
     margin-left: 25px;
-    width: 14%;
+    margin-top: 1%;
+    width: 15%;
     height: 38px;
     font-weight: 600;
     background-color: #dfe8f5;
     font-size: 15px;
-    cursor:pointer;
+    cursor: pointer;
 }
 #brandName_input {
     width: 80%;
     text-align: center;
 }
 
-.form_section_content select {		/* 카테고리 css 설정 */
+.form_section_content select { /* 카테고리 css 설정 */
     width: 92%;
     height: 35px;
     font-size: 20px;
@@ -183,111 +209,107 @@ input[name='publeYear'] {
 .cate_wrap span {
     font-weight: 600;
 }
-.cate_wrap:not(:first-child) {
-    margin-top: 20px;
-}
 
-.ck_warn{						/* 입력란 공란 경고 태그 */
-	display: none;
+.ck_warn { /* 입력란 공란 경고 태그 */
+    display: none;
     padding-top: 10px;
     text-align: center;
     color: #e05757;
-    font-weight: 300;    
+    font-weight: 300;
 }
 
-.step_val{						/* 할인 가격 문구 */
-	display: block;
-    padding-top: 5px;
+.step_val {
+    width: 50%;
+    display: block;
+    padding-top: 0px;
     font-weight: 500;
+    margin-right: 20%;
+    margin-left: 5%;
+    margin-bottom: -8%;
+    margin-top: -7%;
 }
-
 
 /* 버튼 영역 */
-.btn_section{
-	text-align: center;
-	margin: 80px 0;
+.btn_section {
+    text-align: center;
+    margin: 20px 0; /* 조정된 마진 */
 }
-.btn{
+.btn {
     min-width: 180px;
     padding: 4px 30px;
-    font-size: 25px;
+    font-size: 20px; /* 조정된 폰트 크기 */
     font-weight: 600;
     line-height: 40px;
 }
-.enroll_btn{
-	background-color: #dbdde2;
-	margin-left:15px;
+.enroll_btn {
+    background-color: #dbdde2;
+    margin-left: 15px;
 }
 #enrollBtn:hover {
     background-color: #c9cbd0;
 }
 
-
 /* footer navai 영역 */
-.footer_nav{
-	width:100%;
-	height:50px;
+.footer_nav {
+    width: 100%;
+    height: 50px;
 }
-.footer_nav_container{
-	width: 100%;
-	height: 100%;
-	background-color:#8EC0E4;
+.footer_nav_container {
+    width: 100%;
+    height: 100%;
+    background-color: #8EC0E4;
 }
-.footer_nav_container>ul{
-	font-weight : bold;
-	float:left;
-	list-style:none;
-	position:relative;
-	padding-top:10px;
-	line-height: 27px;
-	font-family: dotum;
-	margin-left: 10px;
+.footer_nav_container > ul {
+    font-weight: bold;
+    float: left;
+    list-style: none;
+    position: relative;
+    padding-top: 10px;
+    line-height: 27px;
+    font-family: dotum;
+    margin-left: 10px;
 }
-.footer_nav_container>ul>li{
-	display:inline;
-	width: 45px;
-	height: 19px;
-	padding: 10px 9px 0 10px;
+.footer_nav_container > ul > li {
+    display: inline;
+    width: 45px;
+    height: 19px;
+    padding: 10px 9px 0 10px;
 }
-.footer_nav_container>ul>span{
-	margin: 0 4px;
+.footer_nav_container > ul > span {
+    margin: 0 4px;
 }
 /* footer 영역 */
-.footer{
-	width:100%;
-	height:130px;
-	background-color:#D4DFE6;
-	padding-bottom : 50px;
+.footer {
+    width: 100%;
+    height: 130px;
+    background-color: #D4DFE6;
+    padding-bottom: 50px;
 }
-.footer_container{
-	width: 100%;
-	height: 100%;
-	margin: auto;
+.footer_container {
+    width: 100%;
+    height: 100%;
+    margin: auto;
 }
-.footer_left>img {
-	width: 150%;
+.footer_left > img {
+    width: 150%;
     height: 130px;
     margin-left: -20px;
     margin-top: -12px;
 }
-.footer_left{
-	float :left;
-	width: 170px;
-	margin-left: 20px;
-	margin-top : 30px;
-	
+.footer_left {
+    float: left;
+    width: 170px;
+    margin-left: 20px;
+    margin-top: 30px;
 }
-.footer_right{
-	float :left;
-	width: 680px;
-	margin-left: 70px;
-	margin-top : 30px;
+.footer_right {
+    float: left;
+    width: 680px;
+    margin-left: 70px;
+    margin-top: 30px;
 }
-
-
-
 
 /* float 속성 해제 */
-.clearfix{
-	clear: both;
+.clearfix {
+    clear: both;
 }

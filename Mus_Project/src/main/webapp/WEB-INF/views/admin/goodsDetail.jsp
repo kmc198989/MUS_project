@@ -26,139 +26,133 @@
 </head>
 <body>
 	<%@include file="../includes/admin/header.jsp"%>
-	<div class="admin_content_wrap">
-		<div class="admin_content_subject">
-			<span>상품 상세</span>
-		</div>
-
-		<div class="admin_content_main">
-
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품명</label>
-				</div>
-				<div class="form_section_content">
-					<input name="clothName" value="<c:out value="${goodsInfo.clothName}"/>" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>입고일</label>
-				</div>
-				<div class="form_section_content">
-					<input value="<fmt:formatDate value='${goodsInfo.regDate}' pattern='yyyy-MM-dd'/>" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>최근 수정 날짜</label>
-				</div>
-				<div class="form_section_content">
-					<input value="<fmt:formatDate value='${goodsInfo.updateDate}' pattern='yyyy-MM-dd'/>" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>판매자</label>
-				</div>
-				<div class="form_section_content">
-					<input id="brandName_input" readonly="readonly" value="${goodsInfo.brandName }" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>출판일</label>
-				</div>
-				<div class="form_section_content">
-					<input name="publeYear" autocomplete="off" readonly="readonly" value="<c:out value="${goodsInfo.publeYear}"/>" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 카테고리</label>
-				</div>
-				<div class="form_section_content">
-					<div class="cate_wrap">
-						<span>상분류</span>
-						<select class="cate1" disabled>
-							<option value="none">----</option>
-						</select>
+<div class="admin_content_wrap">
+    <div class="admin_content_main">
+           <div class="form_section">
+               <div class="form_row">
+                   <div class="form_section_title">
+                       <label for="clothName">상품명</label>
+                   </div>
+                   <div class="form_section_content">
+                       <input name="clothName" value="<c:out value="${goodsInfo.clothName}"/>" disabled>
+                   </div>
+               </div>
+               <div class="form_row">
+                   <div class="form_section_title">
+                       <label for="publeYear">입고일</label>
+                   </div>
+                   <div class="form_section_content">
+                       <input value="<fmt:formatDate value='${goodsInfo.regDate}' pattern='yyyy-MM-dd'/>" disabled>
+                   </div>
+               </div>
+               <div class="form_row">
+			   		<div class="form_section_title">
+						<label>최근 수정 날짜</label>
 					</div>
-					<div class="cate_wrap">
-						<span>하분류</span>
-						<select class="cate2" name="cateCode" disabled>
-							<option value="none">----</option>
-						</select>
+					<div class="form_section_content">
+						<input value="<fmt:formatDate value='${goodsInfo.updateDate}' pattern='yyyy-MM-dd'/>" disabled>
 					</div>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 가격</label>
-				</div>
-				<div class="form_section_content">
-					<input name="clothPrice"
-						value="<c:out value="${goodsInfo.clothPrice}"/>" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 재고</label>
-				</div>
-				<div class="form_section_content">
-					<input name="clothStock"
-						value="<c:out value="${goodsInfo.clothStock}"/>" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 할인율</label>
-				</div>
-				<div class="form_section_content">
-					<input id="discount_interface" maxlength="2" disabled>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 소개</label>
-				</div>
-				<div class="form_section_content bit">
-					<textarea name="clothIntro" id="clothIntro_textarea" disabled>${goodsInfo.clothIntro}</textarea>
-				</div>
-			</div>
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 목차</label>
-				</div>
-				<div class="form_section_content bct">
-					<textarea name="clothContents" id="clothContents_textarea" disabled>${goodsInfo.clothContents}</textarea>
-				</div>
-			</div>
-
-			<div class="form_section">
-				<div class="form_section_title">
-					<label>상품 이미지</label>
-				</div>
-				<div class="form_section_content">
-					
-					<div id="uploadReslut"></div>
-				</div>
-			</div>
-
-			<div class="btn_section">
-				<button id="cancelBtn" class="btn">상품 목록</button>
-				<button id="modifyBtn" class="btn enroll_btn">수정</button>
-			</div>
+               </div>
+               <div class="form_row">
+               		<div class="form_section_title">
+						<label>판매자</label>
+					</div>
+					<div class="form_section_content">
+						<input id="brandName_input" readonly="readonly" value="${goodsInfo.brandName }" disabled>
+					</div>
+               </div>
+               <div class="form_row">
+               		<div class="form_section_title">
+						<label>출판일</label>
+					</div>
+					<div class="form_section_content">
+						<input name="publeYear" autocomplete="off" readonly="readonly" value="<c:out value="${goodsInfo.publeYear}"/>" disabled>
+					</div>
+               </div>
+               <div class="form_row">
+                   <div class="form_section_title">
+                       <label for="category">카테고리</label>
+                   </div>
+                   <div class="form_section_content">
+                       <div class="cate_wrap">
+                           <span>상분류</span> 
+                           <select class="cate1" disabled>
+                               <option value="none">----</option>
+                           </select>
+                       </div>
+                       <div class="cate_wrap">
+                           <span>하분류</span> 
+                           <select name="cateCode" class="cate2" disabled>
+                               <option value="none">----</option>
+                           </select>
+                       </div>
+                   </div>
+               </div>
+               <div class="form_row">
+                    <div class="form_section_title">
+						<label>상품 가격</label>
+					</div>
+					<div class="form_section_content">
+						<input name="clothPrice"
+							value="<c:out value="${goodsInfo.clothPrice}"/>" disabled>
+					</div>
+               </div>
+               <div class="form_row">
+                    <div class="form_section_title">
+						<label>상품 재고</label>
+					</div>
+					<div class="form_section_content">
+						<input name="clothStock"
+							value="<c:out value="${goodsInfo.clothStock}"/>" disabled>
+					</div>
+               </div>
+               <div class="form_row">
+                    <div class="form_section_title">
+						<label>상품 할인율</label>
+					</div>
+					<div class="form_section_content">
+						<input id="discount_interface" maxlength="2" disabled>
+					</div>
+               </div>
+               
+               <div class="form_row">
+                    <div class="form_section_title">
+						<label>상품 소개</label>
+					</div>
+					<div class="form_section_content bit">
+						<textarea name="clothIntro" id="clothIntro_textarea" disabled>${goodsInfo.clothIntro}</textarea>
+					</div>
+               </div>
+               <div class="form_row">
+                    <div class="form_section_title">
+						<label>상품 내용</label>
+					</div>
+					<div class="form_section_content bct">
+						<textarea name="clothContents" id="clothContents_textarea" disabled>${goodsInfo.clothContents}</textarea>
+					</div>
+               </div>
+               <div class="form_row">
+                    <div class="form_section_title">
+						<label>상품 이미지</label>
+					</div>
+					<div class="form_section_content">
+						
+						<div id="uploadReslut"></div>
+					</div>
+               </div>
+           </div>
+           <div class="btn_section">
+			<button id="cancelBtn" class="btn">상품 목록</button>
+			<button id="modifyBtn" class="btn enroll_btn">수정</button>
 		</div>
-
-
-		<form id="moveForm" action="/admin/goodsManage" method="get">
+        
+        <form id="moveForm" action="/admin/goodsManage" method="get">
 			<input type="hidden" name="pageNum" value="${cri.pageNum}">
 			<input type="hidden" name="amount" value="${cri.amount}">
 			<input type="hidden" name="keyword" value="${cri.keyword}">
 		</form>
-
-	</div>
+    </div>
+</div>
 
    <script>
    
