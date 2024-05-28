@@ -34,7 +34,7 @@
             <beans:bean id="AdminIntreceptor" class="com.mus.interceptor.AdminInterceptor"></beans:bean>
         </interceptor>
         <interceptor>
-					<mapping path="/cart/add"/>
+					<mapping path="/cart/**"/>
 					<exclude-mapping path="/cart/add"/>
 					<beans:bean id="CartIntreceptor" class="com.mus.interceptor.CartInterceptor"></beans:bean>
 				</interceptor>

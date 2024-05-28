@@ -6,8 +6,8 @@
 	
 	<!-- 카트 추가 -->
 	<insert id="addCart">
-		insert into mus_cart(cartId, memberId, clothId, clothCount)
-		values(cartId_seq.nextval, #{memberId}, #{clothId}, #{clothCount}) 
+		insert into mus_cart(memberId, clothId, clothCount)
+		values(#{memberId}, #{clothId}, #{clothCount}) 
 	</insert>
 	
 	

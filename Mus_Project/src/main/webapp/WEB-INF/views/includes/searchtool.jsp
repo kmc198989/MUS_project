@@ -36,17 +36,21 @@
 							<li class="icon_woman sight_out" title="여성">여성</li>
 						</ul>
 					</div>
+					<!-- 이미지 -->					
 					<div class="li_inner">
+			    	<a name="goods_link" href="/goodsDetail/${list.clothId}">					
 						<div class="list_img" id="product_image_${list.clothId}">
 							<div id="uploadResult_${list.clothId}"></div>							
 						</div>
-						</div>
+					  </a>						
+					</div>
+					
 						<div class="article_info">
 							<p class="item_title">
 								<a href="#">${list.brandName}</a>
 							</p>
 							<p class="list_info">
-								<a name="goods_link" href="//www.musinsa.com/app/goods/2289283"
+								<a name="goods_link" href="/goodsDetail/${list.clothId}"
 									title="${list.clothName}"> <strong class="txt_reserve">6/7
 										배송</strong> ${list.clothName}
 								</a>
@@ -168,7 +172,7 @@ $(document).ready(function() {
 				str += "<div id='result_card'><img src='/resources/img/goodsNoImage.png'></div>";
 			} else {
 				let obj = arr[0];
-				let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+				let fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName);
 				str += "<div id='result_card'";
 				str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'>";
 				str += "<img src='/display?fileName=" + fileCallPath + "'>";

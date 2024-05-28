@@ -29,7 +29,7 @@ public class ClothServiceImpl implements ClothService {
 	private AttachMapper attachmapper;
 	
 	@Autowired
-	AdminMapper adminmapper;
+    private AdminMapper adminmapper;
 
 	// 전체 상품 조회
 	@Override

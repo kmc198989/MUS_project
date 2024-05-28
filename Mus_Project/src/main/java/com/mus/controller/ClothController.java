@@ -100,6 +100,7 @@ public class ClothController {
 	@GetMapping("/goodsDetail/{clothId}")
 	public String goodsDetailGET(@PathVariable("clothId")int clothId, Model model) {
 		logger.info("goodsDetailGET()..........");
+		
 		model.addAttribute("goodsInfo", clothservice.getGoodsInfo(clothId));
 		
 		return "/goodsDetail";

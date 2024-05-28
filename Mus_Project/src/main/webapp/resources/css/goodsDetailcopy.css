@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+*{
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.wrap {
+    display: flex;
+    width: 100%;
+    flex: 1;
+}
+
+#nav_section {
+    width: 15%;
+    height: 100vh; /* 화면 전체 높이로 설정 */
+    overflow-y: auto; /* 세로 스크롤 가능 */
+}
+
+.content_area {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* 나머지 공간 차지 */
+}
+
+#main_div {
+    width: 100%;
+    margin-left: 0; /* 왼쪽으로 붙이기 */
+}
+#footer_section {
+    width: 100%;
+}
+
+.content_top {
+    display: flex;
+    width: 100%;
+    height: 400px;
+    padding: 20px; /* 여백 추가 */
+}
+
+.ct_left_area {
+    width: 40%; /* 좌측 영역 넓게 조정 */
+    height: 100%;
+    padding-right: 20px; /* 오른쪽 여백 추가 */
+}
+
+.image_wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.image_wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.ct_right_area {
+    width: 60%; /* 우측 영역 넓게 조정 */
+    padding-left: 20px; /* 왼쪽 여백 추가 */
+}
+
+.title {
+    font-size: 24px;
+    color: #3a60df;
+    margin-bottom: 10px; /* 아래 여백 추가 */
+}
+
+.brand {
+    font-size: 18px;
+    margin-bottom: 10px; /* 아래 여백 추가 */
+}
+
+.price {
+    margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.sale_price {
+    font-size: 16px;
+    color: #666;
+    text-decoration: line-through; /* 취소선 추가 */
+}
+
+.discount_price {
+    font-size: 22px;
+    color: #f84450;
+    font-weight: bold;
+}
+
+.button {
+    margin-top: 20px; /* 위 여백 추가 */
+}
+
+.button_quantity {
+    margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+.button_quantity input {
+    height: 30px;
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.button_quantity button {
+    border: 1px solid #aaa;
+    color: #3a60df;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+}
+
+.btn_cart, .btn_buy {
+    display: inline-block;
+    width: 140px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    margin-right: 10px; /* 오른쪽 여백 추가 */
+}
+
+.btn_cart {
+    background-color: #5e6b9f;
+    border: 1px solid #5e6b9f;
+}
+
+.btn_buy {
+    background-color: #7b8ed1;
+    border: 1px solid #7b8ed1;
+}
+
+.content_middle {
+    width: 100%;
+    padding: 40px 20px; /* 상하 및 좌우 여백 추가 */
+}
+
+.cloth_intro, .cloth_content {
+    width: 100%;
+    margin-bottom: 40px; /* 아래 여백 추가 */
+}
+
+.content_bottom {
+    width: 100%;
+    padding: 40px 20px; /* 상하 및 좌우 여백 추가 */
+    background-color: #e7dbdb;
+}

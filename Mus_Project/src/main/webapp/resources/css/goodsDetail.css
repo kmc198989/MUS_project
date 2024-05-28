@@ -1,0 +1,186 @@
+* {
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.wrap {
+    position: relative;
+    width: 100%;
+}
+
+.leftmain {
+    width: 270px;
+    position: relative;
+    z-index: 99;
+    border-right: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+    float: left;
+}
+
+#nav_section {
+    padding: 15px 0 20px;
+    height: 100%;
+}
+
+.main_div {
+    /* float: right;
+    width: 100%;
+    background-color: #aedf9e;*/
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+.imNKjW {
+    direction: block;
+    width: 100%;
+}
+
+.cCbuKE {
+    overflow: hidden;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-color: rgb(170, 170, 170);
+}
+
+#footer_section {
+    float: right;
+    width: 100%;
+}
+
+.brandBanner {
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.content_area {
+    width: calc(100% - 270px);
+    position: absolute;
+    left: 269px;
+    top: 0;
+    right: 0;
+    min-width: 1291px;
+    border-left: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+}
+
+.topcate {
+    width: 100%;
+    padding: 30px 20px 0;
+    box-sizing: border-box;
+    
+}
+
+.catename {
+		display: flex;
+    height: 25px;
+    font-size: 12px;
+    color: rgb(178, 178, 178);
+    flex-direction: row;
+    align-items: center;
+    /* margin: 0px; */
+    float: left;
+}
+
+.name1 {
+    text-decoration: underline;
+    margin-right: 10px; /* 오른쪽 여백 추가 */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.clothname {
+    margin-right: 10px; /* 왼쪽 여백 추가 */
+}
+
+.brandnamebar {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.lrmain {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 10px 30px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.left {
+    width: 520px;
+    padding-right: 40px;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.sumneil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 622px;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+.right {
+    width: 400px;
+    margin: 0;
+}
+
+.liness {
+    width: 100%;
+    height: 15px;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.productheader {
+    align-items: center;
+    width: auto;
+    font-family: Musinsa, "Apple SD Gothic Neo", Roboto, "Noto Sans KR", "sans-serif";
+    font-weight: 500;
+}
+
+.stinfo {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+/* 제품 이미지 스타일링 */
+.li_box .list_img {
+    width: 100%; /* 이미지 영역의 너비 */
+    text-align: center; /* 이미지 중앙 정렬 */
+}
+
+.li_box .list_img img {
+    max-width: 100%; /* 이미지의 최대 너비는 부모 요소의 너비와 같음 */
+    height: auto; /* 비율에 맞게 높이 조정 */
+}
+
+/* 제품 정보 스타일링 */
+.li_box .article_info {
+    margin-top: 10px; /* 이미지와의 간격 */
+}
+
+.li_box .article_info p {
+    margin: 5px 0; /* 각 요소들의 상하 여백 */
+}
+
+/* 가격의 스타일 */
+.li_box .article_info .price {
+    color: #FF0000; /* 빨간색 텍스트 */
+    font-weight: bold; /* 굵은 글씨 */
+}
