@@ -212,11 +212,12 @@ public class MemberServiceImpl implements MemberService {
 	        //userInfo.put("memberKMail", memberKMail);
 	        
 	        logger.info(String.valueOf(userInfo));
+	        System.out.println("test...");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		MemberKakaoVO member = mapper.findkakao(userInfo);
+		MemberKakaoVO member = mapper.findkakao(userInfo);			// 이쪽에서 에러
 		//저장되어있는지 체크
 		logger.info("S : " + member);
 		
