@@ -8,6 +8,7 @@ import com.mus.model.Criteria;
 import com.mus.model.PageDTO;
 import com.mus.model.ReplyDTO;
 import com.mus.model.ReplyPageDTO;
+import com.mus.model.UpdateReplyDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -25,6 +26,8 @@ public class ReplyServiceImpl implements ReplyService{
 		log.info("ReplyServiceImpl enrollReply(댓글등록).............");
 		
 		int result = replyMapper.enrollReply(dto);
+		
+		setRating(dto.getclothId());
 		
 		return result;
 	}
@@ -60,6 +63,8 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		int result = replyMapper.updateReply(dto);
 		
+		setRating(dto.getclothId());
+
 		return result;
 	}
 	
@@ -76,6 +81,28 @@ public class ReplyServiceImpl implements ReplyService{
 		
 		int result = replyMapper.deleteReply(dto.getReplyId());
 		
+		setRating(dto.getclothId());
+
 		return result;
 	}
+	
+	public void setRating(int clothId) {
+		
+		Double ratingAvg = replyMapper.getRatingAverage(clothId);	
+		
+		if(ratingAvg == null) {
+			ratingAvg = 0.0;
+		}	
+		
+		ratingAvg = (double) (Math.round(ratingAvg*10));
+		ratingAvg = ratingAvg / 10;
+		
+		UpdateReplyDTO urd = new UpdateReplyDTO();
+		urd.setClothId(clothId);
+		urd.setRatingAvg(ratingAvg);	
+		
+		replyMapper.updateRating(urd);		
+		
+	}
+	
 }

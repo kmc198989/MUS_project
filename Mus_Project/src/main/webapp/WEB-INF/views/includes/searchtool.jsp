@@ -81,8 +81,10 @@
 								</ul>
 							</div>
 							<p class="point">
-								<span class="img-score"><span class="bar"
-									style="width: 95%"></span></span> <span class="count">3,041</span>
+								<span class="img-score">
+									<span class="bar"	style="width: 95%"></span>
+								</span> 
+								<span class="count">3,041</span>
 							</p>
 
 							<p class="txt_cnt_like" data-goodsno="2289283"

@@ -54,7 +54,7 @@
 								<!-- 배송지 정보 -->
 								<div class="addressInfo_div">
 									<div class="addressInfo_button_div">
-										<button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #3c3838;">상용자 정보 주소록</button>
+										<button class="address_btn address_btn_1" onclick="showAdress('1')" style="background-color: #3c3838;">기본 주소</button>
 										<button class="address_btn address_btn_2" onclick="showAdress('2')">직접 입력</button>
 									</div>
 									<div class="addressInfo_input_div_wrap">

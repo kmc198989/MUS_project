@@ -3,6 +3,7 @@ package com.mus.service;
 import com.mus.model.Criteria;
 import com.mus.model.ReplyDTO;
 import com.mus.model.ReplyPageDTO;
+import com.mus.model.UpdateReplyDTO;
 
 public interface ReplyService {
 
@@ -23,4 +24,5 @@ public interface ReplyService {
 	
 	// 댓글 삭제
 	public int deleteReply(ReplyDTO dto);
+
 }

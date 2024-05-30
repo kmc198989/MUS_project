@@ -38,7 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[ select * from( select /*+INDEX_DESC(mus_cloth 인덱스ID)*/ rownum as rn, clothId, clothName, 
 		(select brandName from mus_seller where mus_cloth.sellerId = mus_seller.sellerId) brandName, sellerId, 
 		(select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName,cateCode, publeYear, 
-		clothPrice, TRUNC(clothDiscount * 100) as clothDiscount,
+		clothPrice, TRUNC(clothDiscount * 100) as clothDiscount, ratingAvg,
+		(select count(*) from mus_reply where clothId = #{clothId}) as ratingCount, 
 		clothPrice * clothDiscount as discountedPrice,
 		clothPrice - (clothPrice * clothDiscount) as finalPrice
 		 from mus_cloth where ]]>

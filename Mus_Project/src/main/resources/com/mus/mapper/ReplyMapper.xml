@@ -62,4 +62,20 @@
 		WHERE replyId = #{replyId}
 
 	</delete>
+	
+   	<select id="getRatingAverage" resultType="double">
+  	
+  		select avg(rating)
+  		from mus_reply
+  		where clothId = #{clothId}
+  	
+  	</select>
+
+	<update id="updateRating">
+	
+		update mus_cloth
+		set ratingAvg = #{ratingAvg}
+		where clothId = #{clothId}
+	
+	</update>
 </mapper>

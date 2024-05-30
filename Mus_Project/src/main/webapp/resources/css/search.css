@@ -44,6 +44,22 @@
     flex-wrap: wrap; /* 내용이 넘칠 때 줄 바꿈 */
 }
 
+.img-score {
+    display: inline-block;
+    width: 60px;
+    height: 12px;
+    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.img-score .bar {
+    display: block;
+    height: 100%;
+    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat 0 -120px;
+}
+
+
 /* 각 제품 카드 스타일링 */
 .li_box {
     font-size: 12px;
