@@ -52,22 +52,26 @@
 
 	</div>
 
-	<script>
-		/* gnb_area 로그아웃 버튼 작동 */
-		$("#gnb_logout_button").click(function() {
-			//alert("버튼 작동");
-			$.ajax({
-				type : "POST",
-				url : "/member/logout.do",
-				success : function(data) {
-					if (data === "success") {
-						window.location.href = "/main"; // 로그아웃 후 메인 페이지로 리다이렉션
-					} else {
-						alert("로그아웃 실패");
-					}
-				}
-			}); // ajax
-		});
-	</script>
+<script>
+    /* gnb_area 로그아웃 버튼 작동 */
+    $("#gnb_logout_button").click(function(e) {
+        e.preventDefault(); // 링크 기본 동작 방지
+        $.ajax({
+            type : "POST",
+            url : "/member/logout.do",
+            success : function(data) {
+                if (data === "success") {
+                    window.location.href = "/main"; // 로그아웃 후 메인 페이지로 리다이렉션
+                } else {
+                    alert("로그아웃 실패");
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("AJAX 에러: ", textStatus, errorThrown);
+                alert("로그아웃 요청에 실패했습니다.");
+            }
+        }); // ajax
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mus.mapper.OrderMapper">
+	
+	<!-- 주문 상품 정보 -->
+	<select id="getGoodsInfo" resultType="com.mus.model.OrderPageItemDTO">
+	
+		select clothId, clothName, clothPrice, clothDiscount
+		from mus_cloth where clothId = #{clothId}	
+	
+	</select>
+	
+	<select id="getOrderInfo" resultType="com.mus.model.OrderItemDTO">
+	
+		select clothId, clothPrice, clothDiscount
+		from mus_cloth where clothId = #{clothId}
+	
+	</select>
+	
+	<!-- 주문 테이블 등록 -->
+	<insert id="enrollOrder">
+	
+		insert into mus_order(orderId, addressee, memberId, memberAddr1, memberAddr2, memberAddr3, orderState, deliveryCost, usePoint)
+    	values(#{orderId},#{addressee}, #{memberId}, #{memberAddr1}, #{memberAddr2}, #{memberAddr3}, '배송준비', #{deliveryCost}, #{usePoint})
+	
+	</insert>
+	
+		<!-- 주문 아이템 테이블 등록 -->
+	<insert id="enrollOrderItem">
+	
+		insert into mus_orderItem(orderId, clothId, clothCount, clothPrice, clothDiscount, savePoint)
+		values(#{orderId}, #{clothId}, #{clothCount}, #{clothPrice}, #{clothDiscount}, #{savePoint})
+	
+	</insert>
+	
+	<!-- 주문 금액 차감 -->
+	<update id="deductMoney">
+	
+		update mus_member set money = #{money}, point = #{point} where memberid = #{memberId}
+		
+	</update>
+	
+	<!-- 주문 재고 차감 -->
+	<update id="deductStock">
+	
+		update mus_cloth set clothStock = #{clothStock} where clothId = #{clothId}
+	
+	</update>
+
+</mapper>

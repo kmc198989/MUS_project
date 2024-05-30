@@ -53,6 +53,7 @@ public interface MemberMapper {
 	//회원정보 수정
 	public int modifySave(MemberVO vo) throws Exception;
 	
-	
+	/* 주문자 주소 정보 */
+	public MemberVO getMemberInfo(String memberId);
 	
 }

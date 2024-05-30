@@ -1,0 +1,360 @@
+@charset "UTF-8";
+
+* {
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+.wrapper {
+	display: flex;
+	width: 100%;
+}
+
+.wrap {
+	position: relative;
+	width: 100%;
+}
+
+.content_area {
+	width: calc(100% - 270px);
+	position: absolute;
+	left: 269px;
+	top: 0;
+	right: 0;
+	min-width: 1291px;
+	border-left: 1px solid rgb(221, 221, 221);
+	box-sizing: border-box;
+}
+
+.leftmain {
+	width: 270px;
+	height: 100%;
+	position: relative;
+	z-index: 99;
+	border-right: 1px solid rgb(221, 221, 221);
+	box-sizing: border-box;
+	float: left;
+	position: relative;
+}
+
+.content_subject {
+	clear: both;
+	position: relative;
+	padding: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+.content_subject h2 {
+	font-family: "Musinsa", sans-serif !important;
+}
+
+.section {
+	position: relative;
+	padding: 15px 20px 20px 20px;
+}
+
+.order_title {
+	margin-bottom: 12px;
+}
+
+.order_member {
+	border: 1px solid #e5e5e5;
+}
+
+.cloth_table {
+	border: 1px solid #e5e5e5;
+	border-top: 2px solid #363636;
+}
+
+.goods_subject_table {
+	font-size: 14px;
+	line-height: 20px;
+	width: 100%;
+	text-align: center;
+}
+
+.goods_subject_table th {
+	text-align: center;
+	color: #333;
+	border-bottom: 1px solid #e7e7e7;
+	padding: 2px 0;
+}
+
+.goods_table {
+	font-size: 14px;
+	line-height: 20px;
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.goods_table tr {
+	height: 110px;
+}
+
+.goods_table_price_td {
+	text-align: center;
+}
+
+.cloth_text {
+	text-align: center;
+}
+
+.goods_kind_div {
+	margin-bottom: 12px;
+}
+
+.point_header {
+	margin-bottom: 12px;
+}
+
+/* 이미지 */
+.image_wrap {
+	width: 100%;
+	height: 100%;
+}
+
+.image_wrap img {
+	max-width: 85%;
+	height: auto;
+	display: block;
+}
+
+/* 포인트 영역 */
+.point_div_subject {
+	font-size: 25px;
+	line-height: 35px;
+	font-weight: bold;
+}
+
+.point_table {
+	border-color: #ddd;
+	border-spacing: 0;
+	border: 1px solid #b6b6b6;
+	border-top: 2px solid #363636;
+	width: 100%;
+}
+
+.point_table th {
+	border-color: #ddd;
+	vertical-align: top;
+	text-align: center;
+	color: #333333;
+	background: #fbfbfb;
+	text-indent: 0;
+	padding: 12px 5px 12px 20px;
+	font-size: 15px;
+	line-height: 20px;
+}
+
+.point_table_td {
+	border-color: #ddd;
+	text-align: left;
+	color: #333333;
+	padding: 8px 15px;
+}
+
+.order_point_input_btn {
+	vertical-align: middle;
+	display: inline-block;
+	border: 1px solid #aaa;
+	width: 60px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	color: #555;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.ca_header {
+	margin-bottom: 12px;
+}
+
+.total_info_div{
+	top: 0;
+    right: 0;
+    width: 300px;
+    border: 1px solid #e5e5e5;
+    border-top: 2px solid #363636;
+    border-top-width: 2px;
+    margin-bottom: 20px;
+}
+
+.total_info_price_div {
+	border: 1px solid #e5e5e5;
+	border-top: 2px solid #363636;	
+	width: 100%;
+    margin: auto;
+	position: relative;
+}
+
+.total_info_div ul{
+	list-style: none;
+}
+.total_info_div li{
+	text-align: right;
+	margin-top:10px;
+}
+.price_span_label{
+	float: left;
+}
+.price_total_li{
+	border-top: 1px solid #ddd;
+	padding-top: 20px;
+}
+.strong_red{
+	color: red;
+}
+
+.total_price_red{
+	font-size: 25px;
+}
+.total_price_label{
+	margin-top: 5px;
+}
+.point_li{
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    margin: 10px 0px 0;
+}
+.total_info_btn_div{
+	border-top: 1px solid #ddd;
+    text-align: center;
+    padding: 15px 20px;
+}
+.order_btn{
+    display: inline-block;
+    font-size: 21px;
+    line-height: 50px;
+    width: 200px;
+    height: 50px;
+    background-color: #365fdd;
+    color: #fff;
+    font-weight: bold;
+}
+
+.content_main {
+	min-height: 700px;
+	padding-right: 350px;
+	position: relative;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+/* 사용자 정보  */
+.memberInfo_table {
+	width: 100%;
+	border-spacing: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.member_info_div td {
+	padding: 12px;
+	text-align: left;
+}
+
+/* 사용자 정보  */
+.memberInfo_table {
+	width: 100%;
+	border-spacing: 0;
+	border-top: 2px solid #363636;
+	border-bottom: 1px solid #b6b6b6;
+}
+
+.member_info_div td {
+	padding: 12px;
+	text-align: left;
+}
+/* 사용자 주소 정보 */
+.addressInfo_div {
+	margin-top: 0px;
+}
+
+.addressInfo_input_div_wrap {
+	height: 225px;
+}
+
+.address_btn {
+	background-color: #555;
+	color: white;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	font-size: 17px;
+	width: 50%;
+}
+
+.address_btn:hover {
+	background-color: #777;
+}
+
+.addressInfo_button_div::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.addressInfo_input_div {
+	padding: 12px;
+	text-align: left;
+	display: none;
+	line-height: 40px;
+}
+
+.addressInfo_input_div th {
+	border-color: transparent;
+	background-color: transparent;
+}
+
+.addressInfo_input_div th {
+	padding: 12px 5px 12px 20px;
+	vertical-align: top;
+}
+
+.addressInfo_input_div td {
+	padding: 8px 12px;
+}
+
+.addressInfo_input_div_2 input {
+	padding: 6px 5px;
+}
+
+.address_search_btn {
+	vertical-align: middle;
+	display: inline-block;
+	border: 1px solid #aaa;
+	width: 90px;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	color: #555;
+	cursor: pointer;
+}
+
+#nav_section {
+	padding: 15px 0 20px;
+	height: 100%;
+}
+
+#main_div {
+	/* float: right;
+	width: 100%;
+	background-color: #aedf9e;*/
+	
+}
+
+#footer_section {
+	float: right;
+	width: 100%;
+}
+
+/* 제품 목록 스타일링 */
+.content_area ul {
+	list-style: none; /* 기본 목록 표시 스타일 제거 */
+	padding: 0; /* 목록의 패딩 제거 */
+	margin: 0; /* 목록의 마진 제거 */
+	flex-wrap: wrap; /* 내용이 넘칠 때 줄 바꿈 */
+}

@@ -285,6 +285,13 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.modifySave(vo);
 	}
 	
+	/* 주문자 정보 */
+	@Override
+	public MemberVO getMemberInfo(String memberId) {
+		
+		return mapper.getMemberInfo(memberId);
+		
+	}
 	
 	
 }

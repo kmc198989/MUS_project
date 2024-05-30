@@ -1,8 +1,6 @@
 package com.mus.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
-import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -18,23 +16,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.mus.model.MemberVO;
 import com.mus.service.MemberService;
 import com.mus.util.MailUtil;
 
-import lombok.val;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -145,7 +139,7 @@ public class MemberController {
     
     /* 로그인 */
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
-    public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
+    public String loginPOST(HttpServletRequest request, MemberVO member, Model model) throws Exception{
     	
     	HttpSession session = request.getSession();
 		String rawPw = "";
@@ -160,16 +154,16 @@ public class MemberController {
 			
 			if(true == pwEncoder.matches(rawPw, encodePw)) {
 				lvo.setMemberPw("");
-				session.setAttribute("member", lvo);
+				model.addAttribute("member", lvo);
 				System.out.println(lvo);
 				return "redirect:/main";
 			}else {
-				rttr.addFlashAttribute("result", 0);
+				model.addAttribute("result", 0);
 				return "redirect:/member/login";
 			}
 			
 		}else {
-			rttr.addFlashAttribute("result", 0);
+			model.addAttribute("result", 0);
 			return "redirect:/member/login";
 		}
     }
@@ -246,17 +240,15 @@ public class MemberController {
 		return "redirect:/main";
 	}
 	
-	/* 비동기방식 로그아웃 메서드 */
+	/* 메인페이지 로그아웃 */
 	@RequestMapping(value = "logout.do", method = RequestMethod.POST)
-	public void logoutPOST(HttpServletRequest request) throws Exception{
-		
-		logger.info("비동기 로그아웃 메서드 진입");
-		
-		HttpSession session = request.getSession();
-		
-		session.invalidate();
-		session.invalidate();
+	@ResponseBody
+	public String logoutPOST(HttpServletRequest request,  SessionStatus sessionStatus) throws Exception {
+	    logger.info("비동기 로그아웃 메서드 진입");
+	    
+        sessionStatus.setComplete(); // 세션 무효화
 
+	    return "success"; // 성공 메시지 반환
 	}
 	
 	

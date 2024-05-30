@@ -67,6 +67,7 @@
 														<input type="hidden" class="individual_totalPrice_input" value="${ci.salePrice * ci.clothCount}">
 														<input type="hidden" class="individual_point_input" value="${ci.point}">
 														<input type="hidden" class="individual_totalPoint_input" value="${ci.totalPoint}">
+														<input type="hidden" class="individual_clothId_input" value="${ci.clothId}">
 											</td>
 											<td class="td_width_2">
 												<div class="image_wrap" data-clothid="${ci.imageList[0].clothId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">
@@ -166,7 +167,7 @@
 						</div>
 						<!-- 구매 버튼 영역 -->
 						<div class="content_btn_section">
-							<a>주문하기</a>
+							<a class="order_btn">주문하기</a>
 						</div>
 						
 						<!-- 수량 조정 form -->
@@ -182,6 +183,10 @@
 							<input type="hidden" name="memberId" value="${member.memberId}">
 						</form>
 						
+						<!-- 주문 form -->
+						<form action="/order/${member.memberId}" method="get" class="order_form">
+							
+						</form>
 						
 					</div>
 				</section>
@@ -323,6 +328,35 @@ $(".all_check_input").on("click", function(){
     } else {
         alert("Invalid cart ID");
     }
+	});
+	
+	/* 주문 페이지 이동 */	
+	$(".order_btn").on("click", function(){
+		
+		let form_contents ='';
+		let orderNumber = 0;
+		
+		$(".cart_info_td").each(function(index, element){
+			
+			if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+				
+				let clothId = $(element).find(".individual_clothId_input").val();
+				let clothCount = $(element).find(".individual_clothCount_input").val();
+				
+				let clothId_input = "<input name='orders[" + orderNumber + "].clothId' type='hidden' value='" + clothId + "'>";
+				form_contents += clothId_input;
+				
+				let clothCount_input = "<input name='orders[" + orderNumber + "].clothCount' type='hidden' value='" + clothCount + "'>";
+				form_contents += clothCount_input;
+				
+				orderNumber += 1;
+				
+			}
+		});	
+
+		$(".order_form").html(form_contents);
+		$(".order_form").submit();
+		
 	});
 </script>
 

@@ -37,5 +37,8 @@
 			where memberId = #{memberId} and clothId = #{clothId}
 	</select>
 	
+	<delete id="deleteOrderCart"> 
+		delete from mus_cart where memberId = #{memberId} and clothId = #{clothId} 
+	</delete>	
 	
   </mapper>

@@ -56,6 +56,12 @@
 		#{memberAddr3}, memberPhone = #{memberPhone} where memberId =
 		#{memberId} </update>
 	<!-- 마이페이지 회원 탈퇴 -->
-	<delete id="delete"> delete from mus_member where memberId=#{memberId}
+	<delete id="delete"> 
+		delete from mus_member where memberId=#{memberId}
 	</delete>
+	<!--  주문자 정보  -->
+	<select id="getMemberInfo" resultType="com.mus.model.MemberVO"> 
+		SELECT memberId, memberName, memberMail, memberAddr1, memberAddr2, memberAddr3,
+	 	money, point FROM mus_member WHERE memberId = #{memberId} 
+	</select>
 </mapper>

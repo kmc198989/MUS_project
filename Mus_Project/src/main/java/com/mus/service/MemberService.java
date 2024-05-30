@@ -52,6 +52,9 @@ public interface MemberService {
 	//회원수정(POST)
 	public int modifySave(MemberVO vo) throws Exception;
 	
+	/* 주문자 정보 */
+	public MemberVO getMemberInfo(String memberId);
+	
 	
 	
 	
