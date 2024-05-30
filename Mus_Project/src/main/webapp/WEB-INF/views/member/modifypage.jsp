@@ -12,7 +12,7 @@
 	  crossorigin="anonymous"></script>
 </head>
 <body>
-	<%@include file="../member/include/header.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 
 <div class="wrapper">
 	<form method="post" action="/member/modifypage">

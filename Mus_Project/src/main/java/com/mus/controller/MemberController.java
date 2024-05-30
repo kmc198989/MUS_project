@@ -230,24 +230,31 @@ public class MemberController {
     
     /* 메인페이지 로그아웃 */
 	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
-	public String logoutMainGET(HttpServletRequest request) throws Exception{
+	public String logoutMainGET(HttpServletRequest request, SessionStatus sessionStatus) throws Exception{
 		
-		logger.info("logoutMainGET메서드 진입");
-		HttpSession session = request.getSession();
+
 		
-		session.invalidate();
+        sessionStatus.setComplete(); // 세션 무효화
 		
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 자체를 무효화
+        }
 		return "redirect:/main";
 	}
 	
 	/* 메인페이지 로그아웃 */
 	@RequestMapping(value = "logout.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String logoutPOST(HttpServletRequest request,  SessionStatus sessionStatus) throws Exception {
+	public String logoutPOST(HttpServletRequest request, SessionStatus sessionStatus) throws Exception {
 	    logger.info("비동기 로그아웃 메서드 진입");
 	    
         sessionStatus.setComplete(); // 세션 무효화
 
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 자체를 무효화
+        }
 	    return "success"; // 성공 메시지 반환
 	}
 	

@@ -50,11 +50,10 @@
 	<update id="pwUpdate"> update mus_member set memberPw=#{memberPw} where
 		memberId=#{memberId} </update>
 	<!-- 마이페이지 정보수정 -->
-	<update id="modifySave"> update mus_member set memberPw = #{memberPw},
-		memberName = #{memberName}, memberMail = #{memberMail}, memberAddr1 =
-		#{memberAddr1}, memberAddr2 = #{memberAddr2}, memberAddr3 =
-		#{memberAddr3}, memberPhone = #{memberPhone} where memberId =
-		#{memberId} </update>
+	<update id="modifySave"> update mus_member set memberName = #{memberName}, memberMail = #{memberMail}, 
+		memberAddr1 =	#{memberAddr1}, memberAddr2 = #{memberAddr2}, 
+		memberAddr3 =	#{memberAddr3}, memberPhone = #{memberPhone} 
+		where memberId = #{memberId} </update>
 	<!-- 마이페이지 회원 탈퇴 -->
 	<delete id="delete"> 
 		delete from mus_member where memberId=#{memberId}

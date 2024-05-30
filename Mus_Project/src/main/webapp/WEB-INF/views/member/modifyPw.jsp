@@ -12,7 +12,7 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
-	<%@include file="../member/include/header.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 
 <form action="/member/pwUpdate" method="post" id="pwUpdateForm" name="pwUpdateForm">
 				<input type="hidden" id="memberId" name="memberId" value="${member.memberId}">

@@ -130,7 +130,7 @@
 	
 </head>
 <body>
-	<%@include file="../member/include/header.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 	<%@include file="../modal/modalDelete.jsp" %>
 
 	<div class="wrapper">
