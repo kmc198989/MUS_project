@@ -38,6 +38,21 @@ public interface MemberMapper {
 	
 	public void updatePwd(MemberVO vo) throws Exception;
 	
+	//마이페이지 구현
+	public MemberVO memberInfo(String memberId) throws Exception;
+	
+	//비밀번호 변경
+	public String pwCheck(String memberId) throws Exception;
+	
+	//비밀번호 변경(POST)
+	public void pwUpdate(@Param("memberId") String memberId, @Param("memberPw") String memberPw);
+	
+	//회원탈퇴
+	public void delete(String memberId)throws Exception;
+	
+	//회원정보 수정
+	public int modifySave(MemberVO vo) throws Exception;
+	
 	
 	
 }

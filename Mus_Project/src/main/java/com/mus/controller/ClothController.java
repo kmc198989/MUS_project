@@ -133,9 +133,7 @@ public class ClothController {
 	
 	// 이미지 정보 반환
 	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<AttachImageVO>> getAttachList(int clothId) {
-		
-		logger.info("getAttachList................" + clothId);
+	public ResponseEntity<List<AttachImageVO>> getAttachList(int clothId) {		
 		
 		return new ResponseEntity<List<AttachImageVO>>(attachservice.getAttachList(clothId), HttpStatus.OK);		
 	}

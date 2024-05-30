@@ -10,10 +10,10 @@
 	position: absolute;
 
     left: 50%;
-    top: 50%;
+    top: 55%;
     transform: translate(-50%, -50%);
     width: 670px;
-    height: 960px;
+    height: 750px;
     background: #FFFFFF;
     border: 1px solid #383434;
     box-shadow: 7px 7px 39px rgb(70, 76, 79, 57%);
@@ -48,26 +48,19 @@
     margin-top: 20px;
     */
     width: 466px;
-    height: 120px;
+    height: 90px;
     left: 740px;
     top: 132px;
 
     font-family: 'Noto Sans CJK KR';
     font-style: normal;
     font-weight: 700;
-    font-size: 28px;
-    line-height: 47px;
+    font-size: 21px;
     color: #383434;
-    margin-left: 45px;
+    margin-left: 58px;
     justify-content: space-evenly;
 }
-/*
-.subjecet span{
-    font-size: 50px;
-    font-weight: 900;
-    color: black;
-}
-*/
+
 
 /* 아이디 영역 */
 
@@ -88,6 +81,7 @@
     border-bottom: 1px solid #CFCFCF;
     width: 466px;
     height: 30px;
+    color: blue;
 }
 /* 중복아이디 존재하지 않는 경우*/
 .id_input_re_1{
@@ -119,8 +113,23 @@
 	padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
-    width: 466px;
+    width: 330px;
     height: 30px;
+}
+.pw_check_button{
+	border: 1px solid black;
+    height: 25px;
+    width: 20%;
+    float: right;
+    line-height: 29px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 900;
+    background-color: #5c70ab24;
+    cursor: pointer;
+    margin-right: 32px;
+    border-radius: 5px;
+    font-family: math;
 }
 
 /* 비밀번호 확인 영역 */
@@ -161,6 +170,7 @@
     border-bottom: 1px solid #CFCFCF;
     width: 466px;
     height: 30px;
+    color: blue;
 }
 
 /* 메일 영역 */
@@ -206,6 +216,7 @@
     border-bottom: 1px solid #CFCFCF;
     width: 466px;
     height: 30px;
+    color: blue;
 }
 .mail_check_button{
      border: 1px solid black;
@@ -274,6 +285,7 @@
     border-bottom: 1px solid #CFCFCF;
     width: 466px;
     height: 30px;
+    color: blue;
 }
 .phone_check_button{
    	border: 1px solid black;
@@ -378,23 +390,50 @@
     height: 30px;
 }
 
-
-/* 가입하기 버튼 */
-
-.join_button{
-	width: 400px;
-    height: 50px;
-    left: 725px;
-    top: 875px;
-    background-color: #FFFFFF;
-    color: royalblue;
-    border-radius: 8px;
-    border: #595667 solid 1px;
-    margin-left: 30px;
-    margin-top: 20px;
-    font-size: inherit;
-    cursor: pointer;
+.box{
+	margin-top: 17px;
+    height: 113px;
+    line-height: 25px;
+    border: none;
+    border-bottom: 1px solid #CFCFCF;
+    text-align: center;
+    font-family: monospace;
 }
+
+.toggle_pass{
+	margin-left: 37px;
+    border-color: currentColor;
+    margin-bottom: 2px;
+}
+.toggle_pass1{
+	margin-left: 51px;
+    margin-bottom: 2px;
+    border-color: currentColor;
+}
+.toggle_pass2{
+	margin-left: 16px;
+     border-color: currentColor;
+}
+.pwUpdate_button{
+	margin-left: 137px;
+    margin-top: 8px;
+    font-family: math;
+    border: 1px solid slategray;
+    background-color: #5c70ab24;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 96px;
+}
+.cancle_button{
+	border: 1px solid slategray;
+    background-color: #5c70ab24;
+    cursor: pointer;
+    font-family: math;
+    border-radius: 5px;
+    width: 40px;
+    margin-left: 3px;
+}
+
 /* 유효성 검사 문구 */
  
 .final_id_ck{
@@ -424,6 +463,31 @@
 .final_addr_ck{
     display: none;
     font-size: 12px;
+}
+
+/* 버튼 영역 */
+.modify_button{
+
+    background-color: #FFFFFF;
+    color: royalblue;
+    border-radius: 8px;
+    border: 1px solid #383434;
+    margin-top: 3px;
+    margin-left: 128px;
+    width: 90px;
+    cursor: pointer;
+	
+}
+
+.home_button{
+	background-color: #FFFFFF;
+    color: royalblue;
+    border-radius: 8px;
+    border: 1px solid #383434;
+    margin-top: 19px;
+    margin-left: 15px;
+    width: 90px;
+    cursor: pointer;
 }
 
 /* 비밀번호 확인 일치 유효성검사 */

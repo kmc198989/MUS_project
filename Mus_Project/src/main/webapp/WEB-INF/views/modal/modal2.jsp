@@ -14,7 +14,6 @@
             </div>
             <div class="close-area">X</div>
             <div class="content" id="id_value"></div>
-            
         </div>
     </div>
 

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+.header_div{
+   background-color: #000;
+   height: 60px;
+   display: flex;
+   align-items: center;
+}
+.logo_area {
+   height: 60px;
+}
+.logo_area img{
+   padding-top:10px;
+   height: 40px;
+}
+
+.list{
+   display: flex;
+   list-style-type: none;
+}
+.list li{
+   margin: 0 5px;
+   color: white;
+}   
+.searchbar {
+    width: 22vw;
+    height: 20px;
+    margin-left: 20px;
+}
+
+.btn_search_btn{
+	margin-left: 2px;
+	font-family: serif;
+}
+
+.top_gnb_area{
+	margin-left: 600px;
+}
+
+.gnb_logout_button > li > a{
+	color: inherit;
+}
+.gnb_cart_button > li >a{
+	margin-left: 5px;
+    color: inherit;
+}
+
+.gnb_customer_button > li >a{
+	margin-left: 5px;
+    color: inherit;
+}

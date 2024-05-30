@@ -7,13 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/includes/header.css">
+<link rel="stylesheet" href="../resources/css/member/header.css">
+<style>
+
+</style>
 </head>
 <body>
 	<div class="header_div">
 			<!-- 로고 영역 -->
 		<div class="logo_area">
-			<a href="/main"><img src="/resources/img/MAINLOGO.png"></a>
+			<a href="/main"><img src="../resources/img/MAINLOGO.png"></a>
 		</div>
 		<div class="search">
 			<form id="searchForm" action="/search" method="get">
@@ -23,7 +26,7 @@
 					<input type="hidden" name="pageNum"
 						value='<c:out value="${pageMaker.cri.pageNum}" default="1"/>'>
 					<input type="hidden" name="amount"
-						value='<c:out value="${pageMaker.cri.amount}" default="100"/>'>
+						value='<c:out value="${pageMaker.cri.amount}" default="10"/>'>
 					<button class='btn search_btn'>검 색</button>
 				</div>
 			</form>
@@ -41,11 +44,10 @@
 							<li><a href="/admin/main">관리자 페이지</a></li>
 						</c:if>
 					</c:if>
-					<li><a id="gnb_logout_button" href="/main">로그아웃</a></li>
-					<li><a href="/member/mypage">마이룸</a></li>
-					<li><a href="/cart/${member.memberId}">장바구니</a></li>
+					<li><a class="gnb_logout_button" href="/main">로그아웃</a></li>
+					<li><a class="gnb_cart_button" href="#">장바구니</a></li>
 				</c:if>
-				<li>고객센터</li>
+				<li><a class="gnb_customer_button" href="#">고객센터</a></li>
 			</ul>
 		</div>
 
@@ -60,11 +62,7 @@
 				type : "POST",
 				url : "/member/logout.do",
 				success : function(data) {
-					if (data === "success") {
-						window.location.href = "/main"; // 로그아웃 후 메인 페이지로 리다이렉션
-					} else {
-						alert("로그아웃 실패");
-					}
+					document.location.reload();
 				}
 			}); // ajax
 		});

@@ -1,5 +1,8 @@
 package com.mus.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -13,20 +16,29 @@ import org.springframework.http.MediaType;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.mus.model.MemberVO;
 import com.mus.service.MemberService;
 import com.mus.util.MailUtil;
 
+import lombok.val;
+
 @Controller
 @RequestMapping(value = "/member")
+@SessionAttributes({"member"})
 public class MemberController {	
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -138,7 +150,7 @@ public class MemberController {
     	HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
-		System.out.println("login.do member객체" + member);
+		
 		MemberVO lvo = memberservice.memberLogin(member);
 		
 		if(lvo !=null) {
@@ -149,6 +161,7 @@ public class MemberController {
 			if(true == pwEncoder.matches(rawPw, encodePw)) {
 				lvo.setMemberPw("");
 				session.setAttribute("member", lvo);
+				System.out.println(lvo);
 				return "redirect:/main";
 			}else {
 				rttr.addFlashAttribute("result", 0);
@@ -185,6 +198,7 @@ public class MemberController {
   		logger.info("비밀번호찾기 진입(GET)");
   	}
 	
+  	/* 비밀번호 찾기 */
 	@PostMapping(value = "findPw", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@ResponseBody
 	public String findPwPOST(MemberVO vo) throws Exception{
@@ -239,8 +253,12 @@ public class MemberController {
 		logger.info("비동기 로그아웃 메서드 진입");
 		
 		HttpSession session = request.getSession();
+		
 		session.invalidate();
+		session.invalidate();
+
 	}
+	
 	
 	/* 카카오 로그인 기능 */
 	@RequestMapping(value = "/login/getKakaoAuthUrl")
@@ -249,7 +267,7 @@ public class MemberController {
 		logger.info("카카오페이지 진입");
 		
 		String reqUrl = 
-				"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=1c708f7af76b7f87a9198d58ea20109c&redirect_uri=http://localhost:8080/member/login/auth_kakao";
+				"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=9ae60badd8feddaff2167169e12ee080&redirect_uri=http://localhost:8081/member/login/auth_kakao";
 		
 		return reqUrl;
 	}
@@ -266,5 +284,97 @@ public class MemberController {
 		
 		return view;
 	}
+	
+	/* 회원 마이페이지(GET) */
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public String myInfo(HttpSession session, Model model) throws Exception {
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		String memberId = vo.getMemberId();
+		
+		//System.out.println(memberId);
+		vo = memberservice.memberInfo(memberId);
+		model.addAttribute("member", vo);
+		//System.out.println(vo);
+		
+		return "/member/mypage";
+		
+	}
+	
+	/* 회원 수정페이지(GET) */
+	@GetMapping("/modifypage")
+	public String modifypageGET(HttpSession session, Model model) throws Exception {
+		logger.info("회원수정페이지 진입");
+		
+		model.addAttribute("member", memberservice.memberInfo((String)session.getAttribute("memberId")));
+		return "/member/modifypage";
+	}
+	
+	/* 회원 수정페이지(POST) */
+	@PostMapping("/modifypage")
+	public String modify(MemberVO vo, RedirectAttributes rttr) throws Exception {
+		String modifyPwd = pwEncoder.encode(vo.getMemberPw());
+		vo.setMemberPw(modifyPwd);
+		int result = 0;
+		
+		try {
+			result = memberservice.modifySave(vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result==1) {
+			rttr.addFlashAttribute("msg", "정보 수정이 완료되었습니다. 다시 로그인해 주세요.");
+			return "redirect:/main";
+		}
+		return "redirect:/member/modifypage";
+	}
+	
+	/* 비밀번호 확인(POST) */
+	@RequestMapping(value = "/pwCheck", method =RequestMethod.POST)
+	@ResponseBody
+	public int pwCheck(MemberVO vo) throws Exception{
+		String memberPw = memberservice.pwCheck(vo.getMemberId());
+		if(vo == null || !pwEncoder.matches(vo.getMemberPw(), memberPw)) {
+			return 0;
+		}
+		return 1;
+	}
+	/* 비밀번호 변경(GET) */
+	@RequestMapping(value = "/modifyPw", method = RequestMethod.GET)
+	public String pwUpdateView() throws Exception{
+		return "/member/modifyPw";
+	}
+	
+	/* 비밀번호 변경(POST) */
+	@RequestMapping(value = "/pwUpdate", method = RequestMethod.POST)
+	public String pwUpdate(String memberId, String memberPw1, RedirectAttributes rttr, HttpSession session) throws Exception{
+		memberPw1 = pwEncoder.encode(memberPw1);
+		//System.out.println("ControllerMember: " + memberPw1);
+		memberservice.pwUpdate(memberId, memberPw1);
+		session.invalidate();
+		rttr.addFlashAttribute("msg", "비밀번호수정이 완료되었습니다.");
+		
+		return "redirect:/member/login";
+	}
+	
+	/* 회원탈퇴(GET) */
+	@RequestMapping(value = "/modalDelete", method = RequestMethod.GET)
+	public String deleteView() throws Exception{
+		return "/member/modalDelete";
+		
+	}
+	
+	/* 회원탈퇴(POST) */
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(String memberId, RedirectAttributes rttr, HttpSession session) throws Exception{
+		memberservice.delete(memberId);
+		session.invalidate();
+		rttr.addFlashAttribute("msg", "이용해주셔서 감사합니다.");
+		
+		return "redirect:/member/login";
+		
+	}
+	
+	
 	
 }

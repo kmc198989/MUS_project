@@ -1,0 +1,77 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding:0;
+}
+
+.wrapper{
+	/*width: 100%;*/
+	position: absolute;
+
+    left: 50%;
+    top: 29%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    height: 300px;
+    background: #FFFFFF;
+    border: 1px solid #383434;
+    box-shadow: 7px 7px 39px rgb(70, 76, 79, 57%);
+    border-radius: 20px;
+    
+    margin: 0px;
+    padding: 88px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.title >h2{
+	margin-top: -45px;
+    text-align: center;
+    font-size: 25px;
+}
+.form-group1{
+	margin-top: 32px;
+	text-align: center;
+}
+.form-group1 > input{
+	margin-left: 39px;
+}
+.form-group2{
+	margin-top: 11px;
+	text-align: center;
+}
+
+.form-group2 > input{
+	margin-left: 55px;
+}
+.form-group3{
+	margin-top: 11px;
+	text-align: center;
+}
+
+.form-group3 > input{
+	margin-left: 18px;
+}
+
+/* 버튼 */
+.pwUpdate_button{
+	text-align: center;
+    margin-left: 190px;
+    margin-top: 25px;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+.cancle_button{
+	margin-left: 12px;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    background-color: gainsboro;
+    cursor: pointer;
+}

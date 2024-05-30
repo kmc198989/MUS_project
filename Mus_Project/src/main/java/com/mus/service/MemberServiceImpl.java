@@ -17,7 +17,9 @@ import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.JsonElement;
@@ -38,7 +40,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper mapper;
 	
-	private SqlSession sqlsession;
+	private BCryptPasswordEncoder pwEncoder;
 	
 	/* 회원가입 */
 	@Override
@@ -129,8 +131,8 @@ public class MemberServiceImpl implements MemberService {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 	        StringBuilder sb = new StringBuilder();
 	        sb.append("grant_type=authorization_code");
-	        sb.append("&client_id=1c708f7af76b7f87a9198d58ea20109c");  //발급받은 key
-	        sb.append("&redirect_uri=http://localhost:8080/member/login/auth_kakao");     // 본인이 설정해 놓은 redirect_uri 주소
+	        sb.append("&client_id=9ae60badd8feddaff2167169e12ee080");  //발급받은 key
+	        sb.append("&redirect_uri=http://localhost:8081/member/login/auth_kakao");     // 본인이 설정해 놓은 redirect_uri 주소
 	        sb.append("&code=" + authorize_code);
 	        bw.write(sb.toString());
 	        bw.flush();
@@ -200,24 +202,28 @@ public class MemberServiceImpl implements MemberService {
 			
 			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
 	        JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+	       
 	        System.out.println("properties : " + properties );
 	        System.out.println("kakao_account : " + kakao_account);
 	        String memberNickName = properties.getAsJsonObject().get("nickname").getAsString();
-	       //String memberKMail = kakao_account.getAsJsonObject().get("memberKMail").getAsString();
+	        String memberKMail = kakao_account.getAsJsonObject().get("email").getAsString();
+	        //Long memberKId = element.getAsJsonObject().get("id").getAsLong();
+	        
+	        //System.out.println("memberKId : " + memberKMail);
 	        System.out.println("NickName : " + memberNickName);
-	       // System.out.println("Kmail : " + memberKMail);
-	        //userInfo에 정보 저장
+	        System.out.println("Kmail : " + memberKMail);
+	        
+	        
 	        //userInfo.put("memberKId", memberKMail);
 	        userInfo.put("memberNickName", memberNickName);
-	        //userInfo.put("memberKMail", memberKMail);
+	        userInfo.put("memberKMail", memberKMail);
 	        
 	        logger.info(String.valueOf(userInfo));
-	        System.out.println("test...");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		MemberKakaoVO member = mapper.findkakao(userInfo);			// 이쪽에서 에러
+		MemberKakaoVO member = mapper.findkakao(userInfo);
 		//저장되어있는지 체크
 		logger.info("S : " + member);
 		
@@ -238,5 +244,47 @@ public class MemberServiceImpl implements MemberService {
 		return view;
 		
 	}
+	
+	/* 마이페이지 구현 */
+	@Override
+	public MemberVO memberInfo(String memberId) throws Exception {
+		MemberVO vo = new MemberVO();
+		
+		vo = mapper.memberInfo(memberId);
+		return vo;
+	}
+	
+	/* 비밀번호 변경 */
+	@Override
+	public String pwCheck(String memberId) throws Exception {
+		return mapper.pwCheck(memberId);
+	}
+	
+	/* 비밀번호 변경(POST) */
+	@Override
+	public void pwUpdate(String memberId, String memberPw) throws Exception {
+		mapper.pwUpdate(memberId, memberPw);
+	}
+	
+	/* 마이페이지 회원탈퇴 */
+	@Override
+	public void delete(String memberId) throws Exception {
+		mapper.delete(memberId);
+		
+	}
+	
+	/* 회원정보 수정 */
+	@Override
+	public void updateMember(String memberId, Model model) throws Exception {
+		model.addAttribute("member", mapper.memberInfo(memberId));
+	}
+	
+	/* 회원정보 수정(POST) */
+	@Override
+	public int modifySave(MemberVO vo) throws Exception {
+		return mapper.modifySave(vo);
+	}
+	
+	
 	
 }

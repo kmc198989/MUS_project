@@ -164,6 +164,13 @@
 
 </body>
 <script>
+	/* 댓글 페이지 정보 초기화 */
+	const cri = {
+		clothId : '${goodsInfo.clothId}',
+		pageNum : 1,
+		amount : 10
+	};
+
 	/* 이미지 삽입 */
 	const bobj = $(".image_wrap");
 
@@ -196,7 +203,7 @@
 		memberId : '${member.memberId}',
 		clothId : '${goodsInfo.clothId}',
 		clothCount : ''
-	}
+	};
 
 	$(".btn_cart").on("click", function(e) {
 		form.clothCount = $(".quantity_input").val();
@@ -223,7 +230,7 @@
 	}
 	
 	/* 포인트 삽입 */
-	let salePrice = "${goodsInfo.clothPrice - (goodsInfo.clothPrice*goodsInfo.clothDiscount)}"
+	let salePrice = "${goodsInfo.clothPrice - (goodsInfo.clothPrice*goodsInfo.clothDiscount)}";
 	let point = salePrice*0.05;
 	point = Math.floor(point);
 	$(".point_span").text(point);
@@ -231,15 +238,12 @@
 	/* 리뷰 리스트 출력 */
 	const clothId = '${goodsInfo.clothId}';	
 
-	$.getJSON("/reply/list", {clothId : clothId}, function(obj){
-		
+	$.getJSON("/reply/list", {clothId : clothId, pageNum: 1, amount: 10}, function(obj){
 		makeReplyContent(obj);
-		
 	});
 	
 	/* 리뷰쓰기 */
 	$(".reply_button_wrap").on("click", function(e){
-		
 		e.preventDefault();			
 
 		const memberId = '${member.memberId}';
@@ -254,17 +258,23 @@
 			type : 'POST',
 			success : function(result){
 				if(result === '1'){
-					alert("이미 등록된 리뷰가 존재 합니다.")
+					alert("이미 등록된 리뷰가 존재 합니다.");
 				} else if(result === '0'){
 					let popUrl = "/replyEnroll/" + memberId + "?clothId=" + clothId;
 					console.log(popUrl);
 					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
-					
 					window.open(popUrl,"리뷰 쓰기",popOption);							
 				}
 			}
 		});
 	});
+	
+	/* 댓글 데이터 서버 요청 및 댓글 동적 생성 메서드 */
+	let replyListInit = function(pageNum = 1){
+		$.getJSON("/reply/list", {clothId : clothId, pageNum : pageNum, amount : 10}, function(obj){
+			makeReplyContent(obj);
+		});	
+	}
 	
 	/* 댓글(리뷰) 동적 생성 메서드 */
 	function makeReplyContent(obj){
@@ -272,16 +282,13 @@
 			$(".reply_not_div").html('<span>리뷰가 없습니다.</span>');
 			$(".reply_content_ul").html('');
 			$(".pageMaker").html('');
-		} else{
-			
+		} else {
 			$(".reply_not_div").html('');
-			
 			const list = obj.list;
 			const pf = obj.pageInfo;
 			const userId = '${member.memberId}';		
 			
 			/* list */
-			
 			let reply_list = '';			
 			
 			$(list).each(function(i,obj){
@@ -308,39 +315,47 @@
 			$(".reply_content_ul").html(reply_list);			
 			
 			/* 페이지 버튼 */
-			
 			let reply_pageMaker = '';	
 			
-				/* prev */
-				if(pf.prev){
-					let prev_num = pf.pageStart -1;
-					reply_pageMaker += '<li class="pageMaker_btn prev">';
-					reply_pageMaker += '<a href="'+ prev_num +'">이전</a>';
-					reply_pageMaker += '</li>';	
+			/* prev */
+			if(pf.prev){
+				let prev_num = pf.pageStart -1;
+				reply_pageMaker += '<li class="pageMaker_btn prev">';
+				reply_pageMaker += '<a href="'+ prev_num +'" class="page-link">이전</a>';
+				reply_pageMaker += '</li>';	
+			}
+			/* numbre btn */
+			for(let i = pf.pageStart; i < pf.pageEnd+1; i++){
+				reply_pageMaker += '<li class="pageMaker_btn ';
+				if(pf.cri.pageNum === i){
+					reply_pageMaker += 'active';
 				}
-				/* numbre btn */
-				for(let i = pf.pageStart; i < pf.pageEnd+1; i++){
-					reply_pageMaker += '<li class="pageMaker_btn ';
-					if(pf.cri.pageNum === i){
-						reply_pageMaker += 'active';
-					}
-					reply_pageMaker += '">';
-					reply_pageMaker += '<a href="'+i+'">'+i+'</a>';
-					reply_pageMaker += '</li>';
-				}
-				/* next */
-				if(pf.next){
-					let next_num = pf.pageEnd +1;
-					reply_pageMaker += '<li class="pageMaker_btn next">';
-					reply_pageMaker += '<a href="'+ next_num +'">다음</a>';
-					reply_pageMaker += '</li>';	
-				}	
+				reply_pageMaker += '">';
+				reply_pageMaker += '<a href="'+i+'" class="page-link">'+i+'</a>';
+				reply_pageMaker += '</li>';
+			}
+			/* next */
+			if(pf.next){
+				let next_num = pf.pageEnd +1;
+				reply_pageMaker += '<li class="pageMaker_btn next">';
+				reply_pageMaker += '<a href="'+ next_num +'" class="page-link">다음</a>';
+				reply_pageMaker += '</li>';	
+			}	
 				
-			$(".pageMaker").html(reply_pageMaker);				
-			
+			$(".pageMaker").html(reply_pageMaker);
+
+			// 페이지 버튼 클릭 이벤트 추가
+			$(".page-link").on("click", function(e){
+				e.preventDefault();
+				let targetPage = $(this).attr("href");
+				replyListInit(targetPage);
+			});
 		}
 	}
 	
+	// 초기 페이지 로드
+	replyListInit();
+
 </script>
 
 

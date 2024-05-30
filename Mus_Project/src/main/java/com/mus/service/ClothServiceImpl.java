@@ -131,6 +131,7 @@ public class ClothServiceImpl implements ClothService {
 	// 상품 정보
 	@Override
 	public ClothVO getGoodsInfo(int clothId) {
+		log.info("clothImpl" + clothId);
 		ClothVO goodsInfo = clothmapper.getGoodsInfo(clothId);
 		goodsInfo.setImageList(adminmapper.getAttachInfo(clothId));
 		
