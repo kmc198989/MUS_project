@@ -182,10 +182,11 @@ a:visited {
 }
 .discount_price_number{
    font-weight: bold;
-   font-size: #000;
+   font-size: 20px;
+   text-decoration: underline;
 }
 .info{
-   margin-top: 15px;
+   margin-top: 0px;
 }
 .price-info{
    margin-bottom: 5px;
@@ -221,12 +222,15 @@ a:visited {
 .btn_buy:hover{
    background-color: #5087a1;
    color: white;
+   cursor: pointer;
 }
 /* 리뷰쓰기 버튼 */
 .reply_button_wrap {
    padding: 10px;
 }
-
+.top{
+   margin-top: 20px;
+}
 .reply_button_wrap button {
    background-color: #365fdd;
    color: white;

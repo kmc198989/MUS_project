@@ -3,22 +3,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mus.mapper.ReplyMapper">
 
-  	<!-- 댓글등록 -->
-  	<insert id="enrollReply">
-  	
-  		insert into mus_reply(clothId, memberId, content, rating) values(#{clothId}, #{memberId}, #{content}, #{rating})
-  		  	
-  	</insert>
+	<!-- 댓글등록 -->
+	<insert id="enrollReply">
 
-		<select id="checkReply" resultType="integer">
-	
-			select replyId from mus_reply 
-			where memberId = #{memberId} and clothId = #{clothId}
-	
-		</select>
+		insert into mus_reply(clothId, memberId, content, rating) values(#{clothId},
+		#{memberId}, #{content}, #{rating})
 
-  	<!-- 댓글 페이징 -->
-  	<select id="getReplyList" resultType="com.mus.model.ReplyDTO">
+	</insert>
+
+	<select id="checkReply" resultType="integer">
+
+		select replyId from mus_reply
+		where memberId = #{memberId} and clothId = #{clothId}
+
+	</select>
+
+	<!-- 댓글 페이징 -->
+	<select id="getReplyList" resultType="com.mus.model.ReplyDTO">
   	
   		<![CDATA[
 		select * from(  		
@@ -28,30 +29,37 @@
 			order by regDate desc  	
   			)
   		where rn > (#{pageNum} -1) * #{amount}
-  		]]>	
-  		
-  	</select>
-  	
-  	<select id="getReplyTotal" resultType="int">
-  	
-  		select count(*)
-  		from mus_reply
-  		where clothId = #{clothId}
-  	
-  	</select>
-  	
-  	<!-- 댓글수정 -->
-  	<update id="updateReply">
-  	
-  		update mus_reply set content = #{content}, rating = #{rating}
-  		where replyId = #{replyId}
-  		
-  	</update>
-  	
- 		<select id="getUpdateReply" resultType="com.mus.model.ReplyDTO">
-	
+  		]]>
+
+	</select>
+
+	<select id="getReplyTotal" resultType="int">
+
+		select count(*)
+		from mus_reply
+		where clothId = #{clothId}
+
+	</select>
+
+	<!-- 댓글수정 -->
+	<update id="updateReply">
+
+		update mus_reply set content = #{content}, rating = #{rating}
+		where replyId = #{replyId}
+
+	</update>
+	<select id="getUpdateReply" resultType="com.mus.model.ReplyDTO">
+
 		select * from mus_reply
 		where replyId = #{replyId}
-		
+
 	</select>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+
+		DELETE FROM mus_reply
+		WHERE replyId = #{replyId}
+
+	</delete>
 </mapper>

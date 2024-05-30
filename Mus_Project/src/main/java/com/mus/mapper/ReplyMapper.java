@@ -24,5 +24,8 @@ public interface ReplyMapper {
 	
 	// 댓글 한개 정보(수정 페이지)
 	public ReplyDTO getUpdateReply(int replyId);
+	
+	// 댓글 삭제
+	public int deleteReply(int replyId);
 
 }

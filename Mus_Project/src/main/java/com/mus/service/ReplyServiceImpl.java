@@ -70,4 +70,12 @@ public class ReplyServiceImpl implements ReplyService{
 		return replyMapper.getUpdateReply(replyId);
 	}
 	
+	// 댓글 삭제
+	@Override
+	public int deleteReply(ReplyDTO dto) {
+		
+		int result = replyMapper.deleteReply(dto.getReplyId());
+		
+		return result;
+	}
 }
