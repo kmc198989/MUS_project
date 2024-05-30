@@ -54,6 +54,20 @@ public class ReplyServiceImpl implements ReplyService{
 		return dto;
 	}
 	
+	// 댓글 수정
+	@Override
+	public int updateReply(ReplyDTO dto) {
+		
+		int result = replyMapper.updateReply(dto);
+		
+		return result;
+	}
 	
+	// 댓글 한개 정보(수정 페이지)
+	@Override
+	public ReplyDTO getUpdateReply(int replyId) {
+		
+		return replyMapper.getUpdateReply(replyId);
+	}
 	
 }

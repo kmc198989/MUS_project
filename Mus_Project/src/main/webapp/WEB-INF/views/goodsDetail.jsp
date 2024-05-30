@@ -77,32 +77,60 @@
 							<h4 class="productheader">
 								<strong class="stinfo">Product Info</strong>
 							</h4>
-							<p>브랜드: ${goodsInfo.brandName}</p>
-							<p>제품명: ${goodsInfo.clothName}</p>
-							<p>카테고리: ${goodsInfo.cateName}</p>
-							<div class="sale_price">
-								정가 :
-								<fmt:formatNumber value="${goodsInfo.clothPrice}"
-									pattern="#,### 원" />
-							</div>
+							<ul class="productul">
+								<li class="proli">
+									<div class="prodiv">
+										<span>브랜드 :</span>
+									</div>
+									<div class="prodiv2">${goodsInfo.brandName}</div>
+								</li>
+								<li class="proli">
+									<div class="prodiv">
+										<span>제품명 :</span>
+									</div>
+									<div class="prodiv2">${goodsInfo.clothName}</div>
+								</li>
+								<li class="proli">
+									<div class="prodiv">
+										<span>카테고리 :</span>
+									</div>
+									<div class="prodiv2">${goodsInfo.cateName}</div>
+								</li>
+								<li class="proli">
+									<div class="sale_price prodiv">
+										<span>정가 :</span>
+									</div>
+									<div class="prodiv2">
+										<span class="textwow"> <fmt:formatNumber
+												value="${goodsInfo.clothPrice}" pattern="#,### 원" /></span>
+									</div>
+								</li>
+								<li class="proli">
+									<div class="price-info info prodiv">
+										<span>판매가 :</span>
+									</div>
+									<div class="price-info info prodiv2">
+										<span class="discount_price_number"><fmt:formatNumber
+												value="${goodsInfo.clothPrice - (goodsInfo.clothPrice*goodsInfo.clothDiscount)}"
+												pattern="#,### 원" /></span> [<span class="wow"> <fmt:formatNumber
+												value="${goodsInfo.clothDiscount*100}" pattern="###" /> % <fmt:formatNumber
+												value="${goodsInfo.clothPrice*goodsInfo.clothDiscount}"
+												pattern="#,### 원" /> 할인
+										</span>]
+									</div>
+								</li>
+								<li class="proli">
+									<div class="price-info info prodiv">
+										<span>적립 포인트 : </span>
+									</div>
+									<div class="price-info info prodiv2">
+										<span class="point_span"></span>원
+									</div>
+								</li>
+							</ul>
 						</div>
 
-						<div class="price-info">
-							판매가 : <span class="discount_price_number"><fmt:formatNumber
-									value="${goodsInfo.clothPrice - (goodsInfo.clothPrice*goodsInfo.clothDiscount)}"
-									pattern="#,### 원" /></span> [
-							<fmt:formatNumber value="${goodsInfo.clothDiscount*100}"
-								pattern="###" />
-							%
-							<fmt:formatNumber
-								value="${goodsInfo.clothPrice*goodsInfo.clothDiscount}"
-								pattern="#,### 원" />
-							할인]
-						</div>
-						<div>
-							적립 포인트 : <span class="point_span"></span>원
-						</div>
-						<div class="button">
+						<div class="button info">
 							<div class="button_quantity">
 								주문수량 <input type="text" class="quantity_input" value="1">
 								<span>
@@ -132,26 +160,24 @@
 					<div class="reply_subject">
 						<h2>리뷰</h2>
 					</div>
-					
-					<c:if test="${member != null}">					
+
+					<c:if test="${member != null}">
 						<div class="reply_button_wrap">
 							<button>리뷰 쓰기</button>
 						</div>
 					</c:if>
-					
-					<div class="reply_not_div">
-						
-					</div>
+
+					<div class="reply_not_div"></div>
 					<ul class="reply_content_ul">
-						
-						
+
+
 					</ul>
 					<div class="repy_pageInfo_div">
 						<ul class="pageMaker">
-							
+
 						</ul>
 					</div>
-					
+
 				</div>
 
 				<section id="footer_section">
@@ -164,198 +190,137 @@
 
 </body>
 <script>
-	/* 댓글 페이지 정보 초기화 */
-	const cri = {
-		clothId : '${goodsInfo.clothId}',
-		pageNum : 1,
-		amount : 10
-	};
+   /* 이미지 삽입 */
+   const bobj = $(".image_wrap");
 
-	/* 이미지 삽입 */
-	const bobj = $(".image_wrap");
+   if (bobj.data("clothid")) {
+      const uploadPath = bobj.data("path");
+      const uuid = bobj.data("uuid");
+      const fileName = bobj.data("filename");
 
-	if (bobj.data("clothid")) {
-		const uploadPath = bobj.data("path");
-		const uuid = bobj.data("uuid");
-		const fileName = bobj.data("filename");
+      const fileCallPath = encodeURIComponent(uploadPath + "/" + uuid + "_"
+            + fileName);
 
-		const fileCallPath = encodeURIComponent(uploadPath + "/" + uuid + "_"
-				+ fileName);
+      bobj.find("img").attr('src', '/display?fileName=' + fileCallPath);
+   } else {
+      bobj.find("img").attr('src', '/resources/img/goodsNoImage.png');
+   }
 
-		bobj.find("img").attr('src', '/display?fileName=' + fileCallPath);
-	} else {
-		bobj.find("img").attr('src', '/resources/img/goodsNoImage.png');
-	}
+   // 수량 버튼 조작
+   let quantity = $(".quantity_input").val();
+   $(".plus_btn").on("click", function() {
+      $(".quantity_input").val(++quantity);
+   });
+   $(".minus_btn").on("click", function() {
+      if (quantity > 1) {
+         $(".quantity_input").val(--quantity);
+      }
+   });
 
-	// 수량 버튼 조작
-	let quantity = $(".quantity_input").val();
-	$(".plus_btn").on("click", function() {
-		$(".quantity_input").val(++quantity);
-	});
-	$(".minus_btn").on("click", function() {
-		if (quantity > 1) {
-			$(".quantity_input").val(--quantity);
-		}
-	});
+   // 서버로 전송할 데이터
+   const form = {
+      memberId : '${member.memberId}',
+      clothId : '${goodsInfo.clothId}',
+      clothCount : ''
+   }
 
-	// 서버로 전송할 데이터
-	const form = {
-		memberId : '${member.memberId}',
-		clothId : '${goodsInfo.clothId}',
-		clothCount : ''
-	};
+   $(".btn_cart").on("click", function(e) {
+      form.clothCount = $(".quantity_input").val();
+      $.ajax({
+         url : '/cart/add',
+         type : 'POST',
+         data : form,
+         success : function(result) {
+            cartAlert(result);
+         }
+      })
+   });
 
-	$(".btn_cart").on("click", function(e) {
-		form.clothCount = $(".quantity_input").val();
-		$.ajax({
-			url : '/cart/add',
-			type : 'POST',
-			data : form,
-			success : function(result) {
-				cartAlert(result);
-			}
-		})
-	});
+   function cartAlert(result) {
+      if (result == '0') {
+         alert("장바구니에 추가를 하지 못하였습니다.");
+      } else if (result == '1') {
+         alert("장바구니에 추가되었습니다.");
+      } else if (result == '2') {
+         alert("장바구니에 이미 추가되어져 있습니다.");
+      } else if (result == '5') {
+         alert("로그인이 필요합니다.");
+      }
+   }
+   
+   /* 포인트 삽입 */
+   let salePrice = "${goodsInfo.clothPrice - (goodsInfo.clothPrice*goodsInfo.clothDiscount)}"
+   let point = salePrice*0.05;
+   point = Math.floor(point);
+   $(".point_span").text(point);
+   
+   /* 리뷰 리스트 출력 */
+   const clothId = '${goodsInfo.clothId}';   
 
-	function cartAlert(result) {
-		if (result == '0') {
-			alert("장바구니에 추가를 하지 못하였습니다.");
-		} else if (result == '1') {
-			alert("장바구니에 추가되었습니다.");
-		} else if (result == '2') {
-			alert("장바구니에 이미 추가되어져 있습니다.");
-		} else if (result == '5') {
-			alert("로그인이 필요합니다.");
-		}
-	}
-	
-	/* 포인트 삽입 */
-	let salePrice = "${goodsInfo.clothPrice - (goodsInfo.clothPrice*goodsInfo.clothDiscount)}";
-	let point = salePrice*0.05;
-	point = Math.floor(point);
-	$(".point_span").text(point);
-	
-	/* 리뷰 리스트 출력 */
-	const clothId = '${goodsInfo.clothId}';	
+   $.getJSON("/reply/list", {clothId : clothId}, function(obj){
+      
+      if(obj.list.length === 0){
+         $(".reply_not_div").html('<span>리뷰가 없습니다.</span>');
+         $(".reply_content_ul").html('');
+         $(".pageMaker").html('');
+      } else{
+         
+      }
+      
+   });
+   
+   /* 리뷰쓰기 */
+   $(".reply_button_wrap").on("click", function(e){
+      
+      e.preventDefault();         
 
-	$.getJSON("/reply/list", {clothId : clothId, pageNum: 1, amount: 10}, function(obj){
-		makeReplyContent(obj);
-	});
-	
-	/* 리뷰쓰기 */
-	$(".reply_button_wrap").on("click", function(e){
-		e.preventDefault();			
-
-		const memberId = '${member.memberId}';
-		const clothId = '${goodsInfo.clothId}';
-		
-		$.ajax({
-			data : {
-				clothId : clothId,
-				memberId : memberId
-			},
-			url : '/reply/check',
-			type : 'POST',
-			success : function(result){
-				if(result === '1'){
-					alert("이미 등록된 리뷰가 존재 합니다.");
-				} else if(result === '0'){
-					let popUrl = "/replyEnroll/" + memberId + "?clothId=" + clothId;
-					console.log(popUrl);
-					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
-					window.open(popUrl,"리뷰 쓰기",popOption);							
-				}
-			}
-		});
-	});
-	
-	/* 댓글 데이터 서버 요청 및 댓글 동적 생성 메서드 */
-	let replyListInit = function(pageNum = 1){
-		$.getJSON("/reply/list", {clothId : clothId, pageNum : pageNum, amount : 10}, function(obj){
-			makeReplyContent(obj);
-		});	
-	}
-	
-	/* 댓글(리뷰) 동적 생성 메서드 */
-	function makeReplyContent(obj){
-		if(obj.list.length === 0){
-			$(".reply_not_div").html('<span>리뷰가 없습니다.</span>');
-			$(".reply_content_ul").html('');
-			$(".pageMaker").html('');
-		} else {
-			$(".reply_not_div").html('');
-			const list = obj.list;
-			const pf = obj.pageInfo;
-			const userId = '${member.memberId}';		
-			
-			/* list */
-			let reply_list = '';			
-			
-			$(list).each(function(i,obj){
-				reply_list += '<li>';
-				reply_list += '<div class="comment_wrap">';
-				reply_list += '<div class="reply_top">';
-				/* 아이디 */
-				reply_list += '<span class="id_span">'+ obj.memberId+'</span>';
-				/* 날짜 */
-				reply_list += '<span class="date_span">'+ obj.regDate +'</span>';
-				/* 평점 */
-				reply_list += '<span class="rating_span">평점 : <span class="rating_value_span">'+ obj.rating +'</span>점</span>';
-				if(obj.memberId === userId){
-					reply_list += '<a class="update_reply_btn" href="'+ obj.replyId +'">수정</a><a class="delete_reply_btn" href="'+ obj.replyId +'">삭제</a>';
-				}
-				reply_list += '</div>'; //<div class="reply_top">
-				reply_list += '<div class="reply_bottom">';
-				reply_list += '<div class="reply_bottom_txt">'+ obj.content +'</div>';
-				reply_list += '</div>';//<div class="reply_bottom">
-				reply_list += '</div>';//<div class="comment_wrap">
-				reply_list += '</li>';
-			});		
-			
-			$(".reply_content_ul").html(reply_list);			
-			
-			/* 페이지 버튼 */
-			let reply_pageMaker = '';	
-			
-			/* prev */
-			if(pf.prev){
-				let prev_num = pf.pageStart -1;
-				reply_pageMaker += '<li class="pageMaker_btn prev">';
-				reply_pageMaker += '<a href="'+ prev_num +'" class="page-link">이전</a>';
-				reply_pageMaker += '</li>';	
-			}
-			/* numbre btn */
-			for(let i = pf.pageStart; i < pf.pageEnd+1; i++){
-				reply_pageMaker += '<li class="pageMaker_btn ';
-				if(pf.cri.pageNum === i){
-					reply_pageMaker += 'active';
-				}
-				reply_pageMaker += '">';
-				reply_pageMaker += '<a href="'+i+'" class="page-link">'+i+'</a>';
-				reply_pageMaker += '</li>';
-			}
-			/* next */
-			if(pf.next){
-				let next_num = pf.pageEnd +1;
-				reply_pageMaker += '<li class="pageMaker_btn next">';
-				reply_pageMaker += '<a href="'+ next_num +'" class="page-link">다음</a>';
-				reply_pageMaker += '</li>';	
-			}	
-				
-			$(".pageMaker").html(reply_pageMaker);
-
-			// 페이지 버튼 클릭 이벤트 추가
-			$(".page-link").on("click", function(e){
-				e.preventDefault();
-				let targetPage = $(this).attr("href");
-				replyListInit(targetPage);
-			});
-		}
-	}
-	
-	// 초기 페이지 로드
-	replyListInit();
-
+      const memberId = '${member.memberId}';
+      const clothId = '${goodsInfo.clothId}';
+      
+      $.ajax({
+         data : {
+            clothId : clothId,
+            memberId : memberId
+         },
+         url : '/reply/check',
+         type : 'POST',
+         success : function(result){
+            if(result === '1'){
+               alert("이미 등록된 리뷰가 존재 합니다.")
+            } else if(result === '0'){
+               let popUrl = "/replyEnroll/" + memberId + "?clothId=" + clothId;
+               console.log(popUrl);
+               let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+               
+               window.open(popUrl,"리뷰 쓰기",popOption);                     
+            }
+         }
+      });
+      
+      
+      
+   /*
+      let popUrl = "/replyEnroll/" + memberId + "?clothId=" + clothId;
+      console.log(popUrl);
+      let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
+      
+      window.open(popUrl,"리뷰 쓰기",popOption);
+   */
+   
+  	/* 리뷰 수정 버튼 */
+ 	 $(document).on('click', '.update_reply_btn', function(e){
+ 			
+ 			e.preventDefault();
+ 			let replyId = $(this).attr("href");		 
+ 			let popUrl = "/replyUpdate?replyId=" + replyId + "&clothId=" + '${goodsInfo.clothId}' + "&memberId=" + '${member.memberId}';	
+ 			let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes"	
+ 			
+ 			window.open(popUrl,"리뷰 수정",popOption);			
+ 		 
+ 	 });
+   
+   });
+   
 </script>
 
 

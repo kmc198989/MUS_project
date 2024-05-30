@@ -131,8 +131,8 @@ public class MemberServiceImpl implements MemberService {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 	        StringBuilder sb = new StringBuilder();
 	        sb.append("grant_type=authorization_code");
-	        sb.append("&client_id=9ae60badd8feddaff2167169e12ee080");  //발급받은 key
-	        sb.append("&redirect_uri=http://localhost:8081/member/login/auth_kakao");     // 본인이 설정해 놓은 redirect_uri 주소
+	        sb.append("&client_id=1c708f7af76b7f87a9198d58ea20109c");  //발급받은 key
+	        sb.append("&redirect_uri=http://localhost:8080/member/login/auth_kakao");     // 본인이 설정해 놓은 redirect_uri 주소
 	        sb.append("&code=" + authorize_code);
 	        bw.write(sb.toString());
 	        bw.flush();
@@ -143,7 +143,7 @@ public class MemberServiceImpl implements MemberService {
 	      System.out.println("responseCode : " + responseCode + "확인");
 	      
 	      //요청을 통해 얻은 JSON타입의 response 메세지 읽어오기
-	      BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	      BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));			
 	      String line = "";
 	      String result = "";
 	      
@@ -214,9 +214,9 @@ public class MemberServiceImpl implements MemberService {
 	        System.out.println("Kmail : " + memberKMail);
 	        
 	        
-	        //userInfo.put("memberKId", memberKMail);
+	        userInfo.put("memberId", memberKMail);
 	        userInfo.put("memberNickName", memberNickName);
-	        userInfo.put("memberKMail", memberKMail);
+	        userInfo.put("memberMail", memberKMail);
 	        
 	        logger.info(String.valueOf(userInfo));
 		}catch (Exception e) {
@@ -229,7 +229,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(member == null) {
 			mapper.kakaoinsert(userInfo);
-			member = mapper.selectKMember((String)userInfo.get("memberKId"));
+			member = mapper.selectKMember((String)userInfo.get("memberNickName"));
 			session.setAttribute("member", member);
 			
 			//로그인 처리후 메인 페이지로 이동
@@ -251,6 +251,16 @@ public class MemberServiceImpl implements MemberService {
 		MemberVO vo = new MemberVO();
 		
 		vo = mapper.memberInfo(memberId);
+		return vo;
+	}
+	
+	/* 마이페이지 구현(카카오)*/
+	@Override
+	public MemberKakaoVO memberKInfo(String memberId) throws Exception {
+		MemberKakaoVO vo = new MemberKakaoVO();
+		
+		vo = mapper.memberKInfo(memberId);
+		
 		return vo;
 	}
 	

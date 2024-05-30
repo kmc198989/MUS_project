@@ -39,4 +39,19 @@
   		where clothId = #{clothId}
   	
   	</select>
+  	
+  	<!-- 댓글수정 -->
+  	<update id="updateReply">
+  	
+  		update mus_reply set content = #{content}, rating = #{rating}
+  		where replyId = #{replyId}
+  		
+  	</update>
+  	
+ 		<select id="getUpdateReply" resultType="com.mus.model.ReplyDTO">
+	
+		select * from mus_reply
+		where replyId = #{replyId}
+		
+	</select>
 </mapper>

@@ -9,21 +9,22 @@ public class MemberKakaoVO {
 	memberKMail varchar2(100) not null,
 	*/
 	
-	private String memberKId;
-	private String memberKPw;
+	private String memberId;
+	private String memberPw;
 	private String memberNickName;
-	private String memberKMail;
-	public String getMemberKId() {
-		return memberKId;
+	private String memberMail;
+	
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setMemberKId(String memberKId) {
-		this.memberKId = memberKId;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public String getMemberKPw() {
-		return memberKPw;
+	public String getMemberPw() {
+		return memberPw;
 	}
-	public void setMemberKPw(String memberKPw) {
-		this.memberKPw = memberKPw;
+	public void setMemberPw(String memberPw) {
+		this.memberPw = memberPw;
 	}
 	public String getMemberNickName() {
 		return memberNickName;
@@ -32,16 +33,17 @@ public class MemberKakaoVO {
 		this.memberNickName = memberNickName;
 	}
 	public String getMemberKMail() {
-		return memberKMail;
+		return memberMail;
 	}
 	public void setMemberKMail(String memberKMail) {
-		this.memberKMail = memberKMail;
+		this.memberMail = memberKMail;
 	}
 	@Override
 	public String toString() {
-		return "MemberKakaoVO [memberKId=" + memberKId + ", memberKPw=" + memberKPw + ", memberNickName="
-				+ memberNickName + ", memberKMail=" + memberKMail + "]";
+		return "MemberKakaoVO [memberId=" + memberId + ", memberPw=" + memberPw + ", memberNickName=" + memberNickName
+				+ ", memberKMail=" + memberMail + "]";
 	}
-
+	
+	
 	
 }

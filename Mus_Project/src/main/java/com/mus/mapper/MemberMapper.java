@@ -41,6 +41,9 @@ public interface MemberMapper {
 	//마이페이지 구현
 	public MemberVO memberInfo(String memberId) throws Exception;
 	
+	//마이페이지 구현(카카오)
+	public MemberKakaoVO memberKInfo(String memberId) throws Exception;
+	
 	//비밀번호 변경
 	public String pwCheck(String memberId) throws Exception;
 	

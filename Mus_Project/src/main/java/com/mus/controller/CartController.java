@@ -42,6 +42,8 @@ public class CartController {
 	@GetMapping("/cart/{memberId}")
 	public String cartPageGET(@PathVariable("memberId") String memberId, Model model) {
 		
+		System.out.println("cartController + " + memberId);
+		
 		model.addAttribute("cartInfo", cartService.getCartList(memberId));
 		
 		return "/cart";

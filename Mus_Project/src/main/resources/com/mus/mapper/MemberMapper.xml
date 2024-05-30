@@ -35,8 +35,8 @@
 		parameterType="HashMap"> select * from mus_kakao where
 		memberNickName=#{memberNickName, jdbcType=VARCHAR} </select>
 	<!-- 카카오로 회원가입 -->
-	<insert id="kakaoinsert"> insert into mus_kakao values(null, null,
-		#{memberNickName}, #{memberKMail}) </insert>
+	<insert id="kakaoinsert"> insert into mus_kakao values(#{memberMail}, null,
+		#{memberNickName}, #{memberMail}) </insert>
 	<!-- 카카오 데이터 조회 -->
 	<select id="selectKMember"
 		resultType="com.mus.model.MemberKakaoVO"> select * from mus_kakao where

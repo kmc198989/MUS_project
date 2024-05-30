@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mus.model.MemberKakaoVO;
 import com.mus.model.MemberVO;
 
 public interface MemberService {
@@ -35,7 +36,10 @@ public interface MemberService {
 	public String getuserinfo(String access_Token, HttpSession session, RedirectAttributes rttr);
 	
 	//마이페이지 구현
-	public MemberVO memberInfo(String memberId) throws Exception;
+	public MemberVO memberInfo(String memberId) throws Exception;	
+	
+	//마이페이지 구현(카카오)
+	public MemberKakaoVO memberKInfo(String memberId) throws Exception;
 	
 	//비밀번호 변경
 	public String pwCheck(String memberId) throws Exception;

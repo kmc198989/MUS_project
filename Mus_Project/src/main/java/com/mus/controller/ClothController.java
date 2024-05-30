@@ -25,8 +25,10 @@ import com.mus.model.CateVO;
 import com.mus.model.ClothVO;
 import com.mus.model.Criteria;
 import com.mus.model.PageDTO;
+import com.mus.model.ReplyDTO;
 import com.mus.service.AttachService;
 import com.mus.service.ClothService;
+import com.mus.service.ReplyService;
 
 @Controller
 public class ClothController {
@@ -42,6 +44,8 @@ public class ClothController {
 	@Autowired
 	private AttachService attachservice;
 	
+	@Autowired
+	private ReplyService replyService;
 	
 	// 상품 검색	
 	@GetMapping("/search")
@@ -148,4 +152,14 @@ public class ClothController {
 		return "/replyEnroll";
 	}
 	
+	// 리뷰 수정 팝업창
+	@GetMapping("/replyUpdate")
+	public String replyUpdateWindowGET(ReplyDTO dto, Model model) {
+		ClothVO cloth = clothservice.getClothIdName(dto.getclothId());
+		model.addAttribute("clothInfo", cloth);
+		model.addAttribute("replyInfo", replyService.getUpdateReply(dto.getReplyId()));
+		model.addAttribute("memberId", dto.getMemberId());
+		
+		return "/replyUpdate";
+	}
 }

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mus.model.MemberKakaoVO;
 import com.mus.model.MemberVO;
 import com.mus.service.MemberService;
 import com.mus.util.MailUtil;
@@ -235,11 +236,7 @@ public class MemberController {
 
 		
         sessionStatus.setComplete(); // 세션 무효화
-		
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate(); // 세션 자체를 무효화
-        }
+
 		return "redirect:/main";
 	}
 	
@@ -251,10 +248,6 @@ public class MemberController {
 	    
         sessionStatus.setComplete(); // 세션 무효화
 
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate(); // 세션 자체를 무효화
-        }
 	    return "success"; // 성공 메시지 반환
 	}
 	
@@ -266,7 +259,7 @@ public class MemberController {
 		logger.info("카카오페이지 진입");
 		
 		String reqUrl = 
-				"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=9ae60badd8feddaff2167169e12ee080&redirect_uri=http://localhost:8081/member/login/auth_kakao";
+				"https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=1c708f7af76b7f87a9198d58ea20109c&redirect_uri=http://localhost:8080/member/login/auth_kakao";
 		
 		return reqUrl;
 	}
@@ -287,11 +280,32 @@ public class MemberController {
 	/* 회원 마이페이지(GET) */
 	@RequestMapping(value="/mypage", method=RequestMethod.GET)
 	public String myInfo(HttpSession session, Model model) throws Exception {
-		MemberVO vo = (MemberVO)session.getAttribute("member");
-		String memberId = vo.getMemberId();
+		
+		Object vo = session.getAttribute("member");
+		
+		String memberId;
+		
+		if (vo instanceof MemberVO) {
+		    // sessionMember가 MemberVO 타입인 경우
+		    MemberVO member = (MemberVO) vo;
+		    // MemberVO 타입 객체에 대한 로직 처리
+		    System.out.println("MemberVO: " + member.getMemberId());
+			memberId = member.getMemberId();
+			vo = memberservice.memberInfo(memberId);
+
+
+		} else if (vo instanceof MemberKakaoVO) {
+		    // sessionMember가 MemberKakaoVO 타입인 경우
+		    MemberKakaoVO member = (MemberKakaoVO) vo;
+		    // MemberKakaoVO 타입 객체에 대한 로직 처리
+		    System.out.println("MemberKakaoVO: " + member.getMemberId());
+			memberId = member.getMemberId();
+			vo = memberservice.memberInfo(memberId);
+
+		}
+		
 		
 		//System.out.println(memberId);
-		vo = memberservice.memberInfo(memberId);
 		model.addAttribute("member", vo);
 		//System.out.println(vo);
 		

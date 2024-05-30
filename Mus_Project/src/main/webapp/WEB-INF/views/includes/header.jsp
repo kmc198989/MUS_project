@@ -45,6 +45,7 @@
 					<li><a href="/member/mypage">마이룸</a></li>
 					<li><a href="/cart/${member.memberId}">장바구니</a></li>
 				</c:if>
+				
 				<li>고객센터</li>
 			</ul>
 		</div>
