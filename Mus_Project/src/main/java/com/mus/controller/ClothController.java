@@ -51,13 +51,6 @@ public class ClothController {
 	@GetMapping("/search")
 	public void searchGoodsGET(Criteria cri, Model model) {
 		logger.info("search 페이지 진입");
-		cri.setAmount(100);
-
-
-		PageDTO pageMaker = new PageDTO(cri, clothservice.goodsGetTotal(cri));
-		System.out.println("search pageMaker + " + pageMaker);
-		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("filter_info", clothservice.getCateInfoList(cri));
 	}
 	
 	
@@ -67,15 +60,18 @@ public class ClothController {
 		cri.setAmount(100);
 		System.out.println("searchtool + " + cri.getCateCode());
 		
-
-
-		
 		// 검색 기능
 		logger.info("before cri : " + cri);
 		
 		List<ClothVO> list = clothservice.getGoodsList(cri);
 		logger.info("after cri : " + cri);
 		logger.info("pre list : " + list);
+		
+		PageDTO pageMaker = new PageDTO(cri, clothservice.goodsGetTotal(cri));
+		System.out.println("search pageMaker + " + pageMaker);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("filter_info", clothservice.getCateInfoList(cri));
+
 		if (!list.isEmpty()) {
 			model.addAttribute("list", list);
 			logger.info("list : " + list);			
