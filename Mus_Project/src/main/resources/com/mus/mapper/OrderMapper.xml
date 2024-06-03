@@ -8,7 +8,8 @@
 		resultType="com.mus.model.OrderPageItemDTO">
 
 		select clothId, clothName, clothPrice, clothDiscount
-		from mus_cloth where
+		from
+		mus_cloth where
 		clothId = #{clothId}
 
 	</select>
@@ -17,7 +18,8 @@
 		resultType="com.mus.model.OrderItemDTO">
 
 		select clothId, clothPrice, clothDiscount
-		from mus_cloth where clothId =
+		from mus_cloth
+		where clothId =
 		#{clothId}
 
 	</select>
@@ -25,8 +27,10 @@
 	<!-- 주문 테이블 등록 -->
 	<insert id="enrollOrder">
 
-		insert into mus_order(orderId, addressee, memberId, memberAddr1,
-		memberAddr2, memberAddr3, orderState, deliveryCost, usePoint)
+		insert into mus_order(orderId, addressee, memberId,
+		memberAddr1,
+		memberAddr2, memberAddr3, orderState, deliveryCost,
+		usePoint)
 		values(#{orderId},#{addressee}, #{memberId}, #{memberAddr1},
 		#{memberAddr2}, #{memberAddr3}, '배송준비', #{deliveryCost}, #{usePoint})
 
@@ -35,17 +39,21 @@
 	<!-- 주문 아이템 테이블 등록 -->
 	<insert id="enrollOrderItem">
 
-		insert into mus_orderItem(orderId, clothId, clothCount, clothPrice,
+		insert into mus_orderItem(orderId, clothId,
+		clothCount, clothPrice,
 		clothDiscount, savePoint)
-		values(#{orderId}, #{clothId}, #{clothCount},
-		#{clothPrice}, #{clothDiscount}, #{savePoint})
+		values(#{orderId},
+		#{clothId}, #{clothCount},
+		#{clothPrice}, #{clothDiscount},
+		#{savePoint})
 
 	</insert>
 
 	<!-- 주문 금액 차감 -->
 	<update id="deductMoney">
 
-		update mus_member set money = #{money}, point = #{point} where memberid =
+		update mus_member set money = #{money}, point =
+		#{point} where memberid =
 		#{memberId}
 
 	</update>
@@ -53,19 +61,26 @@
 	<!-- 주문 재고 차감 -->
 	<update id="deductStock">
 
-		update mus_cloth set clothStock = #{clothStock} where clothId = #{clothId}
+		update mus_cloth set clothStock = #{clothStock} where
+		clothId = #{clothId}
 
 	</update>
 
 	<!-- 주문취소 -->
 	<update id="orderCancle"> update mus_order set orderState = '주문취소' where
-		orderId = #{orderId} </update>
+		orderId = #{orderId}
+	</update>
 	<!-- 주문 상품 정보(주문취소) -->
 	<select id="getOrderItemInfo"
 		resultType="com.mus.model.OrderItemDTO"> select * from mus_orderItem where orderId = #{orderId}
 	</select>
 	<!-- 주문 정보(주문 취소) -->
 	<select id="getOrder" resultType="com.mus.model.OrderDTO"> select * from mus_order where
-		orderId = #{orderId} </select>
+		orderId = #{orderId}
+	</select>
 
+	<!-- 카카오페이 주문 -->
+	<insert id="saveOrder"> insert into mus_payment(payMathod, payCode,
+		paymentClassName) values(#{payMathod}, #{payCode},
+		#{paymentClassName}) </insert>
 </mapper>

@@ -234,6 +234,7 @@
 						<!-- 버튼 영역 -->
 						<div class="total_info_btn_div">
 							<a class="order_btn">결제하기</a>
+							<button type="button" class="kakaopay_btn">카카오페이</button>
 						</div>
 						
 						<!-- 주문 요청 form -->
@@ -505,6 +506,49 @@ function setTotalInfo(){
 	});
 	
 }
+
+// 카카오결제
+$(function(){
+	$(".kakaopay_btn").click(function(){
+		alert("kakaopay 스크립트진입");
+		// 필수입력값을 확인.
+		var name = $("#form-payment input[name='pay-name']").val();
+		var tel = $("#form-payment input[name='pay-tel']").val();
+		var email = $("#form-payment input[name='pay-email']").val();
+		
+		if(name == ""){
+			$("#form-payment input[name='pay-name']").focus();
+		}
+		if(tel == ""){
+			$("#form-payment input[name='pay-tel']").focus();
+		}
+		if(email == ""){
+			$("#form-payment input[name='pay-email']").focus();
+		}
+		
+		// 결제 정보를 form에 저장한다.
+		let usePoint = $("#point-use").val();
+		let useUserCouponNo = $(":radio[name='userCoupon']:checked").val();
+		
+		// 카카오페이 결제전송
+		$.ajax({
+			type:'get'
+			,url:'/order/kakaoPay'
+			,data:{
+				,payUserName: name
+				,sumPrice:totalPrice
+				,memberPhone:tel
+				,memberMail:email
+				,Point:usePoint	
+				
+			},
+			success:function(response){
+				location.href = response.next_redirect_pc_url			
+			}
+		});
+	});
+});
+
 </script>
 
 </body>

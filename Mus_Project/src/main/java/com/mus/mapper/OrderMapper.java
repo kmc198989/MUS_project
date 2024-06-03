@@ -7,6 +7,7 @@ import com.mus.model.MemberVO;
 import com.mus.model.OrderDTO;
 import com.mus.model.OrderItemDTO;
 import com.mus.model.OrderPageItemDTO;
+import com.mus.model.kakaoPayModel.Payment;
 
 public interface OrderMapper {
 	
@@ -36,4 +37,7 @@ public interface OrderMapper {
 	
 	/* 주문 정보(주문취소) */
 	public OrderDTO getOrder(String orderId);
+	
+	/* 카카오페이 saveOrder */
+	public void saveOrder(Payment payment);
 }

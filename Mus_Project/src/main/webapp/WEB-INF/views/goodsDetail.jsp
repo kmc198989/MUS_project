@@ -59,7 +59,7 @@
                         data-path="${goodsInfo.imageList[0].uploadPath}"
                         data-uuid="${goodsInfo.imageList[0].uuid}"
                         data-filename="${goodsInfo.imageList[0].fileName}">
-                        <img>
+                        <img style="width:500px; height:500px">
                      </div>
                   </div>
                   <div class="goods-detail line"></div>
@@ -219,7 +219,7 @@ $(document).ready(function(){
 		const uuid = bobj.data("uuid");
 		const fileName = bobj.data("filename");
 		
-		const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+		const fileCallPath = encodeURIComponent(uploadPath + "/" + uuid + "_" + fileName);
 		
 		bobj.find("img").attr('src', '/display?fileName=' + fileCallPath);
 	} else {
