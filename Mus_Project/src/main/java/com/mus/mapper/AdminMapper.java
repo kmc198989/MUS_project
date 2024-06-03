@@ -3,10 +3,11 @@ package com.mus.mapper;
 import java.util.List;
 
 import com.mus.model.AttachImageVO;
-import com.mus.model.ClothVO;
 import com.mus.model.CateVO;
+import com.mus.model.ClothVO;
 import com.mus.model.Criteria;
 import com.mus.model.MemberVO;
+import com.mus.model.OrderDTO;
 
 public interface AdminMapper {
 	// 상품 등록
@@ -35,6 +36,12 @@ public interface AdminMapper {
 	
 	// 지정 상품 이미지 전체 삭제
 	public void deleteImageAll(int clothId);
+	
+	// 주문 상품 리스트
+	public List<OrderDTO> getOrderList(Criteria cri);	
+	
+	// 주문 총 갯수
+	public int getOrderTotal(Criteria cri);
 	
 	// 어제자 날짜 이미지 리스트
 	public List<AttachImageVO> checkFileList();

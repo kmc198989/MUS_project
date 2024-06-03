@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>searchtool</title>
 <link rel="stylesheet" href="/resources/css/search.css">
 <link rel="stylesheet" href="/resources/css/main.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -15,9 +15,8 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-
-<div>
-	<ul class="main_div">
+<div class="main_div2 content_area">
+	<ul>
 		<c:if test="${listcheck != 'empty'}">
 
 			<c:forEach items="${list}" var="list">
@@ -33,8 +32,8 @@
 					</div>
 					<div class="icon_group">
 						<ul>
-							<li class="icon_man sight_out" title="남성">남성</li>
-							<li class="icon_woman sight_out" title="여성">여성</li>
+							<li class="icon_man sight_out" title="남성"></li>
+							<li class="icon_woman sight_out" title="여성"></li>
 						</ul>
 					</div>
 					<!-- 이미지 -->					
@@ -82,11 +81,11 @@
 							</div>
 							<p class="point">
 								<span class="img-score">
-									<span class="bar"	style="width: 95%"></span>
+									<span class="bar"	style="width:                      
+									${list.ratingAvg*20}%"></span>
 								</span> 
-								<span class="count">3,041</span>
+								<span class="count">${list.ratingCount}</span>
 							</p>
-
 							<p class="txt_cnt_like" data-goodsno="2289283"
 								data-gtm-vis-first-on-screen11584968_1136="1736"
 								data-gtm-vis-total-visible-time11584968_1136="100"
@@ -99,7 +98,7 @@
 								data-gtm-vis-has-fired11584968_1453="1">
 								<img
 									src="//image.msscdn.net/skin/musinsa/images/icon_like_small_on.png"
-									alt="좋아요"> 15,778
+									alt="좋아요"> ${list.likes}
 							</p>
 						</div>
 				</li>
@@ -111,7 +110,6 @@
 			<div class="table_empty">검색결과가 없습니다.</div>
 		</c:if>
 	</ul>
-	</div>
 <!-- 페이지 이동 인터페이스 -->
 	<div class="pageMaker_wrap">
 		<ul class="pageMaker">
@@ -146,7 +144,7 @@
 		<input type="hidden" name="cateCode" value="<c:out value="${pageMaker.cri.cateCode}"/>">
 		<input type="hidden" name="type" value="${pageMaker.cri.type}">
 	</form>
-
+</div>
 <script>
 /* 페이지 이동 버튼 */
 const moveForm = $('#moveForm');

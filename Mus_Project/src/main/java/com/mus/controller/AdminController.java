@@ -35,15 +35,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mus.mapper.AttachMapper;
 import com.mus.model.AttachImageVO;
-import com.mus.model.SellerVO;
 import com.mus.model.ClothVO;
 import com.mus.model.Criteria;
 import com.mus.model.MemberVO;
+import com.mus.model.OrderCancelDTO;
+import com.mus.model.OrderDTO;
 import com.mus.model.PageDTO;
+import com.mus.model.SellerVO;
 import com.mus.service.AdminService;
-import com.mus.service.MemberService;
+import com.mus.service.OrderService;
 import com.mus.service.SellerService;
 
 import net.coobird.thumbnailator.Thumbnails;
@@ -61,6 +62,9 @@ public class AdminController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	// 관리자 메인 페이지 이동
 	@RequestMapping(value = "main", method = RequestMethod.GET)
@@ -486,4 +490,31 @@ public class AdminController {
 	      String num = Integer.toString(checkNum);
 	      return num;
     }
+    
+    /* 주문 현황 페이지 */
+	@GetMapping("/orderList")
+	public String orderListGET(Criteria cri, Model model) {
+
+		List<OrderDTO> list = adminService.getOrderList(cri);
+		
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			model.addAttribute("pageMaker", new PageDTO(cri, adminService.getOrderTotal(cri)));
+		} else {
+			model.addAttribute("listCheck", "empty");
+		}
+		
+		return "/admin/orderList";
+	}
+	
+	/* 주문삭제 */
+	@PostMapping("/orderCancle")
+	public String orderCanclePOST(OrderCancelDTO dto) {
+		
+		orderService.orderCancle(dto);
+		
+		return "redirect:/admin/orderList?keyword=" + dto.getKeyword() + "&amount=" + dto.getAmount() + "&pageNum=" + dto.getPageNum();
+	}
 }
+
+

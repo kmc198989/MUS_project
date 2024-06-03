@@ -56,7 +56,8 @@
 	<mybatis-spring:scan base-package="com.mus.mapper"/>
 	<context:component-scan base-package="com.mus.model" />
 	<context:component-scan base-package="com.mus.service" />
-	<context:component-scan base-package="com.mus.task"></context:component-scan>
+	<context:component-scan base-package="com.mus.task">	
+	</context:component-scan>
 	
 
 	

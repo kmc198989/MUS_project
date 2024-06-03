@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mus.mapper.AdminMapper;
-import com.mus.mapper.MemberMapper;
 import com.mus.model.AttachImageVO;
 import com.mus.model.CateVO;
 import com.mus.model.ClothVO;
 import com.mus.model.Criteria;
 import com.mus.model.MemberVO;
+import com.mus.model.OrderDTO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -20,7 +20,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class AdminServiceImpl implements AdminService {
 	@Autowired
-	private AdminMapper adminMapper;
+	private AdminMapper adminMapper;	
+
 
 	// 상품 등록
 	@Transactional
@@ -98,6 +99,18 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.getAttachInfo(clothId);
 	}
 
+	// 주문 상품 리스트
+	@Override
+	public List<OrderDTO> getOrderList(Criteria cri) {
+		return adminMapper.getOrderList(cri);
+	}
+	
+	// 주문 총 갯수
+	@Override
+	public int getOrderTotal(Criteria cri) {
+		return adminMapper.getOrderTotal(cri);
+	}
+	
 	// 회원 리스트
 	@Override
 	public List<MemberVO> membersGetList(Criteria cri) {
@@ -139,5 +152,6 @@ public class AdminServiceImpl implements AdminService {
 		log.info("(service)memberGetDetail......." + memberId);
 		return adminMapper.memberGetDetail(memberId);
 	}
+	
 	
 }

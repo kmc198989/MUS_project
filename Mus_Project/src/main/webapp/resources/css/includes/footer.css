@@ -4,8 +4,14 @@ a{
     color: inherit;
     margin:0px;
 }
+#footer_section{
+	width: 100%;
+	bottom: 0;
+	left: 0;
+}	
 .footer{
 	border: 1px solid rgb(221, 221, 221);
+	border-right: none;
 }
 .VhnvR {
     font-family: "Apple SD Gothic Neo","Noto Sans KR",sans-serif;

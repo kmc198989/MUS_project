@@ -4,40 +4,74 @@
 	padding: 0 auto;
 }
 .main {
-	width: 100%;
+	position: relative;
 	display: -webkit-inline-box;
 }
-#nav_section{
-	width: 15%;
-	float: left;
-	height: 100%;
+.main_op{
+	margin-bottom: 50px;
 }
-#main_div{
-	float: right;
-	display: grid;
-	border-left: 1px solid #ddd;
-	width: 85%;
+
+.main_div {
+    /*float: right;
+    display: grid;
+    border-left: 1px solid #ddd;
+    width: 85%;
+    padding-top: 40px;*/
+    width: calc(1900px - 270px);
+   	left: 269px;
+   	top: 0;
+   	right: 0;
+   	min-width: 1291px;
+  	border-left: 1px solid rgb(221, 221, 221);
+   	box-sizing: border-box;
+   	margin-top: 40px;
+   	position: absolute;
 }
+
+.main_div_close {
+    left: 0px;
+    border-left: 0px;
+}
+
 .pageMaker_wrap{
 	margin-top: 20px;
 	width: 100%;
 }
-#main_div .pageMaker{
+.pageMaker{
 	width: 85%;
 	float: left;
 }
-#footer_section{
-	float: right;
-	width: 85%;
+
+.flip {
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    left: 100%;
+    top: 0px;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+.pagenation {
+    height: 25px;
+    line-height: 12px;
+    padding: 15px 18px 0 50px;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    border-bottom: 1px solid #ddd;
 }
 
 /* 제품 목록 스타일링 */
 .content_area ul {
-    list-style: none; /* 기본 목록 표시 스타일 제거 */
-    padding: 0; /* 목록의 패딩 제거 */
-    margin: 0; /* 목록의 마진 제거 */
-    display: flex; /* 목록을 수평으로 나열 */
-    flex-wrap: wrap; /* 내용이 넘칠 때 줄 바꿈 */
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    border-left: 1px solid #ddd;
 }
 
 /* 각 제품 카드 스타일링 */
@@ -51,16 +85,86 @@
     vertical-align: top;
     margin: 0;
     padding: 0;
-    position: relative;
     min-width: 154px;
     float: left;
     background: #fff;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
     box-sizing: border-box;
-		width: calc(10%); /* 제품 카드의 너비를 반으로 줄임 /
+	width: calc(10%); /* 제품 카드의 너비를 반으로 줄임 */
+	position: relative;
 }
 
+.icon_new {
+    position: absolute;
+    left: -1px;
+    font-family: "Musinsa";
+    text-align: center;
+    font-size: 12px;
+    padding: 3px 4px 1px 4px;
+    line-height: 15px;
+    background: #fff;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    color: #f60;
+    z-index: 80;
+}
+
+.box-icon-right {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 20;
+    width: 80px;
+    text-align: right;
+}
+
+.icon-reverse, .icon-box-limited {
+    background: #0080ff;
+    color: #fff;
+}
+
+.icon-reverse {
+    display: inline-block;
+    padding: 4px 6px;
+    line-height: 13px;
+    font-size: 10px;
+    font-family: "Musinsa", sans-serif;
+    white-space: nowrap;
+}
+
+.icon_group {
+    position: absolute;
+    left: 80%;
+    bottom: 8px;
+    z-index: 9;
+}
+
+.icon_group li {
+  float: left;
+  width: auto;
+  height: 12px;
+  margin-right: 1px;
+  background: none;
+  font-family: "Musinsa", Sans-Serif;
+  text-indent: 0;
+}
+.icon_group li:after {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.icon_group .icon_man:after {
+  color: #919191;
+  content: "M";
+}
+.icon_group .icon_woman:after {
+  color: #919191;
+  content: "W";
+}
 
 /* 제품 이미지 스타일링 */
 .li_box .list_img{
@@ -72,8 +176,10 @@
 }
 
 .li_box .list_img img {
-    max-width: 100%; /* 이미지의 최대 너비는 부모 요소의 너비와 같음 */
-    height: auto; /* 비율에 맞게 높이 조정 */
+    max-width: 100%;
+    width: 100px;
+    height: 100px;
+    padding-top: 15%;
 }
 
 /* 제품 정보 스타일링 */

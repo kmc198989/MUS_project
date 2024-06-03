@@ -1,12 +1,12 @@
 @charset "UTF-8";
 *{
-	margin: 0;
-	padding:0;
+   margin: 0;
+   padding:0;
 }
 
 .wrapper{
-	/*width: 100%;*/
-	position: absolute;
+   /*width: 100%;*/
+   position: absolute;
 
     left: 50%;
     top: 29%;
@@ -27,37 +27,59 @@
 }
 
 .title >h2{
-	margin-top: -45px;
+   margin-top: -45px;
     text-align: center;
     font-size: 25px;
 }
 .form-group1{
-	margin-top: 32px;
-	text-align: center;
+   margin-top: 32px;
+   text-align: center;
 }
 .form-group1 > input{
-	margin-left: 39px;
+   margin-left: 39px;
 }
 .form-group2{
-	margin-top: 11px;
-	text-align: center;
+   margin-top: 11px;
+   text-align: center;
 }
 
 .form-group2 > input{
-	margin-left: 55px;
+   margin-left: 55px;
 }
 .form-group3{
-	margin-top: 11px;
-	text-align: center;
+   margin-top: 11px;
+   text-align: center;
 }
 
 .form-group3 > input{
-	margin-left: 18px;
+   margin-left: 18px;
 }
-
+.final_pwck_ck{
+    display: none;
+    font-size: 12px;
+    margin-left: 180px;
+}
+/* 비밀번호 확인 일치 유효성검사 */
+.pwck_input_re_1{
+        color : green;
+        display : none;
+        font-size: 10px;
+        margin-left: 180px; 
+}
+.pwck_input_re_2{
+        color : red;
+        display : none;  
+        font-size: 10px; 
+         margin-left: 180px; 
+}
+.final_pw_ck{
+    display: none;
+    font-size: 12px;
+     margin-left: 180px;
+}
 /* 버튼 */
 .pwUpdate_button{
-	text-align: center;
+   text-align: center;
     margin-left: 190px;
     margin-top: 25px;
     border-radius: 5px;
@@ -68,7 +90,7 @@
 }
 
 .cancle_button{
-	margin-left: 12px;
+   margin-left: 12px;
     border-radius: 5px;
     width: 70px;
     height: 30px;

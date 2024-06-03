@@ -12,6 +12,10 @@
    position: relative;
    width: 100%;
 }
+.main {
+	position: relative;
+	display: -webkit-inline-box;
+}
 
 .leftmain {
    width: 270px;
@@ -20,11 +24,6 @@
    border-right: 1px solid rgb(221, 221, 221);
    box-sizing: border-box;
    float: left;
-}
-
-#nav_section {
-   padding: 15px 0 20px;
-   height: 100%;
 }
 
 .main_div {
@@ -51,10 +50,6 @@ a:visited {
    background-color: rgb(170, 170, 170);
 }
 
-#footer_section {
-   float: right;
-   width: 100%;
-}
 
 .brandBanner {
    border-bottom: 1px solid #ddd;
@@ -62,7 +57,7 @@ a:visited {
 }
 
 .content_area {
-   width: calc(100% - 270px);
+   width: calc(1900px - 270px);
    position: absolute;
    left: 269px;
    top: 0;
@@ -71,7 +66,10 @@ a:visited {
    border-left: 1px solid rgb(221, 221, 221);
    box-sizing: border-box;
 }
-
+.main_div_close {
+    left: 0px;
+    border-left: 0px;
+}
 .topcate {
    width: 100%;
    padding: 30px 20px 0;
@@ -176,6 +174,60 @@ a:visited {
    margin: 0;
    font-weight: bold;
 }
+
+
+.img-score {
+    display: inline-block;
+    width: 60px;
+    height: 12px;
+    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.img-score .bar {
+    display: block;
+    height: 100%;
+    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat 0 -120px;
+    margin-left: 0;
+}
+
+.ratingavg {
+    font-weight: 400;
+    color: rgb(170, 170, 170);
+}
+
+.ratingcount {
+    font-weight: 700;
+    color: rgb(0, 120, 255);
+}
+
+.edqcsT {
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.janPuv {
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 0, 0);
+    border: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
 .textwow{
    text-decoration: line-through;
    font-weight: 400;

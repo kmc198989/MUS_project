@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>nav</title>
 <link rel="stylesheet" href="../resources/css/includes/nav.css">
 <style>
 .subcategories {
@@ -15,10 +15,15 @@
 </style>
 </head>
 <body>
+	<div id="nav_section" class="nav_section">
 	<div class="nav_body">
 		<div class="dropdown">
+			<button type="button" class="flip">
+				<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M5 9.5H25V8.5H5V9.5ZM25 15.5H5V14.5H25V15.5ZM25 21.5H5V20.5H25V21.5Z" fill="black"></path>
+				</svg>
+			</button>
 			<div class="dropdown-content">
-
 				<c:forEach items="${cate}" var="cate1">
 					<button class="dropbtn">${cate1.key.cateName}</button>
 					<div class="subcategories">
@@ -32,6 +37,7 @@
 
 			</div>
 		</div>
+	</div>
 	</div>
 
 <script>
@@ -47,6 +53,14 @@ buttons.forEach(function(button) {
             subcategories.style.display = 'none';
         }
     });
+});
+
+$(document).ready(function() {
+	$(".flip").click(function() {
+		$("#nav_section").toggleClass("nav_section_close");
+		$("#main_div").toggleClass("main_div_close");
+
+	});
 });
 
 </script>

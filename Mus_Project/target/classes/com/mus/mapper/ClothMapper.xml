@@ -38,8 +38,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<![CDATA[ select * from( select /*+INDEX_DESC(mus_cloth 인덱스ID)*/ rownum as rn, clothId, clothName, 
 		(select brandName from mus_seller where mus_cloth.sellerId = mus_seller.sellerId) brandName, sellerId, 
 		(select cateName from mus_cate where mus_cloth.cateCode = mus_cate.cateCode) cateName,cateCode, publeYear, 
-		clothPrice, TRUNC(clothDiscount * 100) as clothDiscount, ratingAvg,
-		(select count(*) from mus_reply where clothId = #{clothId}) as ratingCount, 
+		clothPrice, TRUNC(clothDiscount * 100) as clothDiscount, ratingAvg, likes,
+      (SELECT COUNT(*) FROM mus_reply WHERE mus_reply.clothId = mus_cloth.clothId) AS ratingCount, 
 		clothPrice * clothDiscount as discountedPrice,
 		clothPrice - (clothPrice * clothDiscount) as finalPrice
 		 from mus_cloth where ]]>
@@ -125,7 +125,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getGoodsInfo" resultType="com.mus.model.ClothVO"> select a.clothId,
 		a.clothName, a.sellerId, b.brandName, a.PUBLEYEAR, a.CATECODE,
 		c.CATENAME, a.clothPrice, a.clothStock, a.clothDiscount, a.clothIntro,
-		a.clothContents 
+		a.clothContents, a.ratingAvg,
+		(SELECT COUNT(*) FROM mus_reply WHERE clothId = a.clothId) AS ratingCount
 		from mus_cloth a left outer join mus_seller b 
 		on a.sellerId = b.sellerId left outer join mus_cate c 
 		on a.catecode =	c.catecode 

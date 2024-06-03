@@ -4,7 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 public class ClothVO {
-	private int clothId, sellerId, clothPrice, clothStock, ratingAvg, ratingCount;
+	private int clothId, sellerId, clothPrice, clothStock, ratingCount, likes;
+	private double ratingAvg;
 	private String clothName, brandName, publeYear, cateCode, cateName, clothIntro, clothContents;
 	private double clothDiscount;
 	private int discountedPrice; // 계산 및 출력용(DB에 없음)
@@ -14,6 +15,14 @@ public class ClothVO {
 
 	
 	
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 	public int getRatingCount() {
 		return ratingCount;
 	}
@@ -22,11 +31,11 @@ public class ClothVO {
 		this.ratingCount = ratingCount;
 	}
 
-	public int getRatingAvg() {
+	public double getRatingAvg() {
 		return ratingAvg;
 	}
 
-	public void setRatingAvg(int ratingAvg) {
+	public void setRatingAvg(double ratingAvg) {
 		this.ratingAvg = ratingAvg;
 	}
 
@@ -169,10 +178,11 @@ public class ClothVO {
 	@Override
 	public String toString() {
 		return "ClothVO [clothId=" + clothId + ", sellerId=" + sellerId + ", clothPrice=" + clothPrice + ", clothStock="
-				+ clothStock + ", ratingAvg=" + ratingAvg + ", ratingCount=" + ratingCount + ", clothName=" + clothName
-				+ ", brandName=" + brandName + ", publeYear=" + publeYear + ", cateCode=" + cateCode + ", cateName="
-				+ cateName + ", clothIntro=" + clothIntro + ", clothContents=" + clothContents + ", clothDiscount="
-				+ clothDiscount + ", discountedPrice=" + discountedPrice + ", finalPrice=" + finalPrice + ", regDate="
-				+ regDate + ", updateDate=" + updateDate + ", imageList=" + imageList + "]";
+				+ clothStock + ", ratingCount=" + ratingCount + ", likes=" + likes + ", ratingAvg=" + ratingAvg
+				+ ", clothName=" + clothName + ", brandName=" + brandName + ", publeYear=" + publeYear + ", cateCode="
+				+ cateCode + ", cateName=" + cateName + ", clothIntro=" + clothIntro + ", clothContents="
+				+ clothContents + ", clothDiscount=" + clothDiscount + ", discountedPrice=" + discountedPrice
+				+ ", finalPrice=" + finalPrice + ", regDate=" + regDate + ", updateDate=" + updateDate + ", imageList="
+				+ imageList + "]";
 	}
 }

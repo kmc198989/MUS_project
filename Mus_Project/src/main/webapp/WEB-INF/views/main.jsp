@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome BookMall</title>
+<title>main</title>
 <link rel="stylesheet" href="/resources/css/main.css">
+<link rel="stylesheet" href="../resources/css/includes/nav.css">
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
@@ -17,24 +18,19 @@
 	<%@include file="includes/header.jsp"%>
 
 	<div class="wrapper">
-		<div class="wrap">
-			<div class="content_area">
 				<section class="main">
-					<div id="nav_section">
 						<c:import url="/nav" />
-					</div>
-					<div id="main_div">
-						<c:import url="/searchtool" />
-					</div>		
-				</section>				
-			</div>
-			<!-- Footer 영역 -->
-			<section id="footer_section">
-				<%@include file="includes/footer.jsp"%>
-			</section>
-
-		</div>
+						<div id="main_div" class="main_div">
+							<div class="main_op">
+								<c:import url="/searchtool" />
+							</div>
+							<%@include file="includes/footer.jsp"%>
+						</div>
+				</section>
 	</div>
+	<!-- Footer 영역 -->
+			
+	
 
 
 </body>

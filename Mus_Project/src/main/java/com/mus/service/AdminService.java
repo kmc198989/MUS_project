@@ -7,6 +7,7 @@ import com.mus.model.ClothVO;
 import com.mus.model.CateVO;
 import com.mus.model.Criteria;
 import com.mus.model.MemberVO;
+import com.mus.model.OrderDTO;
 
 public interface AdminService {
 	// 상품 등록
@@ -32,6 +33,12 @@ public interface AdminService {
 
 	// 지정 상품 이미지 정보 얻기
 	public List<AttachImageVO> getAttachInfo(int clothId);
+	
+	// 주문 상품 리스트
+	public List<OrderDTO> getOrderList(Criteria cri);	
+	
+	// 주문 총 갯수
+	public int getOrderTotal(Criteria cri);
 	
 	// 회원 리스트
 	public List<MemberVO> membersGetList(Criteria cri);

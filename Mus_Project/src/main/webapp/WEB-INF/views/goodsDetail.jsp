@@ -18,17 +18,10 @@
    <div class="wrapper">
       <div class="wrap">
          <!-- 왼쪽 메뉴 영역 -->
-         <div>
-            <div class="leftmain">
-               <div id="nav_section">
-                  <c:import url="/nav" />
-               </div>
 
-            </div>
-         </div>
-
-
-         <div class="content_area">
+            <div class="main">
+             <c:import url="/nav" />
+         <div id="main_div" class="content_area">
             <header>
                <!--             
                <a href="https://www.musinsa.com/brands/dumaro"
@@ -90,7 +83,24 @@
                      <div class="prodiv"><span>카테고리 :</span></div>
                      <div class="prodiv2">${goodsInfo.cateName}</div>
                      </li>
-                     <hr>
+                     <li class="proli">
+                     <div class="prodiv"><span>좋아요 :</span></div>
+                     <div class="prodiv2">${goodsInfo.likes}</div>
+                     </li>
+                     <li class="proli">
+                     <div class="prodiv"><span>구매후기 :</span></div>
+       							 <div class="prodiv2">
+												<span class="img-score">
+													<span class="bar"	style="width:                      
+													${goodsInfo.ratingAvg*20}%"></span>
+												</span> 
+												<span class="ratingavg">${goodsInfo.ratingAvg}</span>												
+												<span class="ratingcount">
+												후기 ${goodsInfo.ratingCount}개
+												</span>												
+										 </div>
+                     </li>                
+ 			               <hr>
                      <li class="proli top" >
                      <div class="sale_price prodiv">
                      <span>정가 :</span></div>
@@ -138,6 +148,13 @@
                      </div>
                      <div class="button_set">
                         <a class="btn_cart">장바구니 담기</a> <a class="btn_buy">바로구매</a>
+                        <a title="좋아요" class="product-detail__sc-8o4r2i-0 edqcsT">
+													<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+														<path d="M15.3779 9.38123L13.6524 7.65578C11.5073 5.51066 8.02936 5.51065 5.88423 7.65578C3.73911 9.8009 3.73911 13.2788 5.88423 15.424L14.9992 24.539L18.5248 21.0134C18.6735 20.8647 18.8127 20.7102 18.9425 20.5505L23.0949 16.3982M16.396 7.56125C18.5447 5.46384 21.9869 5.4797 24.116 7.60884C26.2445 9.73732 26.261 13.178 24.1656 15.3268" stroke="#bbb">
+														</path>
+													</svg>
+														<span class="product-detail__sc-8o4r2i-1 jMeojc">${goodsInfo.likes}</span>
+												</a>
                      </div>
                   </div>
 
@@ -183,6 +200,7 @@
             <section id="footer_section">
                <%@include file="includes/footer.jsp"%>
             </section>
+            </div>
          </div>
 
       </div>
@@ -462,7 +480,17 @@ const form = {
 		
 	}
 	
+    document.querySelector('.product-detail__sc-8o4r2i-0').addEventListener('click', function() {
+        if (this.classList.contains('edqcsT')) {
+            this.classList.remove('edqcsT');
+            this.classList.add('janPuv');
+        } else {
+            this.classList.remove('janPuv');
+            this.classList.add('edqcsT');
+        }
+    });
 	
+
 	
 </script>
 

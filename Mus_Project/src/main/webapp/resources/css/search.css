@@ -3,10 +3,30 @@
 	margin: 0 auto;
 	padding: 0 auto;
 }
-#nav_section{
+
+/*#nav_section{
 	width: 15%;
 	float: left;
 	height: 100%;
+}*/
+.main_div2{
+	width: 100%;
+}
+
+.img-score {
+    display: inline-block;
+    width: 60px;
+    height: 12px;
+    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.img-score .bar {
+    display: block;
+    height: 100%;
+    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat 0 -120px;
+    margin-left: 0;
 }
 
 .pageMaker_wrap{
@@ -44,22 +64,6 @@
     flex-wrap: wrap; /* 내용이 넘칠 때 줄 바꿈 */
 }
 
-.img-score {
-    display: inline-block;
-    width: 60px;
-    height: 12px;
-    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat;
-    overflow: hidden;
-    vertical-align: middle;
-}
-
-.img-score .bar {
-    display: block;
-    height: 100%;
-    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat 0 -120px;
-}
-
-
 /* 각 제품 카드 스타일링 */
 .li_box {
     font-size: 12px;
@@ -71,7 +75,6 @@
     vertical-align: top;
     margin: 0;
     padding: 0;
-    position: relative;
     min-width: 154px;
     float: left;
     background: #fff;

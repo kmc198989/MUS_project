@@ -18,6 +18,7 @@ import com.mus.model.AttachImageVO;
 import com.mus.model.CartDTO;
 import com.mus.model.ClothVO;
 import com.mus.model.MemberVO;
+import com.mus.model.OrderCancelDTO;
 import com.mus.model.OrderDTO;
 import com.mus.model.OrderItemDTO;
 import com.mus.model.OrderPageItemDTO;
@@ -130,6 +131,51 @@ public class OrderServiceImpl implements OrderService{
 			
 			cartMapper.deleteOrderCart(dto);
 		}
+		
+	}
+	
+	/* 주문취소 */
+	@Override
+	@Transactional
+	public void orderCancle(OrderCancelDTO dto) {
+		
+		/* 주문, 주문상품 객체 */
+		/*회원*/
+			MemberVO member = memberMapper.getMemberInfo(dto.getMemberId());
+		/*주문상품*/
+			List<OrderItemDTO> ords = orderMapper.getOrderItemInfo(dto.getOrderId());
+			for(OrderItemDTO ord : ords) {
+				ord.initSaleTotal();
+			}
+		/* 주문 */
+			OrderDTO orw = orderMapper.getOrder(dto.getOrderId());
+			orw.setOrders(ords);
+			
+			orw.getOrderPriceInfo();
+			
+	/* 주문상품 취소 DB */
+			orderMapper.orderCancle(dto.getOrderId());
+			
+	/* 돈, 포인트, 재고 변환 */
+			/* 돈 */
+			int calMoney = member.getMoney();
+			calMoney += orw.getOrderFinalSalePrice();
+			member.setMoney(calMoney);
+			
+			/* 포인트 */
+			int calPoint = member.getPoint();
+			calPoint = calPoint + orw.getUsePoint() - orw.getOrderSavePoint();
+			member.setPoint(calPoint);
+			
+				/* DB적용 */
+				orderMapper.deductMoney(member);
+				
+			/* 재고 */
+			for(OrderItemDTO ord : orw.getOrders()) {
+				ClothVO cloth = clothMapper.getGoodsInfo(ord.getClothId());
+				cloth.setClothStock(cloth.getClothStock() + ord.getClothCount());
+				orderMapper.deductStock(cloth);
+			}
 		
 	}
 }

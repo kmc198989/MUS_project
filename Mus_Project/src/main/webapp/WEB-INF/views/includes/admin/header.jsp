@@ -29,7 +29,7 @@
     }
     .admin_list_01, 
     .admin_list_02, .admin_list_03, 
-    .admin_list_04, .admin_list_05{
+    .admin_list_04, .admin_list_05, .admin_list_06{
     	font-family: "Dongle", sans-serif;
 	    font-weight: 400;
 	    font-style: normal;
@@ -71,6 +71,9 @@
 	                  </lI>
 	                  <lI>
 	                      <a class="admin_list_05" href="/admin/memberManage">회원 관리</a>                            
-	                  </lI>                                                                                           
+	                  </lI>  
+	                  <li>
+	                      <a class="admin_list_06" href="/admin/orderList">주문 현황</a>                            
+	                  </li>                                                                                         
 	              </ul>
                 </div>

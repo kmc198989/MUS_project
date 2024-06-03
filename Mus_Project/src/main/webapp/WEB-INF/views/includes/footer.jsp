@@ -9,6 +9,7 @@
 
 </head>
 <body>
+	<div id="footer_section">
 	<footer class="footer">
 		<section class="scfooter zGYIG">
 			<div class="footer-1 VhnvR">
@@ -170,5 +171,6 @@
 			</p>
 		</div>
 	</footer>
+	</div>
 </body>
 </html>

@@ -12,85 +12,102 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
-	<%@include file="../includes/header.jsp"%>
+   <%@include file="../includes/header.jsp"%>
 
 <form action="/member/pwUpdate" method="post" id="pwUpdateForm" name="pwUpdateForm">
-				<input type="hidden" id="memberId" name="memberId" value="${member.memberId}">
-				
-	<div class="wrapper">
-		<div class="wrap">
-				<div class="title">
-					<h2>비밀번호 변경</h2>
-				</div>
-				<div class="form-group1">
+            <input type="hidden" id="memberId" name="memberId" value="${member.memberId}">
+            
+   <div class="wrapper">
+      <div class="wrap">
+            <div class="title">
+               <h2>비밀번호 변경</h2>
+            </div>
+            <div class="form-group1">
                     <label>* 현재 비밀번호</label>
                     <input type="password" class="pass_update1" name="memberPw" id="memberPw"/>
                 </div>
+                <span class="final_pw_ck">비밀번호를 입력해주세요.</span>
+                
                 <div class="form-group2">
-                	<label>* 새 비밀번호</label>
+                   <label>* 새 비밀번호</label>
                     <input type="password" class="pass_update2" name="memberPw1"/>
                 </div>
+                <span class="final_pwck_ck">비밀번호 확인란을 입력해주세요.</span>
+            <span class="pwck_input_re_1">새 비밀번호가 일치합니다.</span>
+                <span class="pwck_input_re_2">새 비밀번호가 일치하지 않습니다.</span>
+                
                 <div class="form-group3">
-                	<label>* 새 비밀번호 확인</label>
+                   <label>* 새 비밀번호 확인</label>
                     <input type="password" class="pass_update3" name="memberPw2"/>
                 </div>
                 
-                <input type="submit" id="pwUpdate" name="pwUpdate" class="pwUpdate_button" value="변경하기">
+                <input type="button" id="pwUpdate" name="pwUpdate" class="pwUpdate_button" value="변경하기">
                 <button type="button" class="cancle_button" onclick="location.href='/member/modifypage'">취소하기</button>
-		</div>
-	</div>
+      </div>
+   </div>
 </form>
 
 <script>
+//유효성 검사 통과유무 변수
+var pwCheck = false;            // 비번
+var pwckCheck = false;            // 비번 확인
+var pwckcorCheck = false;        // 비번 확인 일치 확인
+
 $(document).ready(function(){
-	
-	$("pwUpdate").on("click", function(){
-		if($("#memberPw").val==""){
-			alert("현재 비밀번호를 입력해주세요");
-			$("#memberPw").focus();
-			return false;
-		}
-		
-		if($("#memberPw1").val==""){
-			alert("변경비밀번호를 입력해주세요");
-			$("#memberPw1").focus();
-			return false;
-		}
-		
-		if($("#memberPw2").val==""){
-			alert("변경비밀번호를 입력해주세요");
-			$("#memberPw2").focus();
-			return false;
-		}
-		
-		if ($("#memberPw").val() != $("#memberPw2").val()) {
-			alert("변경비밀번호가 일치하지 않습니다.");
-			$("#memberPw2").focus();
-		}
-		
-		
-		$.ajax({
-			url : "/member/pwCheck",
-			type : "POST",
-			dataType : "json",
-			data : $("#pwUpdateForm").serializeArray(),
-			success: function(data){
-				
-				if(data==0){
-					alert("패스워드가 틀렸습니다.");
-					return;
-				}else{
-					if(confirm("변경하시겠습니까?")){
-						$("#pwUpdateForm").submit();
-					}
-					
-				}
-			}
-		});
-		
-	}); //ajax 종료
-	
-		
+   $(".pwUpdate_button").click(function(){
+
+      var pw = $('.pass_update2').val();           // 비밀번호 입력
+      var pwck = $('.pass_update3').val();       // 비밀번호 확인 입력란
+      
+      
+      /* 비밀번호 유효성검사 */
+      if(pw == ""){
+         $('.final_pw_ck').css('display','block');
+         pwCheck = false;
+      }else{
+         $('.final_pw_ck').css('display','none');
+         pwCheck = true;
+      }
+      
+      /* 비밀번호 확인 유효성검사 */
+      if(pwck == ""){
+         $('.final_pwck_ck').css('display','block');
+         pwckCheck = false;
+      }else{
+         $('.final_pwck_ck').css('display','none');
+         pwckCheck = true;
+      }
+      
+      /* 최종 유효성 검사 */
+        if(pwCheck&&pwckCheck&&pwckcorCheck){
+
+           $("#pwUpdateForm").attr("action", "/member/pwUpdate");
+         $("#pwUpdateForm").submit();
+        }
+      return false;
+      
+   });
+   
+});
+
+/* 비밀번호 확인 일치 유효성 검사 */
+
+$('.pass_update3').on("propertychange change keyup paste input", function(){
+   
+   var pw = $('.pass_update2').val();
+   var pwck = $('.pass_update3').val();
+   $('.final_pwck_ck').css('display', 'none');
+   
+   if(pw == pwck){
+      $('.pwck_input_re_1').css("display","block");
+      $('.pwck_input_re_2').css("display","none");
+      pwckcorCheck = true;
+   }else{
+      $('.pwck_input_re_1').css("display","none");
+      $('.pwck_input_re_2').css("display","block");
+      pwckcorCheck = false;
+   }
+   
 });
 </script>
 </body>

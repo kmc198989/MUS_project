@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.mus.model.MemberVO;
 import com.mus.model.OrderDTO;
 import com.mus.model.OrderPageDTO;
+import com.mus.service.KakaoPayServiceImpl;
 import com.mus.service.MemberService;
 import com.mus.service.OrderService;
 
@@ -24,7 +25,7 @@ public class OrderController {
 
 	@Autowired
 	private MemberService memberService;
-
+	
 	@GetMapping("/order/{memberId}")
 	public String orderPgaeGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
 

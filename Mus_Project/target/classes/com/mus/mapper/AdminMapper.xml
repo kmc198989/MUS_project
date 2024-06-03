@@ -57,6 +57,17 @@
 	<!-- 지정 상품 이미지 전체 삭제 -->
 	<delete id="deleteImageAll"> delete from mus_image where clothId = #{clothId}
 	</delete>
+	<!-- 주문 리스트 -->
+	<select id="getOrderList" resultType="com.mus.model.OrderDTO">
+	<![CDATA[ select * from( select rownum rn, orderId, memberId, orderstate, orderdate from mus_order where rownum <= #{pageNum} * #{amount} ]]>
+		<if test="keyword != null"> and memberId like '%'||#{keyword}||'%' </if>
+	<![CDATA[ order by orderdate desc ) where rn > (#{pageNum} -1) * #{amount} ]]>
+	</select>
+	<!-- 상품 총 개수 -->
+	<select id="getOrderTotal" resultType="int">
+		select count(*) from mus_order
+		<if test="keyword != null"> where memberId like '%'||#{keyword}||'%' </if>
+	</select>
 	<!-- 어제자 날자 이미지 리스트 -->
 	<select id="checkFileList"
 		resultType="com.mus.model.AttachImageVO"> select * from mus_image where uploadpath = to_char(sysdate
