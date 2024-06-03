@@ -59,7 +59,7 @@
                         data-path="${goodsInfo.imageList[0].uploadPath}"
                         data-uuid="${goodsInfo.imageList[0].uuid}"
                         data-filename="${goodsInfo.imageList[0].fileName}">
-                        <img style="width:500px; height:500px">
+                        <img style="width:400px; height:400px">
                      </div>
                   </div>
                   <div class="goods-detail line"></div>

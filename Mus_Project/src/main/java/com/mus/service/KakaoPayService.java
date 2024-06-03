@@ -1,24 +1,21 @@
 package com.mus.service;
 
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.List;
 
-import org.apache.catalina.manager.util.SessionUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.mus.interceptor.OauthRestTemplateErrorHandler;
 import com.mus.mapper.CartMapper;
 import com.mus.model.CartDTO;
 import com.mus.model.MemberVO;
@@ -35,8 +32,13 @@ public class KakaoPayService {
 	@Autowired
 	private CartMapper cartMapper;
 	
+	// payReady
 	public KakaoPayReadyVO payReady(int totalAmount) {
-		MemberVO vo = (MemberVO)SessionUtil.getSession().getAttribute("memberId");
+		
+        HttpSession session = SessionUtil.getSession();
+        MemberVO vo = (MemberVO) session.getAttribute("member");
+		//MemberVO vo = (MemberVO)SessionUtil.getSession().getAttribute("memberId");
+		System.out.println("kakaoPayReadyVO payReady() vo 객체 " + vo);
 		List<CartDTO> carts = cartMapper.getCart(vo.getMemberId());
 		
 		String[] cartsNames = new String[carts.size()];
@@ -74,7 +76,9 @@ public class KakaoPayService {
 		}
 	
 		public KakaoPayApprovalVO payApprove(String tid, String pgToken) {
-			MemberVO vo = (MemberVO)SessionUtil.getSession().getAttribute("memberId");
+			HttpSession session = SessionUtil.getSession();
+	        MemberVO vo = (MemberVO) session.getAttribute("member");
+			
 			List<CartDTO> carts = cartMapper.getCart(vo.getMemberId());
 			
 			String[] cartsNames = new String[carts.size()];

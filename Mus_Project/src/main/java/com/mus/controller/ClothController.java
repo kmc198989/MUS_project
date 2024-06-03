@@ -110,7 +110,7 @@ public class ClothController {
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getImage(String fileName) {
 		
-		logger.info("getImage().........." + fileName);
+		// logger.info("getImage().........." + fileName);
 		
 		File file = new File("c:\\upload\\" + fileName);
 		

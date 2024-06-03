@@ -142,7 +142,6 @@ public class MemberController {
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     public String loginPOST(HttpServletRequest request, MemberVO member, Model model) throws Exception{
     	
-    	HttpSession session = request.getSession();
 		String rawPw = "";
 		String encodePw = "";
 		
@@ -156,7 +155,7 @@ public class MemberController {
 			if(true == pwEncoder.matches(rawPw, encodePw)) {
 				lvo.setMemberPw("");
 				model.addAttribute("member", lvo);
-				System.out.println(lvo);
+				System.out.println("로그인성공 member객체" + lvo);
 				return "redirect:/main";
 			}else {
 				model.addAttribute("result", 0);

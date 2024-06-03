@@ -12,9 +12,10 @@
    position: relative;
    width: 100%;
 }
+
 .main {
-	position: relative;
-	display: -webkit-inline-box;
+   position: relative;
+   display: -webkit-inline-box;
 }
 
 .leftmain {
@@ -31,6 +32,18 @@
     width: 100%;
     background-color: #aedf9e;*/
    
+}
+
+.reply_button_wrap {
+   padding-left: 0px;
+}
+
+.reply_content_ul {
+   padding-right: 40px;
+}
+
+.reply_bottom {
+   padding-left: 15px;
 }
 
 a:visited {
@@ -50,7 +63,6 @@ a:visited {
    background-color: rgb(170, 170, 170);
 }
 
-
 .brandBanner {
    border-bottom: 1px solid #ddd;
    overflow: hidden;
@@ -66,13 +78,15 @@ a:visited {
    border-left: 1px solid rgb(221, 221, 221);
    box-sizing: border-box;
 }
+
 .main_div_close {
-    left: 0px;
-    border-left: 0px;
+   left: 0px;
+   border-left: 0px;
 }
+
 .topcate {
    width: 100%;
-   padding: 40px 20px 0;
+   padding: 30px 20px 0;
    box-sizing: border-box;
 }
 
@@ -156,110 +170,121 @@ a:visited {
    font-size: 23px;
    line-height: 27px;
 }
-.productul{
+
+.productul {
    padding-left: 0px;;
 }
-.proli{
+
+.proli {
    display: flex;
-    align-items: center;
-    text-align: left;
-    margin-bottom: 10px;
+   align-items: center;
+   text-align: left;
+   margin-bottom: 10px;
 }
-.prodiv{
+
+.prodiv {
    width: 100px;
    margin: 0;
    font-weight: 400;
 }
-.prodiv2{
+
+.prodiv2 {
    margin: 0;
    font-weight: bold;
 }
 
-
 .img-score {
-    display: inline-block;
-    width: 60px;
-    height: 12px;
-    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat;
-    overflow: hidden;
-    vertical-align: middle;
+   display: inline-block;
+   width: 60px;
+   height: 12px;
+   background:
+      url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png)
+      no-repeat;
+   overflow: hidden;
+   vertical-align: middle;
 }
 
 .img-score .bar {
-    display: block;
-    height: 100%;
-    background: url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png) no-repeat 0 -120px;
-    margin-left: 0;
+   display: block;
+   height: 100%;
+   background:
+      url(https://image.msscdn.net/skin/musinsa/images/icon_star_score.png)
+      no-repeat 0 -120px;
+   margin-left: 0;
 }
 
 .ratingavg {
-    font-weight: 400;
-    color: rgb(170, 170, 170);
+   font-weight: 400;
+   color: rgb(170, 170, 170);
 }
 
 .ratingcount {
-    font-weight: 700;
-    color: rgb(0, 120, 255);
+   font-weight: 700;
+   color: rgb(0, 120, 255);
 }
 
 .edqcsT {
-    display: flex;
-    flex-direction: column;
-    width: 60px;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(221, 221, 221);
-    box-sizing: border-box;
-    cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   width: 60px;
+   height: 50px;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(255, 255, 255);
+   border: 1px solid rgb(221, 221, 221);
+   box-sizing: border-box;
+   cursor: pointer;
 }
 
 .janPuv {
-    display: flex;
-    flex-direction: column;
-    width: 60px;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(255, 0, 0);
-    border: 1px solid rgb(221, 221, 221);
-    box-sizing: border-box;
-    cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   width: 60px;
+   height: 50px;
+   align-items: center;
+   justify-content: center;
+   background-color: rgb(255, 0, 0);
+   border: 1px solid rgb(221, 221, 221);
+   box-sizing: border-box;
+   cursor: pointer;
 }
 
-.textwow{
+.textwow {
    text-decoration: line-through;
    font-weight: 400;
 }
-.discount_price_number{
+
+.discount_price_number {
    font-weight: bold;
    font-size: 20px;
    text-decoration: underline;
 }
-.info{
+
+.info {
    margin-top: 0px;
 }
-.price-info{
+
+.price-info {
    margin-bottom: 5px;
 }
-.wow{
+
+.wow {
    color: red;
 }
 
-.product-info-section ul div{
+.product-info-section ul div {
    font-size: 15px;
    margin-bottom: 5px;
 }
 
-.button_set{
+.button_set {
    width: 100%;
    display: flex;
    margin-top: 5%;
    height: 30px;
 }
-.btn_cart,
-.btn_buy{
+
+.btn_cart, .btn_buy {
    display: grid;
    width: 150px;
    height: 50px;
@@ -270,21 +295,23 @@ a:visited {
    color: white;
 }
 
-.btn_cart:hover,
-.btn_buy:hover{
+.btn_cart:hover, .btn_buy:hover {
    background-color: #5087a1;
    color: white;
    cursor: pointer;
 }
 /* 리뷰쓰기 버튼 */
-.reply_button_wrap{
-   padding-left: 0px;
+.reply_button_wrap {
+   padding: 10px;
+   padding-top: 0px;
 }
-.top{
+
+.top {
    margin-top: 20px;
 }
+
 .reply_button_wrap button {
-   background-color: #365fdd;
+   background-color: black;
    color: white;
    font-weight: bold;
    font-size: 15px;
@@ -300,10 +327,13 @@ a:visited {
 .content_bottom {
    width: 80%;
    margin: auto;
+   border: 1px solid rgb(221, 221, 221);
+   margin-top: 40px;
+   margin-bottom: 40px;
 }
 
 .reply_content_ul {
-   padding: 0px;
+   list-style: none;
 }
 
 .comment_wrap {
@@ -327,7 +357,7 @@ a:visited {
 }
 /* 리뷰 컨텐트 부분 */
 .reply_bottom {
-   padding-left: 15px;
+   padding-bottom: 10px;
 }
 
 /* 리뷰 선 */
@@ -339,7 +369,7 @@ a:visited {
 
 /* 리뷰 제목 */
 .reply_subject h2 {
-   padding: 15px 0 5px 5px;
+   padding: 15px 15px 15px 15px;
 }
 
 /* pageMaker */

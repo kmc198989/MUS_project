@@ -510,37 +510,33 @@ function setTotalInfo(){
 // 카카오결제
 $(function(){
 	$(".kakaopay_btn").click(function(){
-		alert("kakaopay 스크립트진입");
-		// 필수입력값을 확인.
-		var name = $("#form-payment input[name='pay-name']").val();
-		var tel = $("#form-payment input[name='pay-tel']").val();
-		var email = $("#form-payment input[name='pay-email']").val();
 		
-		if(name == ""){
-			$("#form-payment input[name='pay-name']").focus();
-		}
-		if(tel == ""){
-			$("#form-payment input[name='pay-tel']").focus();
-		}
-		if(email == ""){
-			$("#form-payment input[name='pay-email']").focus();
-		}
 		
-		// 결제 정보를 form에 저장한다.
-		let usePoint = $("#point-use").val();
-		let useUserCouponNo = $(":radio[name='userCoupon']:checked").val();
+		let name = "${memberInfo.memberName}";
+		let tel = "${memberInfo.memberPhone}";
+		let email = "${memberInfo.memberMail}";
 		
-		// 카카오페이 결제전송
+    // 주문 총액 및 사용 포인트 변수 초기화
+    let totalPrice = parseInt($(".finalTotalPrice_span").text().replace(/,/g, ''));
+    let usePoint = parseInt($(".order_point_input").val());
+		
+    console.log("name: " + name);
+    //console.log("tel: " + tel);
+    console.log("email: " + email);
+    console.log("totalPrice: " + totalPrice);
+    //console.log("usePoint: " + usePoint);
+    
+    // 카카오페이 결제전송
 		$.ajax({
-			type:'get'
-			,url:'/order/kakaoPay'
-			,data:{
-				,payUserName: name
-				,sumPrice:totalPrice
-				,memberPhone:tel
-				,memberMail:email
-				,Point:usePoint	
-				
+			type:'get',
+			url:'/order/kakaoPay',
+			
+			data:{
+				payUserName: name,
+				total_amount: totalPrice,
+				//memberPhone:tel,
+				memberMail:email,
+				//Point:usePoint					
 			},
 			success:function(response){
 				location.href = response.next_redirect_pc_url			
