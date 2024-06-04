@@ -11,6 +11,7 @@
 .logo_area img{
    padding-top:10px;
    height: 40px;
+   margin-left: 67px;
 }
 
 .searchbar {
@@ -18,9 +19,21 @@
    height: 20px;
 }
 .list{
+   margin-left: 500px;
    display: flex;
    list-style-type: none;
 }
 .list li{
    margin: 0 5px;
    color: white;
+a{
+   text-decoration: none;
+   color: inherit;
+}
+.header_div{
+   background-color: #000;
+   height: 60px;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+}

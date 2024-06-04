@@ -509,40 +509,71 @@ function setTotalInfo(){
 
 // 카카오결제
 $(function(){
-	$(".kakaopay_btn").click(function(){
-		
-		
-		let name = "${memberInfo.memberName}";
-		let tel = "${memberInfo.memberPhone}";
-		let email = "${memberInfo.memberMail}";
-		
-    // 주문 총액 및 사용 포인트 변수 초기화
-    let totalPrice = parseInt($(".finalTotalPrice_span").text().replace(/,/g, ''));
-    let usePoint = parseInt($(".order_point_input").val());
-		
-    console.log("name: " + name);
-    //console.log("tel: " + tel);
-    console.log("email: " + email);
-    console.log("totalPrice: " + totalPrice);
-    //console.log("usePoint: " + usePoint);
-    
-    // 카카오페이 결제전송
-		$.ajax({
-			type:'get',
-			url:'/order/kakaoPay',
-			
-			data:{
-				payUserName: name,
-				total_amount: totalPrice,
-				//memberPhone:tel,
-				memberMail:email,
-				//Point:usePoint					
-			},
-			success:function(response){
-				location.href = response.next_redirect_pc_url			
-			}
-		});
-	});
+    $(".kakaopay_btn").click(function(event){
+        event.preventDefault();  // 기본 폼 제출을 막음
+
+        let name = "${memberInfo.memberName}";
+        let email = "${memberInfo.memberMail}";
+        let totalPrice = parseInt($(".finalTotalPrice_span").text().replace(/,/g, ''));
+        
+        // 주소 정보 & 받는이
+        $(".addressInfo_input_div").each(function(i, obj){
+            if ($(obj).find(".selectAddress").val() === 'T') {
+                $("input[name='addressee']").val($(obj).find(".addressee_input").val());
+                $("input[name='memberAddr1']").val($(obj).find(".address1_input").val());
+                $("input[name='memberAddr2']").val($(obj).find(".address2_input").val());
+                $("input[name='memberAddr3']").val($(obj).find(".address3_input").val());
+            }
+        });
+
+        // 사용 포인트
+        $("input[name='usePoint']").val($(".order_point_input").val());
+
+        // 상품정보
+        let form_contents = ''; 
+        $(".goods_table_price_td").each(function(index, element){
+            let clothId = $(element).find(".individual_clothId_input").val();
+            let clothCount = $(element).find(".individual_clothCount_input").val();
+            let clothId_input = "<input name='orders[" + index + "].clothId' type='hidden' value='" + clothId + "'>";
+            form_contents += clothId_input;
+            let clothCount_input = "<input name='orders[" + index + "].clothCount' type='hidden' value='" + clothCount + "'>";
+            form_contents += clothCount_input;
+        });
+        $(".order_form").append(form_contents);
+
+        // 폼 데이터를 수집
+        let formData = new FormData($(".order_form")[0]);
+
+        // 추가 데이터 포함
+        formData.append("payUserName", name);
+        formData.append("total_amount", totalPrice);
+        formData.append("memberMail", email);
+
+        // 카카오페이 결제전송
+        $.ajax({
+            type: 'post',
+            url: '/order/kakaoPay',
+            data: formData,
+            processData: false,  // 필수: jQuery가 데이터를 처리하지 않도록 설정
+            contentType: false,  // 필수: jQuery가 컨텐츠 유형을 설정하지 않도록 설정
+            dataType: 'json',    // 기대하는 응답 형식을 JSON으로 설정
+            success: function(response) {
+                console.log(response);  // 응답 객체를 콘솔에 출력하여 확인
+                if (response.next_redirect_pc_url) {
+                    location.href = response.next_redirect_pc_url;
+                } else {
+                    alert("응답에 리다이렉트 URL이 포함되어 있지 않습니다.");
+                }
+            },
+            error: function(xhr, status, error) {
+                // 실패했을 때 에러 메시지를 띄우기 위한 코드
+                console.log("xhr:", xhr);
+                console.log("status:", status);
+                console.log("error:", error);
+                alert("결제 요청에 실패했습니다. 다시 시도해주세요.\n에러 내용: " + xhr.responseText);
+            }
+        });
+    });
 });
 
 </script>

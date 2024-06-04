@@ -55,7 +55,7 @@ public class KakaoPayService {
 			MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 			parameters.add("cid", "TC0ONETIME");
 			parameters.add("partner_order_id", order_id);
-			parameters.add("partner_user_id", "inflearn");
+			parameters.add("partner_user_id", "kmc");
 			parameters.add("item_name", itemName);
 			parameters.add("quantity", String.valueOf(carts.size()));
 			parameters.add("total_amount", String.valueOf(totalAmount));
@@ -96,7 +96,7 @@ public class KakaoPayService {
 			parameters.add("cid", "TC0ONETIME");
 			parameters.add("tid", tid);
 			parameters.add("partner_order_id", order_id); // 주문명
-			parameters.add("partner_user_id", "회사명");
+			parameters.add("partner_user_id", "kmc");
 			parameters.add("pg_token", pgToken);
 			
 	        // 하나의 map안에 header와 parameter값을 담아줌.

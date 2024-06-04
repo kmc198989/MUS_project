@@ -1,250 +1,188 @@
 @charset "UTF-8";
 *{
-	margin: 0;
-	padding:0;
+   margin: 0;
+   padding:0;
 }
-
+a {
+   text-decoration: none;
+}
 /* 화면 전체 렙 */
-.wrapper{
-	/*width: 100%;*/
-	position: absolute;
-
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 550px;
-    height: 700px;
-    background: #FFFFFF;
-    border: 1px solid #383434;
-    box-shadow: 7px 7px 39px rgb(70, 76, 79, 57%);
-    border-radius: 20px;
-    
-    margin: 0px;
-    padding: 88px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+.wrapper {
+   width: 100%;
 }
-/*
-div.wrap {
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
+/* content 랩 */
+.wrap {
+   margin: auto;
 }
-*/
-
-/* content 랩
-.wrap{
-	width : 400px;
-	margin: auto;
+/* 홈페이지 메인 제품 목록  */
+.content_area {
+   width: 85%;
+   float: left;
+   height: 100%;
 }
- */
-/* 페이지 제목 */
 .subjecet{
-	/*width: 100%;
-    height: 60;
-    background-color: white;
-    text-align: center; 
-    margin-top: 20px;
-    */
-    width: 466px;
-    height: 110px;
-    left: 450px;
-    top: 100px;
-
-    font-family: 'Noto Sans CJK KR';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    margin-left: 23px;
-    line-height: 19px;
-
-    color: #383434;
-    justify-content: space-evenly;
+   height: 111px;
+    line-height: 3;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #6f6b67b8;
+    font-size: 24px;
 }
-/*
-.subjecet span{
-    font-size: 50px;
-    font-weight: 900;
-    color: black;
-}
-*/
 
-/* 아이디 영역 */
+.content_totalCount_section {
+   margin-bottom: 12px;
+}
+
+.content_btn_section {
+   margin-top: 20px;
+   text-align: right;
+}
+
+.content_btn_section a {
+   color: #fefeff;
+   background-color: #365fdd;
+   min-width: 125px;
+   padding: 17px 25px;
+   display: inline-block;
+   height: 39px;
+   font-size: 23px;
+   font-weight: bold;
+   text-align: center;
+   margin-right: 14px;
+   line-height: 39px;
+}
+  
+.content_total_section {
+   background-color: rgb(227, 237, 247);
+}
+.content_subject {
+    height: 130px;
+    line-height: 130px;
+    background-color: #474146fa;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 38px;
+    font-family: math;
+    font-weight: bolder;
+}
+.myroom{
+   margin-left: 360px;
+    margin-top: 87px;
+}
 
 .id_name{
-	
-    color: #4d4d4d;
+   color: black;
+    font-size: 26px;
+    font-family: 휴먼엑스포;
+    margin-top: -24px;
 }
-.id_input_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
-}
+
 .id_input{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
-    height: 30px;
+    height: 35px;
+    margin-left: 170px;
+    font-size: 22px;
 }
 /* 중복아이디 존재하지 않는 경우*/
 .id_input_re_1{
-	color : green;
-	display: none;
+   color : green;
+   display: none;
 }
 /* 중복아이디 존재하는 경우 */
 .id_input_re_2{
-	color: red;
-	display: none;
+   color: red;
+   display: none;
 }
 
 /* 비밀번호 영역 */
 
 .pw_name{
-	color: #4d4d4d;
+   color: black;
+   margin-top: 5px;
+    font-size: 26px;
+    font-family: 휴먼엑스포;
+    
     
 }
-.pw_input_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
-}
 .pw_input{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
     height: 30px;
-}
-
-/* 비밀번호 확인 영역 */
-
-.pwck_name{
-	color: #4d4d4d;
-}
-.pwck_input_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
-}
-.pwck_input{
-	padding: 0px;
-    border: none;
-    border-bottom: 1px solid #CFCFCF;
-    width: 350px;
-    height: 30px;
+    margin-left: 144px;
+    font-size: 22px;
+    margin-top: 25px;
 }
 
 /* 이름 영역 */
-
 .user_name{
-	color: #4d4d4d;
-}
-.user_input_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
+   color: black;
+   margin-top: 5px;
+    font-size: 26px;
+    font-family: 휴먼엑스포;
 }
 .user_input{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
     height: 30px;
+    margin-left: 195px;
+    font-size: 22px;
+    margin-top: 25px;
 }
 
 /* 메일 영역 */
-
 .mail_name{
-	color: #4d4d4d;
-}
-.mail_input_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
+   color: black;
+   margin-top: 5px;
+    font-size: 26px;
+    font-family: 휴먼엑스포;
 }
 .mail_input{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
     height: 30px;
-}
-
-.mail_check_input_box{
-	/*
-	border: 1px solid black;
-    height: 21px;
-    padding: 10px 14px;
-    width: 61%;
-    float: left;
-    */
-}
-
-#mail_check_input_box_false{
-    background-color:#ebebe4;
-}
- 
-#mail_check_input_box_true{
-    background-color:white;
-}
-.mail_check_input{
-	padding: 0px;
-    border: none;
-    border-bottom: 1px solid #CFCFCF;
-    width: 350px;
-    height: 30px;
-}
-.mail_check_button{
-     border: 1px solid black;
-    height: 30px;
-    width: 30%;
-    float: right;
-    line-height: 25px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 900;
-    background-color: #ececf7;
-    cursor: pointer;
-    margin-right: 10px;
-    border-radius: 5px;
+    margin-left: 168px;
+    font-size: 22px;
+    margin-top: 25px;
 }
 
 /* 핸드폰번호 영역 */
 
 .phone_name{
-	color: #4d4d4d;
+   color: black;
+   margin-top: 5px;
+    font-size: 26px;
+    font-family: 휴먼엑스포;
 }
 .phone_input_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .phone_input{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
     height: 30px;
+    margin-left: 116px;
+    font-size: 22px;
+    margin-top: 25px;
 }
 
 .phone_check_input_box{
-	/*
-	border: 1px solid black;
+   /*
+   border: 1px solid black;
     height: 21px;
     padding: 10px 14px;
     width: 61%;
@@ -260,7 +198,7 @@ div.wrap {
     background-color:white;
 }
 .phone_check_input{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
@@ -281,7 +219,7 @@ div.wrap {
     border-radius: 5px;
 }
 .doubleChk{
-	border: 1px solid black;
+   border: 1px solid black;
     height: 41px;
     width: 30%;
     float: right;
@@ -295,25 +233,31 @@ div.wrap {
 
 /* 주소 영역 */
 .address_name{
-	color: #4d4d4d;
+   color: black;
+   margin-top: 5px;
+    font-size: 26px;
+    font-family: 휴먼엑스포;
 }
 .address_input_1{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
     height: 30px;
+    margin-left: 194px;
+    font-size: 22px;
+    margin-top: 25px;
 }
 
 .address_input_2_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .address_input_2{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
@@ -321,18 +265,34 @@ div.wrap {
 }
 
 .address_input_3_box{
-	/*
-	border: 1px solid black;
-	height:21px;
-	padding: 10px 14px;	
-	*/
+   /*
+   border: 1px solid black;
+   height:21px;
+   padding: 10px 14px;   
+   */
 }
 .address_input_3{
-	padding: 0px;
+   padding: 0px;
     border: none;
     border-bottom: 1px solid #CFCFCF;
     width: 350px;
     height: 30px;
+}
+/* 포인트 영역 */
+.point{
+   color: black;
+   margin-top: 5px;
+    font-size: 26px;
+    font-family: 휴먼엑스포;
+}
+.point_input{
+   padding: 0px;
+    margin-top: 33px;
+    height: 20px;
+    width: 115px;
+    font-family: revert-layer;
+    margin-left: 104px;
+    text-align: center;
 }
 
 /* 버튼 부분 */
@@ -342,15 +302,15 @@ div.wrap {
     color: royalblue;
     border-radius: 8px;
     border: 1px solid #383434;
-    margin-top: 50px;
-    margin-left: 22px;
+    margin-top: 55px;
+    margin-left: 280px;
     width: 90px;
     cursor: pointer;
-	
+   
 }
 
 .home_button{
-	background-color: #FFFFFF;
+   background-color: #FFFFFF;
     color: royalblue;
     border-radius: 8px;
     border: 1px solid #383434;
@@ -361,7 +321,7 @@ div.wrap {
 }
 
 .secession_button{
-	background-color: #FFFFFF;
+   background-color: #FFFFFF;
     color: royalblue;
     border-radius: 8px;
     border: 1px solid #383434;
@@ -373,5 +333,5 @@ div.wrap {
 
 /* float 속성 해제 */
 .clearfix{
-	clear: both;
+   clear: both;
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.mus.mapper.OrderMapper;
 import com.mus.model.MemberVO;
@@ -28,6 +29,7 @@ import lombok.extern.java.Log;
 
 @Controller
 @Log
+@SessionAttributes({"order", "tid"})
 public class OrderController {
 
 	@Autowired
@@ -44,7 +46,7 @@ public class OrderController {
 
 	@GetMapping("/order/{memberId}")
 	public String orderPgaeGET(@PathVariable("memberId") String memberId, OrderPageDTO opd, Model model) {
-
+		log.info("/order/{memberId} 동작");
 		model.addAttribute("orderList", orderService.getGoodsInfo(opd.getOrders()));
 		model.addAttribute("memberInfo", memberService.getMemberInfo(memberId));
 
@@ -54,7 +56,7 @@ public class OrderController {
 
 	@PostMapping("/order")
 	public String orderPagePost(OrderDTO od, HttpServletRequest request) {
-
+		System.out.println("/order 컨트롤러 페이지");
 		System.out.println(od);
 
 		orderService.order(od);
@@ -78,7 +80,7 @@ public class OrderController {
 	}
 	
 	/* 카카오페이 결제 요청 */
-	@GetMapping("/order/kakaoPay")
+	@PostMapping(value = "/order/kakaoPay", produces = "application/json")
 	@ResponseBody
 	public KakaoPayReadyVO payReady(@RequestParam(name="total_amount") int totalAmount, OrderDTO order, Model model) {
 		log.info("주문정보: " + order);
@@ -90,7 +92,7 @@ public class OrderController {
 		//요청처리후 받아온 결재 고유 번호(tid)를 모델에 저장
 		model.addAttribute("tid", readyResponse.getTid());
 		log.info("결재고유 번호: " + readyResponse.getTid());
-		
+		System.out.println("kakaoPay 컨트롤러 order 출력" + order);
 		//Order정보를 모델에 저장
 		model.addAttribute("order", order);
 		

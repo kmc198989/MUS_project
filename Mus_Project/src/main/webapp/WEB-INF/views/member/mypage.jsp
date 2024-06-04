@@ -134,78 +134,65 @@
    <%@include file="../modal/modalDelete.jsp" %>
 
    <div class="wrapper">
-   <div class="wrap">
-         <div class="subjecet">
-            <h2>MUSINSA 회원정보</h2>
+      <div class="wrap">
+         <div id="nav_section">
+            <c:import url="/nav" />
          </div>
          
-         
-            <div class="id_name">*아이디</div>
-            <div class="id_input_box">
-               <input class="id_input" name="memberId" value="${member.memberId}" readonly="readonly"><br>
+         <div class="content_area">
+            <div class="content_subject">
+               <span>회원라운지</span>
             </div>
+            
+            <div class="subjecet">
+               <h2>MUSINSA 마이페이지</h2>
+            </div>
+         
+         <div class="myroom">
+         
+            <label class="id_name">*아이디</label>
+            <input class="id_input" name="memberId" value="${member.memberId}" readonly="readonly"><br>
+
          
                   
-            <div class="pw_name">*비밀번호</div>
-            <div class="pw_input_box">
-               <input class="pw_input" type="password" name="memberPw" value="${member.memberPw}" readonly="readonly"><br>
-            </div>
+            <label class="pw_name">*비밀번호</label>
+            <input class="pw_input" type="password" name="memberPw" value="${member.memberPw}" readonly="readonly"><br>
          
          
          
-            <div class="user_name">*이름</div>
-            <div class="user_input_box">
-               <input class="user_input" name="memberName" value="${member.memberName}" readonly="readonly"><br>
-            </div>
+            <label class="user_name">*이름</label>
+            <input class="user_input" name="memberName" value="${member.memberName}" readonly="readonly"><br>
+
+   
          
-         
-         
-            <div class="mail_name">*이메일</div> 
-            <div class="mail_input_box">
-               <input class="mail_input" name="memberMail" value="${member.memberMail}" readonly="readonly">
-            </div>
-         
-            
-               
-               
-            <div class="clearfix"></div>
-            <span id="mail_check_input_box_warn"></span>
-            
-         
-         
-         
-            <div class="phone_name">*휴대폰번호</div>
-               <div class="phone_input_box">
-                  <input class="phone_input" id="phone" type="text" name="memberPhone"value="${member.memberPhone}" readonly="readonly" required/>
-               </div>
+            <label class="mail_name">*이메일</label>
+            <input class="mail_input" name="memberMail" value="${member.memberMail}" readonly="readonly"><br>
+
+
+            <label class="phone_name">*휴대폰번호</label>
+            <input class="phone_input" id="phone" type="text" name="memberPhone"value="${member.memberPhone}" readonly="readonly" required/><br>
+
                            
                
-               <span id="phoneChk2"></span>
-               
-               <input type="hidden" id="phoneDoubleChk"/>
+            <span id="phoneChk2"></span>
+            <input type="hidden" id="phoneDoubleChk"/>
                
          
          
          
-            <div class="address_name">*주소</div>
-            <div class="address_input_1_wrap">
-               <div class="address_input_1_box">
-                  <input class="address_input_1" name="memberAddr1" value="${member.memberAddr2}" readonly="readonly">
-
-               </div>
-               
-               <div class="clearfix"></div>
-            </div>
+            <label class="address_name">*주소</label>
+            <input class="address_input_1" name="memberAddr1" value="${member.memberAddr2}" readonly="readonly"><br>
             
-            <div class="point">*포인트 현황</div>
-               <div class="point_input_box">
-                  <input class="point_input" name="point" value="${member.point}" readonly="readonly" required/>
-               </div>
+            <label class="point">*포인트 현황</label>
+            <input class="point_input" name="point" value="${member.point}" readonly="readonly" required/>&nbsp;point<br>
+
 
             <input type="submit" class="modify_button" value="수정페이지" onclick="location.href='/member/modifypage'">
             <button type="button" class="home_button" onclick="location.href='/main'">메인으로</button>
             <button type="button" id="modalDelete" class="secession_button" onclick="">탈퇴하기</button>
+         </div>
       </div>
+   </div>
 </div>
 <script>
 const modal = document.getElementById("modal");
