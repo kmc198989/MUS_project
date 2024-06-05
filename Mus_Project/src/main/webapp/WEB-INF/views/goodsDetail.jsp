@@ -349,7 +349,6 @@ const form = {
 					
 					window.open(popUrl,"리뷰 쓰기",popOption);							
 				}				
-				
 			}
 		});			
 
