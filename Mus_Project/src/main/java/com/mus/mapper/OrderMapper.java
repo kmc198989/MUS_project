@@ -40,4 +40,7 @@ public interface OrderMapper {
 	
 	/* 카카오페이 saveOrder */
 	public void saveOrder(Payment payment);
+	
+	/* 카카오페이 상품 이름 */
+	public String getGoodsName(int clothId);
 }

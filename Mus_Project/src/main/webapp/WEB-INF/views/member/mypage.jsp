@@ -73,18 +73,8 @@
             text-shadow: 1px 1px 2px gray;
             color: white;
         }
-        #modal .modal_pass > label{
-           margin-left: 19px;
-          font-size: 16px;
-          color: white;
-          line-height: 2;
-        }
-        #modal .modal_pass > input{
-           margin-left: 35px;
-          height: 21px;
-          margin-bottom: 15px;
-          width: 177px;
-              
+        #modal .modal_pass{
+           margin-top: -24px;
         }
         #modal .modal_pass > label{
            margin-left: 27px;
@@ -94,10 +84,10 @@
         }
         
           #modal .modal_pass > input{
-             margin-left: 43px;
+             margin-left: 41px;
           height: 21px;
           margin-bottom: 15px;
-          width: 177px;
+          width: 180px;
           }
           #modal .modal_checkpass > label{
              margin-left: 9px;
@@ -106,10 +96,11 @@
           line-height: 2;
           }
           #modal .modal_checkpass > input{
-             margin-left: 23px;
+             margin-left: 22px;
           height: 21px;
           margin-bottom: 15px;
           width: 177px;
+          font-size: 19px;
           }
           #modal .modal_checkButton{
              margin-left: 198px;
@@ -126,6 +117,29 @@
           font-size: 14px;
           font-style: italic;
           }
+          #modal .final_pwck_ck{
+          display: none;
+          font-size: 12px;
+          margin-left: 180px;
+      }
+      /* 비밀번호 확인 일치 유효성검사 */
+      #modal .pwck_input_re_1{
+              color : green;
+              display : none;
+              font-size: 10px;
+              margin-left: 180px; 
+      }
+      #modal .pwck_input_re_2{
+              color : red;
+              display : none;  
+              font-size: 10px; 
+               margin-left: 180px; 
+      }
+      #modal .final_pw_ck{
+          display: none;
+          font-size: 12px;
+           margin-left: 180px;
+      }
 </style>
    
 </head>
@@ -141,7 +155,7 @@
          
          <div class="content_area">
             <div class="content_subject">
-               <span>회원라운지</span>
+               <span class="title">회원라운지</span>
             </div>
             
             <div class="subjecet">

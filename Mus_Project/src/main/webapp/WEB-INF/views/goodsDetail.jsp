@@ -147,7 +147,8 @@
                         </span>
                      </div>
                      <div class="button_set">
-                        <a class="btn_cart">장바구니 담기</a> <a class="btn_buy">바로구매</a>
+                        <a class="btn_cart">장바구니 담기</a>
+                        <a class="btn_buy">바로구매</a>
                         <a title="좋아요" class="product-detail__sc-8o4r2i-0 edqcsT">
 													<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
 														<path d="M15.3779 9.38123L13.6524 7.65578C11.5073 5.51066 8.02936 5.51065 5.88423 7.65578C3.73911 9.8009 3.73911 13.2788 5.88423 15.424L14.9992 24.539L18.5248 21.0134C18.6735 20.8647 18.8127 20.7102 18.9425 20.5505L23.0949 16.3982M16.396 7.56125C18.5447 5.46384 21.9869 5.4797 24.116 7.60884C26.2445 9.73732 26.261 13.178 24.1656 15.3268" stroke="#bbb">
@@ -196,6 +197,11 @@
                </div>
                
             </div>
+            
+            <!-- 주문 form -->
+            <form action="/order/${member.memberId}" method="get" class="order_form">
+               
+            </form>
 
             <section id="footer_section">
                <%@include file="includes/footer.jsp"%>
@@ -298,10 +304,21 @@ const form = {
 			alert("로그인이 필요합니다.");	
 		}
 	}
+	
 	/* 바로구매 버튼 */
-	$(".btn_buy").on("click", function(){
+	$(".btn_buy").on("click", function(e){
+		
+		let form_contents = '';
+		let clothId = '${goodsInfo.clothId}';
 		let clothCount = $(".quantity_input").val();
-		$(".order_form").find("input[name='orders[0].clothCount']").val(clothCount);
+        
+		let clothId_input = "<input name='orders[0].clothId' type='hidden' value='" + clothId + "'>";
+    form_contents += clothId_input;
+    
+    let clothCount_input = "<input name='orders[0].clothCount' type='hidden' value='" + clothCount + "'>";
+    form_contents += clothCount_input;
+		
+    $(".order_form").html(form_contents);
 		$(".order_form").submit();
 	});
 

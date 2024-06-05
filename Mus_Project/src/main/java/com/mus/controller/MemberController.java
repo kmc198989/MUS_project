@@ -230,11 +230,9 @@ public class MemberController {
     
     /* 메인페이지 로그아웃 */
 	@RequestMapping(value = "logout.do", method = RequestMethod.GET)
-	public String logoutMainGET(HttpServletRequest request, SessionStatus sessionStatus) throws Exception{
+	public String logoutMainGET(HttpServletRequest request, HttpSession session) throws Exception{
 		
-
-		
-        sessionStatus.setComplete(); // 세션 무효화
+        session.invalidate();
 
 		return "redirect:/main";
 	}

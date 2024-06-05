@@ -24,8 +24,12 @@
 	min-width: 1291px;
 	border-left: 1px solid rgb(221, 221, 221);
 	box-sizing: border-box;
+	margin-top: 40px;
 }
-
+.main_div_close{
+	left: 0px;
+	border-left: 0px; 
+}
 .leftmain {
 	width: 270px;
 	height: 100%;
@@ -334,10 +338,6 @@ table {
 	cursor: pointer;
 }
 
-#nav_section {
-	padding: 15px 0 20px;
-	height: 100%;
-}
 
 #main_div {
 	/* float: right;

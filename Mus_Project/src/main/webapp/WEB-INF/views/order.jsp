@@ -20,14 +20,11 @@
 	<div class="wrapper">
 		<div class="wrap">
 			<!-- 왼쪽 메뉴 영역 -->
-			<div class="leftmain">
-				<div id="nav_section">
+			<div class="main">
 					<c:import url="/nav" />
-				</div>
-
 			</div>
 
-			<div class="content_area">
+			<div id="main_div" class="content_area">
 				<div class="content_subject">
 					<h2>주문서</h2>
 				</div>

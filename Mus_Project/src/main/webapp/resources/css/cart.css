@@ -8,7 +8,6 @@
 a {
    text-decoration: none;
 }
-
 .wrapper {
    display: flex;
    width: 100%;
@@ -32,27 +31,23 @@ a {
    text-align: center;
 }
 
-#nav_section {
-   width: 270px;
-   height: 100%;
-   position: relative;
-   z-index: 99;
-   border-right: 1px solid rgb(221, 221, 221);
-   box-sizing: border-box;
-   float: left;
-   position: relative;
-}
-
 /* 홈페이지 메인 제품 목록  */
-.content_area {
+.content_area {  
    width: calc(100% - 270px);
-   position: absolute;
    left: 269px;
    top: 0;
    right: 0;
    min-width: 1291px;
    border-left: 1px solid rgb(221, 221, 221);
    box-sizing: border-box;
+   margin-top: 40px;
+   position: absolute;
+   
+}
+
+.main_div_close{
+	left: 0;
+	border-left: 0px; 
 }
 
 table {

@@ -13,6 +13,11 @@
 		clothId = #{clothId}
 
 	</select>
+	
+	<!-- 주문 상품 이름 -->
+	<select id="getGoodsName" resultType="String">
+		select clothName from mus_cloth where clothId=#{clothId}
+	</select>	
 
 	<select id="getOrderInfo"
 		resultType="com.mus.model.OrderItemDTO">

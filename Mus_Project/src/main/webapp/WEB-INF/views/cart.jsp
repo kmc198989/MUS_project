@@ -18,13 +18,10 @@
 
    <div class="wrapper">
       <div class="wrap">
-         <div id="nav_section">
+      <!-- 왼쪽 메뉴 영역 -->
+         <div class="main">
             <c:import url="/nav" />
-         </div>
-         <div class="content_area">
-            <section class="main">
-               <div id="main_div">
-
+         <div id="main_div" class="content_area">
                   <div class="content_subject">
                      <h2>장바구니</h2>
                   </div>
@@ -189,15 +186,13 @@
                      
                   </form>
                   
-               </div>
-            </section>
             <!-- Footer 영역 -->
             <section id="footer_section">
                <%@include file="includes/footer.jsp"%>
             </section>
          </div>
          
-
+		</div>
       </div>
    </div>
 <script>

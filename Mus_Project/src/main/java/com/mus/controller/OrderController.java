@@ -85,16 +85,16 @@ public class OrderController {
 	public KakaoPayReadyVO payReady(@RequestParam(name="total_amount") int totalAmount, OrderDTO order, Model model) {
 		log.info("주문정보: " + order);
 		log.info("주문가격: " + totalAmount);
+		model.addAttribute("order", order);
 		
 		//카카오페이 결제 준비하기 - 결제요청 Service 실행.
-		KakaoPayReadyVO readyResponse = kakaoService.payReady(totalAmount);
+		KakaoPayReadyVO readyResponse = kakaoService.payReady(totalAmount, order);
 		
 		//요청처리후 받아온 결재 고유 번호(tid)를 모델에 저장
 		model.addAttribute("tid", readyResponse.getTid());
 		log.info("결재고유 번호: " + readyResponse.getTid());
 		System.out.println("kakaoPay 컨트롤러 order 출력" + order);
 		//Order정보를 모델에 저장
-		model.addAttribute("order", order);
 		
 		return readyResponse; //클라이언트에 전송(tid, next_redirect_pc_url 포함)
 	}
@@ -122,7 +122,17 @@ public class OrderController {
 		
 		ordermapper.saveOrder(payment);
 		
-		return "redirect:/order";
+        return "redirect:/order/success";
 	}
+	
+    @GetMapping("/order/success")
+    public String kakaoPayOrderProcess(@ModelAttribute("order") OrderDTO order, Model model) {
+        // 주문 처리 로직 수행
+    	log.info("post /order/kakaosuccess" + order);
+    	
+        orderService.order(order);        
+
+        return "redirect:/main";
+    }
 
 }

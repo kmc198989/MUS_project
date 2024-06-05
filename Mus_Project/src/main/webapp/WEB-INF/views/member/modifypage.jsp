@@ -115,7 +115,7 @@
          
       
             <input type="submit" class="modify_button" value="수정하기">
-            <button type="button" class="home_button" onclick="location.href='/member/modifypage'">메인으로</button>
+            <button type="button" class="home_button" onclick="location.href='/main'">메인으로</button>
          
          
       </div>

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 *{
-   margin: 0;
-   padding:0;
+   margin: 0 auto;
+   padding:0 auto;
 }
 a {
    text-decoration: none;
@@ -16,9 +16,17 @@ a {
 }
 /* 홈페이지 메인 제품 목록  */
 .content_area {
-   width: 85%;
-   float: left;
-   height: 100%;
+    width: calc(1900px - 270px);
+    left: 269px;
+    margin: 0;
+    right: 0;
+    min-width: 1291px;
+    border-left: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+    position: absolute;
+}
+.title{
+   margin-left: 80px;
 }
 .subjecet{
    height: 111px;
@@ -56,8 +64,8 @@ a {
    background-color: rgb(227, 237, 247);
 }
 .content_subject {
-    height: 130px;
-    line-height: 130px;
+    height: 92px;
+    line-height: 99px;
     background-color: #474146fa;
     margin-bottom: 10px;
     color: white;
