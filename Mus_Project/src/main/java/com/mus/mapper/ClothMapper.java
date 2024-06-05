@@ -44,5 +44,16 @@ public interface ClothMapper {
 	// 상품 id 이름
 	public ClothVO getClothIdName(int clothId);
 	
+	// 좋아요 조회
+	public int getLikeTotal(int clothId);
+	
+	// 좋아요 업데이트
+	public void updateLikes(int likes, int clothId);
+	
+	// 좋아요 추가
+	public void addLikes(int clothId, String memberId);
+	
+	// 좋아요 중복체크
+	public int checkLike(int clothId, String memberId);
 	
 }

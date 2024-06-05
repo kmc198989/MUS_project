@@ -139,4 +139,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where clothId = #{clothId}	
 	
 	</select>
+	
+	<!-- 좋아요 -->
+	<select id="addLike">
+		insert into mus_like(clothid, memberid) values(#{clothId}, #{memberId})
+	</select>
+	
+	<select id="checkLike" resultType="integer">
+		select likeId from mus_like
+		where memberId = #{memberId} and clothId = #{clothId}
+	</select>
+	
+	<select id="getLikeTotal" resultType="int">
+
+		select count(*)
+		from mus_like
+		where clothId = #{clothId}
+
+	</select>
+	
+	<update id="updateRating">
+
+		update mus_cloth
+		set likes = #{likes}
+		where clothId = #{clothId}
+		
+	</update>
 </mapper>

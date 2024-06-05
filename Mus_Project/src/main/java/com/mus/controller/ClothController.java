@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mus.mapper.ClothMapper;
 import com.mus.model.AttachImageVO;
@@ -157,5 +158,31 @@ public class ClothController {
 		model.addAttribute("memberId", dto.getMemberId());
 		
 		return "/replyUpdate";
+	}
+	
+	// 좋아요 조회
+	@GetMapping("/likes/{clothId}")
+	public int likesTOTAL(@PathVariable("clothId")int clothId) {
+		int likes = clothmapper.getLikeTotal(clothId);
+		return likes;
+	}
+	
+	// 좋아요 업데이트
+	@GetMapping("/likes/update")
+	public void likesUPDATE(int clothId) {
+		int likes = clothmapper.getLikeTotal(clothId);
+		clothmapper.updateLikes(likes, clothId);
+	}
+	
+	// 좋아요 추가
+	@GetMapping("/likes/add")
+	public void likesADD(int clothId, String memberId) {
+		clothmapper.addLikes(clothId, memberId);
+	}
+	
+	// 좋아요 중복 체크
+	@GetMapping("/likes/check")
+	public int likesCHECK(int clothId, String memberId) {
+		return clothmapper.checkLike(clothId, memberId);
 	}
 }
