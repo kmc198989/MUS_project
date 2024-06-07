@@ -1,19 +1,19 @@
 package com.mus.model;
 
 public class SellerVO {
-	private int sellerId, busineseNum;
-	private String sellerCompany, brandName, brandCEO, tel, email, address, report;
+	private int sellerId;
+	private String sellerCompany, brandName, brandCEO, tel, email, address, report, busineseNum;
 	
 	public int getSellerId() {
 		return sellerId;
 	}
 	public void setSellerId(int sellerId) {
 		this.sellerId = sellerId;
-	}
-	public int getBusineseNum() {
+	}		
+	public String getBusineseNum() {
 		return busineseNum;
 	}
-	public void setBusineseNum(int busineseNum) {
+	public void setBusineseNum(String busineseNum) {
 		this.busineseNum = busineseNum;
 	}
 	public String getReport() {

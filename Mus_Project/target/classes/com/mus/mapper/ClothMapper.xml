@@ -142,7 +142,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 좋아요 -->
 	<select id="addLike">
-		insert into mus_like(clothid, memberid) values(#{clothId}, #{memberId})
+		insert into mus_like(clothId, memberId) values(#{clothId}, #{memberId})
 	</select>
 	
 	<select id="checkLike" resultType="integer">

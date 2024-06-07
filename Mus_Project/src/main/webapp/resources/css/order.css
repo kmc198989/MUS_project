@@ -110,6 +110,15 @@
 	margin-bottom: 12px;
 }
 
+.kakaopay_btn {
+  background: url('../img/kakaopaypng/카카오페이1.jpg') no-repeat center center;
+  background-size: contain;
+  border: none;
+  width: 120px;
+  height: 80px;
+  cursor: pointer;
+}
+
 /* 이미지 */
 .image_wrap {
 	width: 100%;

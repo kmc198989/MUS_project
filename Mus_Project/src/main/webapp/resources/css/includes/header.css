@@ -1,9 +1,11 @@
 @charset "UTF-8";
-.header_div{
-   background-color: #000;
-   height: 60px;
-   display: flex;
-   align-items: center;
+.header_div {
+    background-color: #000;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    width: 1900px;
+    margin: 0;
 }
 .logo_area {
    height: 60px;

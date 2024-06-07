@@ -92,7 +92,7 @@ a:visited {
 
 .catename {
    display: flex;
-   height: 25px;
+   height: 50px;
    font-size: 12px;
    color: rgb(178, 178, 178);
    flex-direction: row;
@@ -223,7 +223,7 @@ a:visited {
    color: rgb(0, 120, 255);
 }
 
-.edqcsT {
+.unlike {
    display: flex;
    flex-direction: column;
    width: 60px;
@@ -236,7 +236,7 @@ a:visited {
    cursor: pointer;
 }
 
-.janPuv {
+.like {
    display: flex;
    flex-direction: column;
    width: 60px;

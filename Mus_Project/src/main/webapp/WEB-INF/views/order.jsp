@@ -231,7 +231,7 @@
 						<!-- 버튼 영역 -->
 						<div class="total_info_btn_div">
 							<a class="order_btn">결제하기</a>
-							<button type="button" class="kakaopay_btn">카카오페이</button>
+							<button type="button" class="kakaopay_btn"></button>
 						</div>
 						
 						<!-- 주문 요청 form -->
