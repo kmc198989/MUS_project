@@ -18,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mus.mapper.ClothMapper;
@@ -162,27 +164,51 @@ public class ClothController {
 	
 	// 좋아요 조회
 	@GetMapping("/likes/{clothId}")
+    @ResponseBody
 	public int likesTOTAL(@PathVariable("clothId")int clothId) {
 		int likes = clothmapper.getLikeTotal(clothId);
 		return likes;
 	}
 	
 	// 좋아요 업데이트
-	@GetMapping("/likes/update")
+	@PostMapping("/likes/update")
+    @ResponseBody
 	public void likesUPDATE(int clothId) {
+		logger.info("likes update 동작");
 		int likes = clothmapper.getLikeTotal(clothId);
-		clothmapper.updateLikes(likes, clothId);
+		logger.info("likes = " + String.valueOf(likes));
+
+		clothmapper.updateLike(likes, clothId);
 	}
 	
 	// 좋아요 추가
-	@GetMapping("/likes/add")
+	@PostMapping("/likes/add")
+    @ResponseBody
 	public void likesADD(int clothId, String memberId) {
-		clothmapper.addLikes(clothId, memberId);
+		logger.info("likes add 동작");
+		clothmapper.addLike(clothId, memberId);
+		int likes = clothmapper.getLikeTotal(clothId);
+		clothmapper.updateLike(likes, clothId);
 	}
 	
 	// 좋아요 중복 체크
-	@GetMapping("/likes/check")
-	public int likesCHECK(int clothId, String memberId) {
-		return clothmapper.checkLike(clothId, memberId);
+	@PostMapping("/likes/check")
+    @ResponseBody
+	public int likesCHECK(@RequestParam("clothId") int clothId, @RequestParam("memberId") String memberId) {
+		logger.info("likes check 동작");
+		int result = clothmapper.checkLike(clothId, memberId);
+		logger.info(String.valueOf(result));
+		return result;
+	}
+	
+	// 좋아요 제거
+	@PostMapping("likes/delete")
+    @ResponseBody
+	public void likesDELETE(int clothId, String memberId) {
+		logger.info("likes delete 동작");
+		clothmapper.deleteLike(clothId, memberId);
+		int likes = clothmapper.getLikeTotal(clothId);
+		logger.info("likes = " + String.valueOf(likes));
+		clothmapper.updateLike(likes, clothId);
 	}
 }

@@ -3,6 +3,8 @@ package com.mus.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mus.model.CateFilterDTO;
 import com.mus.model.CateVO;
 import com.mus.model.ClothVO;
@@ -45,15 +47,18 @@ public interface ClothMapper {
 	public ClothVO getClothIdName(int clothId);
 	
 	// 좋아요 조회
-	public int getLikeTotal(int clothId);
+	public int getLikeTotal(@Param("clothId") int clothId);
 	
 	// 좋아요 업데이트
-	public void updateLikes(int likes, int clothId);
+	public void updateLike(@Param("likes")int likes, @Param("clothId") int clothId);
 	
 	// 좋아요 추가
-	public void addLikes(int clothId, String memberId);
+	public void addLike(@Param("clothId") int clothId, @Param("memberId") String memberId);
 	
 	// 좋아요 중복체크
-	public int checkLike(int clothId, String memberId);
+	public int checkLike(@Param("clothId") int clothId, @Param("memberId") String memberId);
+	
+	// 좋아요 제거
+	public void deleteLike(@Param("clothId") int clothId, @Param("memberId") String memberId);
 	
 }

@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getGoodsInfo" resultType="com.mus.model.ClothVO"> select a.clothId,
 		a.clothName, a.sellerId, b.brandName, a.PUBLEYEAR, a.CATECODE,
 		c.CATENAME, a.clothPrice, a.clothStock, a.clothDiscount, a.clothIntro,
-		a.clothContents, a.ratingAvg,
+		a.clothContents, a.ratingAvg, a.likes,
 		(SELECT COUNT(*) FROM mus_reply WHERE clothId = a.clothId) AS ratingCount
 		from mus_cloth a left outer join mus_seller b 
 		on a.sellerId = b.sellerId left outer join mus_cate c 
@@ -141,12 +141,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- 좋아요 -->
-	<select id="addLike">
+	<insert id="addLike">
 		insert into mus_like(clothId, memberId) values(#{clothId}, #{memberId})
-	</select>
+	</insert>
 	
-	<select id="checkLike" resultType="integer">
-		select likeId from mus_like
+	<select id="checkLike" resultType="int">
+		select COUNT(*) from mus_like
 		where memberId = #{memberId} and clothId = #{clothId}
 	</select>
 	
@@ -158,11 +158,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	
-	<update id="updateRating">
+	<delete id="deleteLike">
+		delete from mus_like where clothId = #{clothId} and memberId = #{memberId}
+	</delete>
+	
+	<update id="updateLike">
 
 		update mus_cloth
 		set likes = #{likes}
 		where clothId = #{clothId}
 		
 	</update>
+	
+	
+	
+	
 </mapper>

@@ -32,17 +32,17 @@ a {
 }
 
 /* 홈페이지 메인 제품 목록  */
-.content_area {  
-   width: calc(100% - 270px);
-   left: 269px;
-   top: 0;
-   right: 0;
-   min-width: 1291px;
-   border-left: 1px solid rgb(221, 221, 221);
-   box-sizing: border-box;
-   margin-top: 40px;
-   position: absolute;
-   
+.content_area {
+    width: calc(1900px - 270px);
+    position: absolute;
+    left: 269px;
+    top: 0;
+    right: 0;
+    min-width: 1291px;
+    border-left: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+    margin-top: 40px;
+    margin-left: 0px;
 }
 
 .main_div_close{
