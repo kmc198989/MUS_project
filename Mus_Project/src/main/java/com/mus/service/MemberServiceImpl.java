@@ -79,8 +79,8 @@ public class MemberServiceImpl implements MemberService {
 	public void certifiedPhoneNumber(String memberPhone, int randomNumber) {
 		System.out.println("휴대폰인증 TEST");
 		
-		String api_key = "NCSUSYJWWOARCOID";
-		String api_secret = "MGNSZPJZ0M8GPTKFE2KRYWUBXDBHUZPK";
+		String api_key = "";
+		String api_secret = "";
 		
 		Message coolsms = new Message(api_key, api_secret);
 		

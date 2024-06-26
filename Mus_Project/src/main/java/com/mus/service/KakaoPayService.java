@@ -129,7 +129,7 @@ public class KakaoPayService {
 		private HttpHeaders getHeaders() {
 			
 			HttpHeaders headers = new HttpHeaders();
-			headers.set("Authorization", "KakaoAK e8c84c98558452dab477586ba910d1b8");
+			headers.set("Authorization", "KakaoAK +(카카오페이API키 값 넣기)");
 			headers.set("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 				
 			return headers;

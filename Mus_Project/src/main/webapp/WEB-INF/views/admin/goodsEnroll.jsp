@@ -66,7 +66,7 @@
                         <label for="sellerId">판매자</label>
                     </div>
                     <div class="form_section_content">
-                        <input id="brandName_input" readonly="readonly">
+                        <input id="brandName_input" name="brandName" readonly="readonly">
                         <input id="sellerId_input" name="sellerId" type="hidden">
                         <button class="sellerId_btn">판매자 선택</button>
                         <span class="ck_warn sellerId_warn">판매자를 선택해주세요</span>
@@ -196,6 +196,7 @@ $("#enrollBtn").on("click",function(e){
 	let clothName = $("input[name='clothName']").val();
 	let publeYear = $("input[name='publeYear']").val();
 	let sellerId = $("input[name='sellerId']").val();
+	let brandName = $("input[name='brandName']").val();
 	let cateCode = $("select[name='cateCode']").val();
 	let clothPrice = $("input[name='clothPrice']").val();
 	let clothStock = $("input[name='clothStock']").val();
